@@ -1,0 +1,70 @@
+
+
+#' The RAINLINK package.
+#'
+#' Retrieval algorithm for rainfall mapping from microwave links 
+#' in a cellular communication network.
+#' 
+#' @references Aart Overeem, Hidde Leijnse, Remko Uijlenhoet, 2015. 
+#' Retrieval algorithm for rainfall mapping from microwave links in a 
+#' cellular communication network. Atmos. Meas. Tech. Discuss., revised version.    
+
+#' @description A sample microwave link data set is provided for The Netherlands (folder "LinkDataOriginal"). This data set needs to be processed in the order described below to obtain
+#' link-based rainfall maps. It uses a configuration file "Config.R", which contains all parameter values, coordinate systems, visualisation options, and folder names for rainfall
+#' estimation and mapping using microwave links. The file "InterpolationGrid.dat" contains the longitude and latitude of the interpolation and radar grid in degrees (WGS84). The file
+#' "PolygonsGrid.dat" contains the corresponding polygons with four angular points (longitude and latitude in degrees in WGS84). Per pixel there are five entries. The first entry is the
+#' same as the fifth entry in order to close the polygon. File "ab_values_vertical.txt" contains the values of the coefficients in the relationship which converts
+#' path-averaged specific attenuation to path-averaged rainfall intensity.
+#'
+#'
+#' Step 1: Preprocessing of linkdata:
+#'
+#' PreprocessingMinMax()
+#'
+#'
+#' Step 2: Wet-dry classification with nearby link approach including reference signal level determination:	
+#'
+#' WetDryNearbyLinkApMinMax()
+#'
+#' or no wet-dry classification including reference signal level determination:
+#'
+#' NoWetDryMinMax()
+#'
+#'
+#' Step 3: Compute mean path-averaged rainfall intensities from minimum and maximum powers over sampling time interval (outliers can be removed in case of nearby link approach):
+#'
+#' RainRetrievalMinMax() 
+#'
+#'
+#' Step 4: Interpolation of path-averaged rainfall:
+#'
+#' Interpolation()
+#'
+#'
+#' Step 5: Visualisation of link and radar rainfall maps:
+#'
+#' Daily link rainfall map for 11 September 2011:
+#'
+#' RainMapsLinksDaily(20110911)  
+#'
+#' Link rainfall maps for chosen time interval:   
+#'
+#' RainMapsLinksTimeStep()
+#'
+#' Daily gauge-adjusted radar rainfall map for 11 September 2011 
+#'
+#' (file "RAD_NL25_RAC_MFBS_24H_201109110800.nc"):
+#'
+#' RainMapsRadarsDaily(20110911) 
+#'
+#' 15-min gauge-adjusted radar rainfall map for 10 September 2011 2030 - 2045 UTC 
+#'
+#' (file "Radar_201109102045_15min.dat"):
+#'
+#' RainMapsRadarsTimeStep
+#'
+#' @docType package
+#' @name RAINLINK
+NULL
+
+
