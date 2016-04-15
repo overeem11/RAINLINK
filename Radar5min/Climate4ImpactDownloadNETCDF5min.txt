@@ -1,0 +1,576 @@
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110000.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111200.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110005.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111205.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110010.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111210.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110015.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111215.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110020.nc" 
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T) 
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111220.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110025.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111225.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110030.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111230.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110035.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111235.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110040.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111240.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110045.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111245.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110050.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111250.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110055.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111255.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110100.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111300.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110105.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111305.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110110.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111310.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110115.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111315.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110120.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111320.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110125.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111325.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110130.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111330.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110135.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111335.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110140.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111340.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110145.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111345.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110150.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111350.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110155.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111355.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110200.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111400.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110205.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111405.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110210.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111410.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110215.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111415.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110220.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111420.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110225.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111425.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110230.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111430.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110235.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111435.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110240.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111440.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110245.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111445.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110250.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111450.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110255.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111455.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110300.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111500.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110305.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111505.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110310.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111510.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110315.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111515.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110320.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111520.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110325.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111525.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110330.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111530.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110335.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111535.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110340.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111540.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110345.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111545.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110350.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111550.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110355.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111555.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110400.nc" 
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T) 
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111600.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110405.nc" 
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111605.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110410.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111610.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110415.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111615.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110420.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111620.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110425.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111625.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110430.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111630.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110435.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111635.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110440.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111640.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110445.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111645.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110450.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111650.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110455.nc" 
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111655.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110500.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111700.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110505.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111705.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110510.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111710.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110515.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111715.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110520.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111720.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110525.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111725.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110530.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111730.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110535.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111735.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110540.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111740.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110545.nc" 
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111745.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110550.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111750.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110555.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111755.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110600.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111800.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110605.nc" 
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T) 
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111805.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110610.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111810.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110615.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111815.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110620.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111820.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110625.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111825.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110630.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111830.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110635.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111835.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110640.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111840.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110645.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111845.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110650.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111850.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110655.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111855.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110700.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111900.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110705.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111905.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110710.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111910.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110715.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111915.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110720.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111920.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110725.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)  
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111925.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110730.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111930.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110735.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111935.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110740.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111940.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110745.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111945.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110750.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111950.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110755.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111955.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110800.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112000.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110805.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112005.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110810.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112010.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110815.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112015.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110820.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112020.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110825.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112025.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110830.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112030.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110835.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112035.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110840.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112040.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110845.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112045.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110850.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112050.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110855.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112055.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110900.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112100.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110905.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112105.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110910.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112110.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110915.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112115.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110920.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112120.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110925.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112125.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110930.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112130.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110935.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112135.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110940.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112140.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110945.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112145.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110950.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112150.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109110955.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112155.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111000.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112200.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111005.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112205.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111010.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112210.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111015.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112215.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111020.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112220.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111025.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112225.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111030.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112230.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111035.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112235.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111040.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112240.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111045.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112245.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111050.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112250.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111055.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112255.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111100.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112300.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111105.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112305.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111110.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112310.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111115.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112315.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111120.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112320.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111125.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112325.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111130.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112330.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111135.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112335.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111140.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112340.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111145.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112345.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111150.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112350.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109111155.nc"  
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
+path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_5min_NC/2011/09/RAD_NL25_RAC_MFBS_5min_201109112355.nc"
+download.file(path,substr(path,98,135),method="wget",quiet=F,mode="wb",cacheOK=T)
