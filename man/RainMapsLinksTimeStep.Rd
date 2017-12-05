@@ -5,29 +5,27 @@
 \title{Function which visualises link-based rainfall depths for each time interval in a supplied period.}
 \usage{
 RainMapsLinksTimeStep(AlphaLinksTimeStep, AlphaPlotLocation, AlphaPolygon,
-  AlphaScale, AutDefineLegendTop, BBoxOSMauto, ColourLinks, ColoursNumber,
-  ColourPlotLocation, ColourPlotLocationText, ColourType, ColourHighestClass,
-  ConversionDepthToIntensity, CoorSystemInputData, DateTimeEndRainMaps,
-  DateTimeStartRainMaps, ExtraDeg, ExtraText, FigFileLinksTimeStep, FigHeight,
-  FigWidth, FileGrid, FilePolygonsGrid, FolderFigures, FolderRainMaps,
-  FolderRainEstimates, FontFamily, GoogleLocDegSpecified, GoogleLocLat,
-  GoogleLocLon, GoogleLocName, GoogleLocNameSpecified, GoogleMapType,
-  GoogleZoomlevel, LabelAxisLat, LabelAxisLonGoogle, LabelAxisLonOSM,
-  LatLocation, LatText, LegendTitleLinksTimeStep, LonLocation, LonText,
-  ManualScale, MapBackground, OSMBottom, OSMLeft, OSMRight, OSMScale, OSMTop,
-  Palette, PlotLocation, PixelBorderCol, PlotBelowScaleBottom, PlotLocLinks,
-  ScaleBottomTimeStep, ScaleHigh, ScaleLow, ScaleTopTimeStep, SizeLinks,
-  SizePixelBorder, SizePlotLocation, SizePlotTitle, SymbolPlotLocation,
-  TitleLinks, XMiddle, YMiddle)
+  AutDefineLegendTop, BBoxOSMauto, ColourLinks, ColoursNumber,
+  ColourPlotLocation, ColourPlotLocationText, ColourScheme, ColourType,
+  ColourHighestClass, ConversionDepthToIntensity, CoorSystemInputData,
+  DateTimeEndRainMaps, DateTimeStartRainMaps, ExtraDeg, ExtraText,
+  FigFileLinksTimeStep, FigHeight, FigWidth, FileGrid, FilePolygonsGrid,
+  FolderFigures, FolderRainMaps, FolderRainEstimates, FontFamily,
+  GoogleLocDegSpecified, GoogleLocLat, GoogleLocLon, GoogleLocName,
+  GoogleLocNameSpecified, GoogleMapType, GoogleZoomlevel, LabelAxisLat,
+  LabelAxisLonGoogle, LabelAxisLonOSM, LatLocation, LatText,
+  LegendTitleLinksTimeStep, LonLocation, LonText, ManualScale, MapBackground,
+  OSMBottom, OSMLeft, OSMRight, OSMScale, OSMTop, PlotLocation, PixelBorderCol,
+  PlotBelowScaleBottom, PlotLocLinks, ScaleBottomTimeStep, ScaleHigh, ScaleLow,
+  ScaleTopTimeStep, SizeLinks, SizePixelBorder, SizePlotLocation, SizePlotTitle,
+  SymbolPlotLocation, TitleLinks, XMiddle, YMiddle)
 }
 \arguments{
-\item{AlphaLinksTimeStep}{Transparency of link paths}
+\item{AlphaLinksTimeStep}{Transparency of link paths.}
 
-\item{AlphaPlotLocation}{Transparency of plotted symbol for specified location on map}
+\item{AlphaPlotLocation}{Transparency of plotted symbol for specified location on map.}
 
-\item{AlphaPolygon}{Transparency of polygons}
-
-\item{AlphaScale}{Transparency of legend}
+\item{AlphaPolygon}{Transparency of polygons.}
 
 \item{AutDefineLegendTop}{Let R automatically define highest value of legend in case of "yes". 
 Then the highest class, i.e. the one plotted separately above the other classes, is not plotted anymore.}
@@ -35,36 +33,38 @@ Then the highest class, i.e. the one plotted separately above the other classes,
 \item{BBoxOSMauto}{Compute bounding box from input data or used bounding box defined above? 
 (for OpenStreetMap only). Use "yes" if bounding box is to be computed from interpolation grid.}
 
-\item{ColourLinks}{Colour of plotted link paths}
+\item{ColourLinks}{Colour of plotted link paths.}
 
-\item{ColoursNumber}{Number of colour classes in legend}
+\item{ColoursNumber}{Number of colour classes in legend.}
 
-\item{ColourPlotLocation}{Colour of plotted symbol for specified location on map}
+\item{ColourPlotLocation}{Colour of plotted symbol for specified location on map.}
 
-\item{ColourPlotLocationText}{Colour of plotted rainfall depth for specified location on map}
+\item{ColourPlotLocationText}{Colour of plotted rainfall depth for specified location on map.}
+
+\item{ColourScheme}{Hexadecimal codes or names for colours of legend.}
 
 \item{ColourType}{Colour or black-and-white background map? Use "color" for colour and "bw" 
 for black-and-white background map.}
 
-\item{ColourHighestClass}{Colour of highest class}
+\item{ColourHighestClass}{Colour of highest class.}
 
-\item{ConversionDepthToIntensity}{Conversion factor from rainfall depth (mm) to intensity (mm/h)}
+\item{ConversionDepthToIntensity}{Conversion factor from rainfall depth (mm) to intensity (mm/h).}
 
 \item{CoorSystemInputData}{Define coordinate system of input data 
-(e.g. "+init=epsg:4326" for WGS84 in degrees)}
+(e.g. "+init=epsg:4326" for WGS84 in degrees).}
 
-\item{DateTimeEndRainMaps}{Date and time at which rainfall mapping ends}
+\item{DateTimeEndRainMaps}{Date and time at which rainfall mapping ends.}
 
-\item{DateTimeStartRainMaps}{Date and time at which rainfall mapping starts}
+\item{DateTimeStartRainMaps}{Date and time at which rainfall mapping starts.}
 
 \item{ExtraDeg}{To reduce computational time, it is automatically determined which grid cells fall 
 within the plotted region. To also plot grid cell values which partly fall outside the plotted region, 
 a positive number for ExtraDeg should be specified (degrees). 
 This should typically be at least the size of one grid cell in degrees.}
 
-\item{ExtraText}{Second part of title of plot}
+\item{ExtraText}{Second part of title of plot.}
 
-\item{FigFileLinksTimeStep}{Part of figure output file name}
+\item{FigFileLinksTimeStep}{Part of figure output file name.}
 
 \item{FigHeight}{Figure height. 1280 times 1280 pixels seems maximum graphical resolution for downloaded 
 Google Maps. Because also axes and legend are plotted, it is advised to use e.g. 1450 times 1450 pixels. 
@@ -82,15 +82,15 @@ resolutions of 1500 - 2000 pixels. Hence, using FigWidth and FigHeight of 2000 p
 The OpenStreetMap itself is stored in file "ggmapTemp.png". From this file the resolution of the background map 
 can be obtained. This can be useful for determining an appropriate FigWidth and FigHeight above.}
 
-\item{FileGrid}{File with interpolation grid in same coordinate system as CoorSystemInputData}
+\item{FileGrid}{File with interpolation grid in same coordinate system as CoorSystemInputData.}
 
-\item{FilePolygonsGrid}{Name of file with polygons of interpolation grid}
+\item{FilePolygonsGrid}{Name of file with polygons of interpolation grid.}
 
-\item{FolderFigures}{Folder name of figures}
+\item{FolderFigures}{Folder name of figures.}
 
-\item{FolderRainMaps}{Folder name of interpolated link data (input)}
+\item{FolderRainMaps}{Folder name of interpolated link data (input).}
 
-\item{FolderRainEstimates}{Folder name of input link path data}
+\item{FolderRainEstimates}{Folder name of input link path data.}
 
 \item{FontFamily}{Specify font family of text in figures. To select the default font use "". Using "Times" 
 may give warnings 
@@ -101,7 +101,7 @@ using the default font ("").}
 is used as the centre of the Google Map. If both GoogleLocNameSpecified and GoogleLocDegSpecified are not equal 
 to "yes", the bounding box of the map is determined from the provided grid and used as centre of the Google Map.}
 
-\item{GoogleLocLat}{Latitude of middle of Google Map (degrees)}
+\item{GoogleLocLat}{Latitude of middle of Google Map (degrees).}
 
 \item{GoogleLocLon}{Longitude of middle of Google Map (degrees).}
 
@@ -116,28 +116,31 @@ to "yes", the bounding box of the map is determined from the provided grid and u
 
 \item{GoogleZoomlevel}{Which zoom level to use for the Google Maps?}
 
-\item{LabelAxisLat}{Label name of vertical axis}
+\item{LabelAxisLat}{Label name of vertical axis.}
 
-\item{LabelAxisLonGoogle}{Label name of horizontal axis (for Google Maps only)}
+\item{LabelAxisLonGoogle}{Label name of horizontal axis (for Google Maps only).}
 
-\item{LabelAxisLonOSM}{Label name of horizontal axis (for OpenStreetMap only)}
+\item{LabelAxisLonOSM}{Label name of horizontal axis (for OpenStreetMap only).}
 
-\item{LatLocation}{Latitude of location on map (degrees)}
+\item{LatLocation}{Latitude of location on map (degrees).}
 
-\item{LatText}{Latitude of text (rainfall depth) of location on map (degrees)}
+\item{LatText}{Latitude of text (rainfall depth) of location on map (degrees).}
 
-\item{LegendTitleLinksTimeStep}{Title of legend}
+\item{LegendTitleLinksTimeStep}{Title of legend.}
 
-\item{LonLocation}{Longitude of location on map (degrees)}
+\item{LonLocation}{Longitude of location on map (degrees).}
 
-\item{LonText}{Longitude of text (rainfall depth) of location on map (degrees)}
+\item{LonText}{Longitude of text (rainfall depth) of location on map (degrees).}
 
 \item{ManualScale}{Manually supply the legend breaks if ManuelScale is not equal to "no". 
 Interval breaks are determined manually from ScaleLow and ScaleHigh. If ManualScale is "no" 
 interval breaks are determined automatically.}
 
 \item{MapBackground}{Google Maps or OpenStreetMap as background? Use "Google" for Google Maps and "OSM" for OpenStreetMap. 
-Note that Google Maps will only plot on a square figure.}
+Note that Google Maps will only plot on a square figure.
+It seems that mapping with OpenStreetMap (“get openstreetmap”) is no langer supported.
+This implies that mapping can only be done employing Google Maps. This is not related to
+the RAINLINK version.}
 
 \item{OSMBottom}{Latitude in degrees (WGS84) for bottom side of the area for which rainfall depths are to be plotted 
 (for OpenStreetMap only).}
@@ -156,14 +159,9 @@ iterations to find the appropriate value for scale. The file "ggmapTemp.png" is 
 loaded. The highest possible resolution for a square area is about 2000 x 2000 pixels.}
 
 \item{OSMTop}{Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be plotted 
-(for OpenStreetMap only)}
+(for OpenStreetMap only).}
 
-\item{Palette}{Choose (RColorBrewer) palette. "Blues", "YlGnBu", "GnBu": sequential. 
-"Spectral", "RdYlBu", "BrBG": diverging. Unfortunately, it seems not possible to select 
-those colours from the full range of the palette. For 6 or less classes we get a reasonable 
-set of colours though.}
-
-\item{PlotLocation}{A location is plotted on map if PlotLocation is "yes"}
+\item{PlotLocation}{A location is plotted on map if PlotLocation is "yes".}
 
 \item{PixelBorderCol}{Choose colour of pixel borders. Use NA (without quotes) to not plot pixel borders. 
 If the pixels are relatively small with respect to the plotted region, the graphical quality of the pixel borders 
@@ -191,23 +189,23 @@ ScaleBottomTimeStep For instance, if the highest class (> x mm) is plotted below
 classes. Or if the number of classes does not match the number of chosen classes. Another way to prevent 
 this is to manually give the legend breaks (ManualScale not equal to "no").}
 
-\item{SizeLinks}{Size of plotted link paths}
+\item{SizeLinks}{Size of plotted link paths.}
 
-\item{SizePixelBorder}{Size of pixel borders}
+\item{SizePixelBorder}{Size of pixel borders.}
 
-\item{SizePlotLocation}{Size of symbol and and accompanied text for specified location on map}
+\item{SizePlotLocation}{Size of symbol and and accompanied text for specified location on map.}
 
-\item{SizePlotTitle}{Size of plot title}
+\item{SizePlotTitle}{Size of plot title.}
 
-\item{SymbolPlotLocation}{Symbol to be plotted for specified location on map}
+\item{SymbolPlotLocation}{Symbol to be plotted for specified location on map.}
 
-\item{TitleLinks}{First part of title of plot}
+\item{TitleLinks}{First part of title of plot.}
 
 \item{XMiddle}{The longitude of the centre of the Azimuthal Equidistant Cartesian coordinate system, 
-given in the coordinate system of the input data}
+given in the coordinate system of the input data.}
 
 \item{YMiddle}{The latitude of the centre of the Azimuthal Equidistant Cartesian coordinate system, 
-given in the coordinate system of the input data}
+given in the coordinate system of the input data.}
 }
 \description{
 Function which visualises link-based rainfall depths for each time interval in a supplied period. 
@@ -218,46 +216,40 @@ require tenths of seconds. Note that such a map is downloaded only once, which s
 rainfall maps.
 }
 \examples{
-RainMapsRadarsTimeStep(AlphaLinksTimeStep=AlphaLinksTimeStep,
+RainMapsLinksTimeStep(AlphaLinksTimeStep=AlphaLinksTimeStep,
 AlphaPlotLocation=AlphaPlotLocation,AlphaPolygon=AlphaPolygon,
-AlphaScale=AlphaScale,AutDefineLegendTop=AutDefineLegendTop,
-BBoxOSMauto=BBoxOSMauto,ColourLinks=ColourLinks,
+AutDefineLegendTop=AutDefineLegendTop,BBoxOSMauto=BBoxOSMauto,ColourLinks=ColourLinks,
 ColoursNumber=ColoursNumber,ColourPlotLocation=ColourPlotLocation,
-ColourPlotLocationText=ColourPlotLocationText,
-ColourType=ColourType,ColourHighestClass=ColourHighestClass,
-ConversionDepthToIntensity=ConversionDepthToIntensity,
-CoorSystemInputData=CoorSystemInputData,
-DateTimeEndRainMaps=DateTimeEndRainMaps,
-DateTimeStartRainMaps=DateTimeStartRainMaps,ExtraDeg=ExtraDeg,
-ExtraText=ExtraText,FigFileLinksTimeStep=FigFileLinksTimeStep,
-FigHeight=FigHeight,FigWidth=FigWidth,FileGrid=FileGrid,
-FilePolygonsGrid=FilePolygonsGrid,FolderFigures=FolderFigures,
+ColourPlotLocationText=ColourPlotLocationText,ColourScheme=ColourScheme,
+ColourType=ColourType,ConversionDepthToIntensity=ConversionDepthToIntensity,
+CoorSystemInputData=CoorSystemInputData,DateTimeEndRainMaps=DateTimeEndRainMaps,
+DateTimeStartRainMaps=DateTimeStartRainMaps,ExtraDeg=ExtraDeg,ExtraText=ExtraText,
+FigFileLinksTimeStep=FigFileLinksTimeStep,FigHeight=FigHeight,FigWidth=FigWidth,
+FileGrid=FileGrid,FilePolygonsGrid=FilePolygonsGrid,FolderFigures=FolderFigures,
 FolderRainMaps=FolderRainMaps,FolderRainEstimates=FolderRainEstimates,
 FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,
-GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,
-GoogleLocName=GoogleLocName, GoogleLocNameSpecified=GoogleLocNameSpecified,
-GoogleMapType=GoogleMapType,GoogleZoomlevel=GoogleZoomlevel,
-LabelAxisLat=LabelAxisLat,LabelAxisLonGoogle=LabelAxisLonGoogle,
-LabelAxisLonOSM=LabelAxisLonOSM,LatLocation=LatLocation,LatText=LatText,
+GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
+GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
+GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
+LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
+LatLocation=LatLocation,LatText=LatText,
 LegendTitleLinksTimeStep=LegendTitleLinksTimeStep,LonLocation=LonLocation,
-LonText=LonText,ManualScale=ManualScale,MapBackground=MapBackground,
-OSMBottom=OSMBottom,OSMLeft=OSMLeft,OSMRight=OSMRight,OSMScale=OSMScale,
-OSMTop=OSMTop,Palette=Palette,PlotLocation=PlotLocation,
-PixelBorderCol=PixelBorderCol,PlotBelowScaleBottom=PlotBelowScaleBottom,
-PlotLocLinks=PlotLocLinks,ScaleBottomTimeStep=ScaleBottomTimeStep,
-ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,ScaleTopTimeStep=ScaleTopTimeStep,
-SizeLinks=SizeLinks,SizePixelBorder=SizePixelBorder,
-SizePlotLocation=SizePlotLocation,
-SizePlotTitle=SizePlotTitle,SymbolPlotLocation=SymbolPlotLocation,
+LonText=LonText,ManualScale=ManualScale,MapBackground=MapBackground,OSMBottom=OSMBottom,
+OSMLeft=OSMLeft,OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,
+PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
+PlotBelowScaleBottom=PlotBelowScaleBottom,PlotLocLinks=PlotLocLinks,
+ScaleBottomTimeStep=ScaleBottomTimeStep,ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,
+ScaleTopTimeStep=ScaleTopTimeStep,SizeLinks=SizeLinks,SizePixelBorder=SizePixelBorder,
+SizePlotLocation=SizePlotLocation,SizePlotTitle=SizePlotTitle,
+SymbolPlotLocation=SymbolPlotLocation,
 TitleLinks=TitleLinks,XMiddle=XMiddle,YMiddle=YMiddle)
-}
-\author{
-Aart Overeem & Hidde Leijnse
 }
 \references{
 ''ManualRAINLINK.pdf''
 
-Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 }
-
+\author{
+Aart Overeem & Hidde Leijnse
+}

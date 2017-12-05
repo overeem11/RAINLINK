@@ -8,24 +8,24 @@ RainRetrievalMinMaxRSL(Aa = 2.3, alpha = 0.33, Data, kRPowerLawData,
   PmaxCor, PminCor, Pref)
 }
 \arguments{
-\item{Aa}{Wet antenna attenuation correction \eqn{A_{\mbox{a}}} (dB)}
+\item{Aa}{Wet antenna attenuation correction \eqn{A_{\mbox{a}}} (dB).}
 
 \item{alpha}{Coefficient (\eqn{\alpha}) determining contribution of minimum and 
-maximum path-averaged rainfall intensity to mean path-averaged rainfall intensity (-)}
+maximum path-averaged rainfall intensity to mean path-averaged rainfall intensity (-).}
 
-\item{Data}{Data frame with microwave link data}
+\item{Data}{Data frame with microwave link data.}
 
 \item{kRPowerLawData}{Values of coefficients a and b employed to convert specific 
-attenuation to path-averaged rainfall intensity for a range of microwave frequencies}
+attenuation to path-averaged rainfall intensity for a range of microwave frequencies.}
 
-\item{PmaxCor}{Data frame with corrected maximum received powers (dB)}
+\item{PmaxCor}{Data frame with corrected maximum received powers (dB).}
 
-\item{PminCor}{Data frame with corrected minimum received powers (dB)}
+\item{PminCor}{Data frame with corrected minimum received powers (dB).}
 
-\item{Pref}{Reference level (dB)}
+\item{Pref}{Reference level (dB).}
 }
 \value{
-Mean path-averaged rainfall intensity (mm h\eqn{^{-1}})
+Mean path-averaged rainfall intensity (mm h\eqn{^{-1}}).
 }
 \description{
 Function for path-averaged rainfall estimation using microwave links. 
@@ -35,18 +35,22 @@ antenna attenuation.
 
 Works for a sampling strategy where minimum and maximum received signal powers
 are provided, and the transmitted power levels are constant.
+
+Also works for a sampling strategy where instantaneous transmitted and received signal levels are obtained.
+In case of instantaneous signal levels, it does not matter whether transmitted power levels vary or are constant.
+The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
+for instructions.
 }
 \examples{
 RainRetrievalMinMaxRSL(Aa=2.3,alpha=0.33,Data=DataOutlierFiltered,
 kRPowerLawData=kRPowerLawData,PmaxCor=Pcor$PmaxCor,PminCor=Pcor$PminCor,Pref=Pref)
 }
-\author{
-Aart Overeem & Hidde Leijnse
-}
 \references{
 ''ManualRAINLINK.pdf''
 
-Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 }
-
+\author{
+Aart Overeem & Hidde Leijnse
+}

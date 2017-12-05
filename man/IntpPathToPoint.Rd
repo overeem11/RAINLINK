@@ -9,21 +9,21 @@ the link path.}
 IntpPathToPoint(ID, Rmean, XEnd, XStart, YEnd, YStart)
 }
 \arguments{
-\item{ID}{Link identifier}
+\item{ID}{Link identifier.}
 
-\item{Rmean}{Data frame with mean path-averaged rainfall intensities (mm h\eqn{^{-1}})}
+\item{Rmean}{Data frame with mean path-averaged rainfall intensities (mm h\eqn{^{-1}}).}
 
-\item{XEnd}{Easting of end of links (km)}
+\item{XEnd}{Easting of end of links (km).}
 
-\item{XStart}{Easting of start of links (km)}
+\item{XStart}{Easting of start of links (km).}
 
-\item{YEnd}{Northing of end of links (km)}
+\item{YEnd}{Northing of end of links (km).}
 
-\item{YStart}{Northing of start of links (km)}
+\item{YStart}{Northing of start of links (km).}
 }
 \value{
 Coordinates of links in Azimuthal Equidistant Cartesian coordinate system
-(latitude, longitude) and rainfall intensity (mm h\eqn{^{-1}}))
+(latitude, longitude) and rainfall intensity (mm h\eqn{^{-1}})).
 }
 \description{
 Subfunction for computing path-averaged rainfall intensities for 
@@ -33,15 +33,14 @@ assigned to a point at the middle of the link path. Path-averaged rainfall
 intensities are obtained, so data from full-duplex links are averaged.
 }
 \examples{
-IntpPathToPoint(ID,Rmean,Xend,XStart,YEnd,YStart)
-}
-\author{
-Aart Overeem & Hidde Leijnse
+IntpPathToPoint(ID=ID,Rmean=Rmean,Xend=Xend,XStart=XStart,YEnd=YEnd,YStart=YStart)
 }
 \references{
 ''ManualRAINLINK.pdf''
 
-Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 }
-
+\author{
+Aart Overeem & Hidde Leijnse
+}

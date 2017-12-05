@@ -5,15 +5,17 @@
 \title{Subfunction for obtaining climatological values of sill, range, and nugget of 
 spherical variogram model for RAINLINK.}
 \usage{
-ClimVarParam(DateStr, TimeScaleHours)
+ClimVarParam(DateStr, TimeScaleHours, TimeZone)
 }
 \arguments{
-\item{DateStr}{The end date of the chosen daily period}
+\item{DateStr}{The end date of the chosen daily period.}
 
-\item{TimeScaleHours}{Rainfall aggregation interval in hours}
+\item{TimeScaleHours}{Rainfall aggregation interval in hours.}
+
+\item{TimeZone}{Time zone of data (e.g. "UTC").}
 }
 \value{
-Data frame with values of sill, range and nugget
+Data frame with values of sill, range and nugget.
 }
 \description{
 Subfunction for obtaining climatological values of sill, range, 
@@ -24,18 +26,17 @@ Van de Beek et al. (2012). They use durations of 1 - 24 h. In this function the
 relationships can be extrapolated to, e.g. 15-min, data.
 }
 \examples{
-ClimVarParam(DateStr="20110911",TimeScaleHours=TimeScaleHours)
-}
-\author{
-Aart Overeem & Hidde Leijnse
+ClimVarParam(DateStr="20110911",TimeScaleHours=0.25,TimeZone="UTC")
 }
 \references{
 ''ManualRAINLINK.pdf''
 
-Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
- Van de Beek, C. Z., Leijnse, H., Torfs, P. J. J. F., and Uijlenhoet, R.: Seasonal semi-variance of Dutch 
-rainfall at hourly to daily scales, Adv. Water Resour., 45, 76-85, doi:10.1016/j.advwatres.2012.03.023, 2012.
+ Van de Beek, C. Z., Leijnse, H., Torfs, P. J. J. F., and Uijlenhoet, R., 2012: Seasonal semi-variance of Dutch 
+rainfall at hourly to daily scales, Adv. Water Resour., 45, 76-85, doi:10.1016/j.advwatres.2012.03.023.
 }
-
+\author{
+Aart Overeem & Hidde Leijnse
+}

@@ -7,9 +7,9 @@
 Polygons(cond, Selected)
 }
 \arguments{
-\item{cond}{Row numbers of dataframe which fall in specific rainfall class}
+\item{cond}{Row numbers of dataframe which fall in specific rainfall class.}
 
-\item{Selected}{Coordinates of polygons and their assigned rainfall values}
+\item{Selected}{Coordinates of polygons and their assigned rainfall values.}
 }
 \value{
 Data frame
@@ -18,15 +18,14 @@ Data frame
 Subfunction which makes dataframe for polygons with rainfall estimates in specific rainfall class.
 }
 \examples{
-Polygons(cond=cond,Selected=Selected)
-}
-\author{
-Aart Overeem & Hidde Leijnse
+RAINLINK::Polygons(cond=cond,Selected=Selected)
 }
 \references{
 ''ManualRAINLINK.pdf''
 
-Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 }
-
+\author{
+Aart Overeem & Hidde Leijnse
+}

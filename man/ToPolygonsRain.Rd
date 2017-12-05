@@ -7,10 +7,10 @@
 ToPolygonsRain(Data)
 }
 \arguments{
-\item{Data}{Field of rainfall depths at the chosen grid}
+\item{Data}{Field of rainfall depths at the chosen grid.}
 }
 \value{
-Field of rainfall depths for the polygons at the chosen grid
+Field of rainfall depths for the polygons at the chosen grid.
 }
 \description{
 Subfunction which assignes values of rainfall grid to polygons.
@@ -18,13 +18,12 @@ Subfunction which assignes values of rainfall grid to polygons.
 \examples{
 ToPolygonsRain(Data=Data)
 }
-\author{
-Aart Overeem & Hidde Leijnse
-}
 \references{
 ''ManualRAINLINK.pdf''
 
-Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 }
-
+\author{
+Aart Overeem & Hidde Leijnse
+}

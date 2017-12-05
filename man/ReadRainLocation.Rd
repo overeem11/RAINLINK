@@ -10,24 +10,24 @@ ReadRainLocation(CoorSystemInputData, dataf, FileGrid, Lat, Lon, XMiddle,
 \arguments{
 \item{CoorSystemInputData}{Coordinate system of the input data (e.g. "+init=epsg:4326" for WGS84 in degrees).}
 
-\item{dataf}{Data frame of (interpolated) rainfall values}
+\item{dataf}{Data frame of (interpolated) rainfall values.}
 
-\item{FileGrid}{File with interpolation grid in same coordinate system as CoorSystemInputData}
+\item{FileGrid}{File with interpolation grid in same coordinate system as CoorSystemInputData.}
 
 \item{Lat}{Latitude of location for which (interpolated) rainfall value is to be extracted 
-(in coordinate system CoorSystemInputData)}
+(in coordinate system CoorSystemInputData).}
 
 \item{XMiddle}{The longitude of the centre of the Azimuthal Equidistant Cartesian coordinate system, 
-given in the coordinate system of the input data}
+given in the coordinate system of the input data.}
 
 \item{YMiddle}{The latitude of the centre of the Azimuthal Equidistant Cartesian coordinate system, 
-given in the coordinate system of the input data}
+given in the coordinate system of the input data.}
 
 \item{Lot}{Longitude of location for which (interpolated) rainfall value is to be extracted 
-(in coordinate system CoorSystemInputData)}
+(in coordinate system CoorSystemInputData).}
 }
 \value{
-Rainfall value for selected location (in unit of provided input rainfall data)
+Rainfall value for selected location (in unit of provided input rainfall data).
 }
 \description{
 Function for finding (interpolated) rainfall value for a given latitude and longitude. 
@@ -37,13 +37,12 @@ I.e. find the grid cell which belongs to the location for which latitude and lon
 ReadRainLocation(CoorSystemInputData=CoorSystemInputData,dataf=dataf,FileGrid=FileGrid,
 Lat=Lat,Lon=Lon,XMiddle=XMiddle,YMiddle=YMiddle)
 }
-\author{
-Aart Overeem & Hidde Leijnse
-}
 \references{
 ''ManualRAINLINK.pdf''
 
-Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 }
-
+\author{
+Aart Overeem & Hidde Leijnse
+}

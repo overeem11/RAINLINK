@@ -7,15 +7,15 @@
 IDW(idp, rain.grid, Rainlink)
 }
 \arguments{
-\item{idp}{The inverse distance weighting power}
+\item{idp}{The inverse distance weighting power.}
 
-\item{rain.grid}{Interpolation grid in Azimuthal Equidistant Cartesian coordinate system}
+\item{rain.grid}{Interpolation grid in Azimuthal Equidistant Cartesian coordinate system.}
 
-\item{Rainlink}{Coordinates of links in Azimuthal Equidistant Cartesian coordinate system 
-and rainfall intensity (latitude in km, longitude in km, intensity in mm h\eqn{^{-1}})}
+\item{Rainlink}{Coordinates of links in Azimuthal Equidistant Cartesian coordinate system. 
+and rainfall intensity (latitude in km, longitude in km, intensity in mm h\eqn{^{-1}}).}
 }
 \value{
-Interpolated field of rainfall intensities
+Interpolated field of rainfall intensities.
 }
 \description{
 Subfunction for inverse distance weighted interpolation on point data.
@@ -23,13 +23,12 @@ Subfunction for inverse distance weighted interpolation on point data.
 \examples{
 IDW(idp=idp,rain.grid=rain.grid,Rainlink=Rainlink)
 }
-\author{
-Aart Overeem & Hidde Leijnse
-}
 \references{
 ''ManualRAINLINK.pdf''
 
-Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 }
-
+\author{
+Aart Overeem & Hidde Leijnse
+}

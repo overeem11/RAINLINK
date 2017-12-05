@@ -9,40 +9,44 @@ MinMaxRSLToMeanR(a, Aa, alpha, b, PathLength, PmaxCor, PminCor, Pref)
 }
 \arguments{
 \item{a}{Coefficients in relationship between rainfall intensity and specific 
-attenuation (mm h\eqn{^{-1}} dB\eqn{^{-b}} km\eqn{^{b}})}
+attenuation (mm h\eqn{^{-1}} dB\eqn{^{-b}} km\eqn{^{b}}).}
 
-\item{Aa}{Wet antenna attenuation correction \eqn{A_{\mbox{a}}} (dB)}
+\item{Aa}{Wet antenna attenuation correction \eqn{A_{\mbox{a}}} (dB).}
 
 \item{alpha}{Coefficient (\eqn{\alpha}) determining contribution of minimum and 
-maximum path-averaged rainfall intensity to mean path-averaged rainfall intensity (-)}
+maximum path-averaged rainfall intensity to mean path-averaged rainfall intensity (-).}
 
-\item{b}{Exponents in relationship between rainfall intensity and specific attenuation (-)}
+\item{b}{Exponents in relationship between rainfall intensity and specific attenuation (-).}
 
-\item{PathLength}{Lengths of link paths (km)}
+\item{PathLength}{Lengths of link paths (km).}
 }
 \value{
-Data frame with mean path-averaged rainfall intensities (mm h\eqn{^{-1}})
+Data frame with mean path-averaged rainfall intensities (mm h\eqn{^{-1}}).
 }
 \description{
 Subfunction for path-averaged rainfall estimation using microwave links. 
-Compute minimum and maximum attenuation over the link path. Convert these to minimum and 
+Compute minimum (Amin) and maximum (Amax) attenuation over the link path. Convert these to minimum and 
 maximum path-averaged rainfall intensities. Convert minimum and maximum path-averaged 
 rainfall intensities to mean path-averaged rainfall intensities. 
 
 Works for a sampling strategy where minimum and maximum received signal powers
 are provided, and the transmitted power levels are constant.
+
+Also works for a sampling strategy where instantaneous transmitted and received signal levels are obtained.
+In case of instantaneous signal levels, it does not matter whether transmitted power levels vary or are constant.
+The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
+for instructions.
 }
 \examples{
 MinMaxRSLToMeanR(a=a,Aa=Aa,alpha=alpha,b=b,PathLength=Data$PathLength,
 PmaxCor=PmaxCor,PminCor=PminCor,Pref=Pref)
 }
-\author{
-Aart Overeem & Hidde Leijnse
-}
 \references{
 ''ManualRAINLINK.pdf''
 
-Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 }
-
+\author{
+Aart Overeem & Hidde Leijnse
+}

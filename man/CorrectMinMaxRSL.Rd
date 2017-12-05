@@ -4,23 +4,24 @@
 \alias{CorrectMinMaxRSL}
 \title{Function for correcting minimum and maximum received signal powers.}
 \usage{
-CorrectMinMaxRSL(Data, Dry, Pref)
+CorrectMinMaxRSL(Data = DataOutlierFiltered, Dry = WetDry$Dry,
+  Pref = Pref)
 }
 \arguments{
-\item{Data}{Data frame with microwave link data}
+\item{Data}{Data frame with microwave link data.}
 
-\item{Dry}{Data frame: Should interval be considered dry for reference level 
-determination? (0 = wet; 1 = dry)}
+\item{Dry}{Data frame: Should interval be considered dry for reference level
+determination? (0 = wet; 1 = dry).}
 
-\item{Pref}{Reference level (dB)}
+\item{Pref}{Reference level (dB).}
 }
 \value{
-Data frame with corrected minimum and maximum received powers (dB)
+Data frame with corrected minimum and maximum received powers (dB).
 }
 \description{
-Function for correcting minimum and maximum received signal powers.
+Function for correcting minimum (Pmin) and maximum (Pmax) received signal powers.
 For a rainy time interval the corrected minimum received signal power becomes equal to 
-the minimum received signal power if this is below the reference signal level. 
+the minimum received signal power if this is below the reference signal level (Pref). 
 Otherwise the corrected minimum received signal power becomes equal to the 
 reference signal level. The corrected maximum received signal power becomes
 equal to the maximum received signal power if both the maximum received signal 
@@ -29,17 +30,21 @@ signal level.
 
 Works for a sampling strategy where minimum and maximum received signal powers
 are provided, and the transmitted power levels are constant.
+
+Also works for a sampling strategy where instantaneous transmitted and received signal levels are obtained.
+In case of instantaneous signal levels, it does not matter whether transmitted power levels vary or are constant.
+The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
+for instructions.
 }
 \examples{
 CorrectMinMaxRSL(Data=DataOutlierFiltered,Dry=WetDry$Dry,Pref=Pref)
 }
-\author{
-Aart Overeem & Hidde Leijnse
-}
 \references{
 ''ManualRAINLINK.pdf''
 
-Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 }
-
+\author{
+Aart Overeem & Hidde Leijnse
+}

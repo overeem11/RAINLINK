@@ -4,27 +4,25 @@
 \alias{RainMapsRadarsDaily}
 \title{Function which visualises daily radar rainfall depths.}
 \usage{
-RainMapsRadarsDaily(AlphaPlotLocation, AlphaPolygon, AlphaScale,
-  AutDefineLegendTop, BBoxOSMauto, ColoursNumber, ColourPlotLocation,
-  ColourPlotLocationText, ColourType, ColourHighestClass, CoorSystemInputData,
-  DateMap, ExtraDeg, ExtraText, FigFileRadarsDaily, FigHeight, FigWidth,
-  FileGrid, FileNameRadarDaily, FilePolygonsGrid, FolderFigures,
-  FolderRadarRainMapsDaily, FontFamily, GoogleLocDegSpecified, GoogleLocLat,
-  GoogleLocLon, GoogleLocName, GoogleLocNameSpecified, GoogleMapType,
-  GoogleZoomlevel, LabelAxisLat, LabelAxisLonGoogle, LabelAxisLonOSM,
-  LatLocation, LatText, LegendTitleRadarsDaily, LonLocation, LonText,
-  ManualScale, MapBackground, OSMBottom, OSMLeft, OSMRight, OSMScale, OSMTop,
-  Palette, PathRadarRainfallDepth, PERIOD, PlotLocation, PixelBorderCol,
-  PlotBelowScaleBottom, ScaleBottomDaily, ScaleHigh, ScaleLow, ScaleTopDaily,
-  SizePixelBorder, SizePlotLocation, SizePlotTitle, SymbolPlotLocation,
-  TIMESTEP, TitleRadars, XMiddle, YMiddle)
+RainMapsRadarsDaily(AlphaPlotLocation, AlphaPolygon, AutDefineLegendTop,
+  BBoxOSMauto, ColoursNumber, ColourPlotLocation, ColourPlotLocationText,
+  ColourScheme, ColourType, ColourHighestClass, CoorSystemInputData, DateMap,
+  ExtraDeg, ExtraText, FigFileRadarsDaily, FigHeight, FigWidth, FileGrid,
+  FileNameRadarDaily, FilePolygonsGrid, FolderFigures, FolderRadarRainMapsDaily,
+  FontFamily, GoogleLocDegSpecified, GoogleLocLat, GoogleLocLon, GoogleLocName,
+  GoogleLocNameSpecified, GoogleMapType, GoogleZoomlevel, LabelAxisLat,
+  LabelAxisLonGoogle, LabelAxisLonOSM, LatLocation, LatText,
+  LegendTitleRadarsDaily, LonLocation, LonText, ManualScale, MapBackground,
+  OSMBottom, OSMLeft, OSMRight, OSMScale, OSMTop, PathRadarRainfallDepth,
+  PERIOD, PlotLocation, PixelBorderCol, PlotBelowScaleBottom, ScaleBottomDaily,
+  ScaleHigh, ScaleLow, ScaleTopDaily, SizePixelBorder, SizePlotLocation,
+  SizePlotTitle, SymbolPlotLocation, TIMESTEP, TimeZone, TitleRadars, XMiddle,
+  YMiddle)
 }
 \arguments{
-\item{AlphaPlotLocation}{Transparency of plotted symbol for specified location on map}
+\item{AlphaPlotLocation}{Transparency of plotted symbol for specified location on map.}
 
-\item{AlphaPolygon}{Transparency of polygons}
-
-\item{AlphaScale}{Transparency of legend}
+\item{AlphaPolygon}{Transparency of polygons.}
 
 \item{AutDefineLegendTop}{Let R automatically define highest value of legend in case of "yes". 
 Then the highest class, i.e. the one plotted separately above the other classes, is not plotted anymore.}
@@ -32,11 +30,13 @@ Then the highest class, i.e. the one plotted separately above the other classes,
 \item{BBoxOSMauto}{Compute bounding box from input data or used bounding box defined above? 
 (for OpenStreetMap only). Use "yes" if bounding box is to be computed from interpolation grid.}
 
-\item{ColoursNumber}{Number of colour classes in legend}
+\item{ColoursNumber}{Number of colour classes in legend.}
 
-\item{ColourPlotLocation}{Colour of plotted symbol for specified location on map}
+\item{ColourPlotLocation}{Colour of plotted symbol for specified location on map.}
 
-\item{ColourPlotLocationText}{Colour of plotted rainfall depth for specified location on map}
+\item{ColourPlotLocationText}{Colour of plotted rainfall depth for specified location on map.}
+
+\item{ColourScheme}{Hexadecimal codes or names for colours of legend.}
 
 \item{ColourType}{Colour or black-and-white background map? Use "color" for colour and "bw" for 
 black-and-white background map.}
@@ -44,18 +44,18 @@ black-and-white background map.}
 \item{ColourHighestClass}{Colour of highest class}
 
 \item{CoorSystemInputData}{Define coordinate system of input data 
-(e.g. "+init=epsg:4326" for WGS84 in degrees)}
+(e.g. "+init=epsg:4326" for WGS84 in degrees).}
 
-\item{DateMap}{End date of daily period for which rainfall map should be plotted}
+\item{DateMap}{End date of daily period for which rainfall map should be plotted.}
 
 \item{ExtraDeg}{To reduce computational time, it is automatically determined which grid 
 cells fall within the plotted region. To also plot grid cell values which partly fall outside 
 the plotted region, a positive number for ExtraDeg should be specified (degrees). 
 This should typically be at least the size of one grid cell in degrees.}
 
-\item{ExtraText}{Second part of title of plot}
+\item{ExtraText}{Second part of title of plot.}
 
-\item{FigFileRadarsDaily}{Part of figure output file name}
+\item{FigFileRadarsDaily}{Part of figure output file name.}
 
 \item{FigHeight}{Figure height. 1280 times 1280 pixels seems maximum graphical resolution 
 for downloaded Google Maps. Because also axes and legend are plotted, it is advised to use e.g. 
@@ -75,13 +75,13 @@ advised. The OpenStreetMap itself is stored in file "ggmapTemp.png". From this f
 background map can be obtained. This can be useful for determining an appropriate FigWidth and FigHeight 
 above.}
 
-\item{FileGrid}{File with interpolation grid in same coordinate system as CoorSystemInputData}
+\item{FileGrid}{File with interpolation grid in same coordinate system as CoorSystemInputData.}
 
 \item{FileNameRadarDaily}{Filename of radar file of rainfall depths to be visualised (NetCDF4 format).}
 
-\item{FilePolygonsGrid}{Name of file with polygons of interpolation grid}
+\item{FilePolygonsGrid}{Name of file with polygons of interpolation grid.}
 
-\item{FolderFigures}{Folder name of figures}
+\item{FolderFigures}{Folder name of figures.}
 
 \item{FolderRadarRainMapsDaily}{Name of folder which contains daily radar rainfall files (input data)}
 
@@ -94,12 +94,12 @@ is used as the centre of the Google Map. If both GoogleLocNameSpecified and Goog
 equal to "yes", the bounding box of the map is determined from the provided grid and used as centre of the 
 Google Map.}
 
-\item{GoogleLocLat}{Latitude of middle of Google Map (degrees)}
+\item{GoogleLocLat}{Latitude of middle of Google Map (degrees).}
 
 \item{GoogleLocLon}{Longitude of middle of Google Map (degrees).}
 
 \item{GoogleLocName}{Location of middle of Google Map, provided as text, e.g. name of city, street name, 
-country}
+country.}
 
 \item{GoogleLocNameSpecified}{If GoogleLocNameSpecified is "yes" then the specified location name GoogleLocName 
 is used as the centre of the Google Map. If both GoogleLocNameSpecified and GoogleLocDegSpecified are not equal 
@@ -110,28 +110,31 @@ to "yes", the bounding box of the map is determined from the provided grid and u
 
 \item{GoogleZoomlevel}{Which zoom level to use for the Google Maps?}
 
-\item{LabelAxisLat}{Label name of vertical axis}
+\item{LabelAxisLat}{Label name of vertical axis.}
 
-\item{LabelAxisLonGoogle}{Label name of horizontal axis (for Google Maps only)}
+\item{LabelAxisLonGoogle}{Label name of horizontal axis (for Google Maps only).}
 
-\item{LabelAxisLonOSM}{Label name of horizontal axis (for OpenStreetMap only)}
+\item{LabelAxisLonOSM}{Label name of horizontal axis (for OpenStreetMap only).}
 
-\item{LatLocation}{Latitude of location on map (degrees)}
+\item{LatLocation}{Latitude of location on map (degrees).}
 
-\item{LatText}{Latitude of text (rainfall depth) of location on map (degrees)}
+\item{LatText}{Latitude of text (rainfall depth) of location on map (degrees).}
 
-\item{LegendTitleRadarsDaily}{Title of legend}
+\item{LegendTitleRadarsDaily}{Title of legend.}
 
-\item{LonLocation}{Longitude of location on map (degrees)}
+\item{LonLocation}{Longitude of location on map (degrees).}
 
-\item{LonText}{Longitude of text (rainfall depth) of location on map (degrees)}
+\item{LonText}{Longitude of text (rainfall depth) of location on map (degrees).}
 
 \item{ManualScale}{Manually supply the legend breaks if ManuelScale is not equal to "no". 
 Interval breaks are determined manually from ScaleLow and ScaleHigh. If ManualScale is "no" 
 interval breaks are determined automatically.}
 
 \item{MapBackground}{Google Maps or OpenStreetMap as background? Use "Google" for Google Maps and "OSM" for 
-OpenStreetMap. Note that Google Maps will only plot on a square figure.}
+OpenStreetMap. Note that Google Maps will only plot on a square figure.
+It seems that mapping with OpenStreetMap (“get openstreetmap”) is no langer supported.
+This implies that mapping can only be done employing Google Maps. This is not related to
+the RAINLINK version.}
 
 \item{OSMBottom}{Latitude in degrees (WGS84) for bottom side of the area for which rainfall depths are to 
 be plotted (for OpenStreetMap only).}
@@ -151,19 +154,14 @@ scale. The file "ggmapTemp.png" is written to disk when an OpenStreetMap is load
 resolution for a square area is about 2000 x 2000 pixels.}
 
 \item{OSMTop}{Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be plotted 
-(for OpenStreetMap only)}
+(for OpenStreetMap only).}
 
-\item{Palette}{Choose (RColorBrewer) palette. "Blues", "YlGnBu", "GnBu": sequential. 
-"Spectral", "RdYlBu", "BrBG": diverging. Unfortunately, it seems not possible to select 
-those colours from the full range of the palette. For 6 or less classes we get a reasonable 
-set of colours though.}
-
-\item{PathRadarRainfallDepth}{Path in NetCDF4 file with radar data}
+\item{PathRadarRainfallDepth}{Path in NetCDF4 file with radar data.}
 
 \item{PERIOD}{Select daily time interval, i.e. "0800" implies 0800 UTC previous day - 0800 UTC present day 
-(use 2400 for 0000 UTC)}
+(use 2400 for 0000 UTC).}
 
-\item{PlotLocation}{A location is plotted on map if PlotLocation is "yes"}
+\item{PlotLocation}{A location is plotted on map if PlotLocation is "yes".}
 
 \item{PixelBorderCol}{Choose colour of pixel borders. Use NA (without quotes) to not plot pixel borders. 
 If the pixels are relatively small with respect to the plotted region, the graphical quality of the pixel borders 
@@ -188,21 +186,23 @@ ScaleBottomDaily For instance, if the highest class (> x mm) is plotted below in
 classes. Or if the number of classes does not match the number of chosen classes. Another way to prevent 
 this is to manually give the legend breaks (ManualScale not equal to "no").}
 
-\item{SizePixelBorder}{Size of pixel borders}
+\item{SizePixelBorder}{Size of pixel borders.}
 
-\item{SizePlotLocation}{Size of symbol and and accompanied text for specified location on map}
+\item{SizePlotLocation}{Size of symbol and and accompanied text for specified location on map.}
 
-\item{SizePlotTitle}{Size of plot title}
+\item{SizePlotTitle}{Size of plot title.}
 
-\item{SymbolPlotLocation}{Symbol to be plotted for specified location on map}
+\item{SymbolPlotLocation}{Symbol to be plotted for specified location on map.}
 
-\item{TitleRadars}{First part of title of plot}
+\item{TimeZone}{Time zone of data (e.g. "UTC").}
+
+\item{TitleRadars}{First part of title of plot.}
 
 \item{XMiddle}{The longitude of the centre of the Azimuthal Equidistant Cartesian coordinate system, 
-given in the coordinate system of the input data}
+given in the coordinate system of the input data.}
 
 \item{YMiddle}{The latitude of the centre of the Azimuthal Equidistant Cartesian coordinate system, 
-given in the coordinate system of the input data}
+given in the coordinate system of the input data.}
 }
 \description{
 Function which visualises daily radar rainfall depths. Requires interpolation grid and file 
@@ -210,15 +210,38 @@ with polygons of pixels. The radar data have been obtained from
 http://climate4impact.eu (catalog ``Radar precipitation climatology'') and are freely available.
 }
 \examples{
-RainMapsRadarsDaily(20110911) # To plot daily radar rainfall map ending at 11 September 2011.
-}
-\author{
-Aart Overeem & Hidde Leijnse
+RainMapsRadarsDaily(AlphaPlotLocation=AlphaPlotLocation,AlphaPolygon=AlphaPolygon,
+AutDefineLegendTop=AutDefineLegendTop,BBoxOSMauto=BBoxOSMauto,
+ColoursNumber=ColoursNumber,ColourPlotLocation=ColourPlotLocation,
+ColourPlotLocationText=ColourPlotLocationText,ColourScheme=ColourScheme,
+ColourType=ColourType,CoorSystemInputData=CoorSystemInputData,DateMap=DateMap,
+ExtraDeg=ExtraDeg,ExtraText=ExtraText,FigFileRadarsDaily=FigFileRadarsDaily,
+FigHeight=FigHeight,FigWidth=FigWidth,FileGrid=FileGrid,
+FileNameRadarDaily=FileNameRadarDaily,FilePolygonsGrid=FilePolygonsGrid,
+FolderFigures=FolderFigures,FolderRadarRainMapsDaily=FolderRadarRainMapsDaily,
+FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,
+GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
+GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
+GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
+LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
+LatLocation=LatLocation,LatText=LatText,LegendTitleRadarsDaily=LegendTitleRadarsDaily,
+LonLocation=LonLocation,LonText=LonText,ManualScale=ManualScale,
+MapBackground=MapBackground,OSMBottom=OSMBottom,OSMLeft=OSMLeft,OSMRight=OSMRight,
+OSMScale=OSMScale,OSMTop=OSMTop,PathRadarRainfallDepth=PathRadarRainfallDepth,
+PERIOD=PERIOD,PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
+PlotBelowScaleBottom=PlotBelowScaleBottom,ScaleBottomDaily=ScaleBottomDaily,
+ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,ScaleTopDaily=ScaleTopDaily,
+SizePixelBorder=SizePixelBorder,SizePlotLocation=SizePlotLocation,
+SizePlotTitle=SizePlotTitle,SymbolPlotLocation=SymbolPlotLocation,TimeZone=TimeZone,
+TitleRadars=TitleRadars,XMiddle=XMiddle,
+YMiddle=YMiddle)
 }
 \references{
 ''ManualRAINLINK.pdf''
 
-Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 }
-
+\author{
+Aart Overeem & Hidde Leijnse
+}

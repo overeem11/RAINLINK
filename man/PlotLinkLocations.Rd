@@ -13,7 +13,7 @@ PlotLinkLocations(AlphaLinkLocations, BBoxOSMauto, OSMBottom, ColourLinks,
   SizePlotTitle, TitleLinkLocations, OSMTop)
 }
 \arguments{
-\item{AlphaLinkLocations}{Transparency of link paths}
+\item{AlphaLinkLocations}{Transparency of link paths.}
 
 \item{BBoxOSMauto}{Compute bounding box from input data or used bounding box defined above?
 (for OpenStreetMap only). Use "yes" if bounding box is to be computed from interpolation grid.}
@@ -21,20 +21,20 @@ PlotLinkLocations(AlphaLinkLocations, BBoxOSMauto, OSMBottom, ColourLinks,
 \item{OSMBottom}{Latitude in degrees (WGS84) for bottom side of the area for which rainfall depths 
 are to be plotted (for OpenStreetMap only).}
 
-\item{ColourLinks}{Colour of plotted link paths}
+\item{ColourLinks}{Colour of plotted link paths.}
 
 \item{ColourType}{Colour or black-and-white background map? Use "color" for colour and "bw" 
 for black-and-white background map.}
 
 \item{dataf}{data frame which contains (at least) locations of microwave links in Azimuthal 
-Equidistant Cartesian coordinate system}
+Equidistant Cartesian coordinate system.}
 
 \item{DateTime}{Date and time for which link locations are plotted. This is used in the
-title caption of the figure and in the file name}
+title caption of the figure and in the file name.}
 
-\item{ExtraTextLinkLocations}{Second part of title of plot}
+\item{ExtraTextLinkLocations}{Second part of title of plot.}
 
-\item{FigFileLinkLocations}{Part of figure output file name}
+\item{FigFileLinkLocations}{Part of figure output file name.}
 
 \item{FigHeight}{Figure height. 1280 times 1280 pixels seems maximum graphical resolution for 
 downloaded Google Maps. Because also axes and legend are plotted, it is advised to use e.g. 
@@ -56,7 +56,7 @@ pixels. Hence, using FigWidth and FigHeight of 2000 pixels or higher is advised.
 itself is stored in file "ggmapTemp.png". From this file the resolution of the background map can 
 be obtained. This can be useful for determining an appropriate FigWidth and FigHeight above.}
 
-\item{FolderFigures}{Folder name of figures}
+\item{FolderFigures}{Folder name of figures.}
 
 \item{FontFamily}{Specify font family of text in figures. To select the default font use "". 
 Using "Times" may give warnings when executing the visualisation. In that case the font is not 
@@ -67,12 +67,12 @@ degrees is used is used as the centre of the Google Map. If both GoogleLocNameSp
 GoogleLocDegSpecified are not equal to "yes", the bounding box of the map is determined from 
 the provided grid and used as centre of the Google Map.}
 
-\item{GoogleLocLat}{Latitude of middle of Google Map (degrees)}
+\item{GoogleLocLat}{Latitude of middle of Google Map (degrees).}
 
 \item{GoogleLocLon}{Longitude of middle of Google Map (degrees).}
 
 \item{GoogleLocName}{Location of middle of Google Map, provided as text, e.g. name of city,
-street name, country}
+street name, country.}
 
 \item{GoogleLocNameSpecified}{If GoogleLocNameSpecified is "yes" then the specified location 
 name GoogleLocName is used as the centre of the Google Map. If both GoogleLocNameSpecified and 
@@ -84,17 +84,20 @@ provided grid and used as centre of the Google Map.}
 
 \item{GoogleZoomlevel}{Which zoom level to use for the Google Maps?}
 
-\item{LabelAxisLat}{Label name of vertical axis}
+\item{LabelAxisLat}{Label name of vertical axis.}
 
-\item{LabelAxisLonGoogle}{Label name of horizontal axis (for Google Maps only)}
+\item{LabelAxisLonGoogle}{Label name of horizontal axis (for Google Maps only).}
 
-\item{LabelAxisLonOSM}{Label name of horizontal axis (for OpenStreetMap only)}
+\item{LabelAxisLonOSM}{Label name of horizontal axis (for OpenStreetMap only).}
 
 \item{OSMLeft}{Longitude in degrees (WGS84) for left side of the area for which rainfall depths are 
 to be plotted (for OpenStreetMap only).}
 
 \item{MapBackground}{Google Maps or OpenStreetMap as background? Use "Google" for Google Maps and 
-"OSM" for OpenStreetMap. Note that Google Maps will only plot on a square figure.}
+"OSM" for OpenStreetMap. Note that Google Maps will only plot on a square figure.
+It seems that mapping with OpenStreetMap (“get openstreetmap”) is no langer supported.
+This implies that mapping can only be done employing Google Maps. This is not related to
+the RAINLINK version.}
 
 \item{OSMRight}{Longitude in degrees (WGS84) for right side of the area for which rainfall depths 
 are to be plotted (for OpenStreetMap only).}
@@ -107,42 +110,39 @@ should manually supply get_openstreetmap with a scale. It may require some itera
 appropriate value for scale. The file "ggmapTemp.png" is written to disk when an OpenStreetMap is loaded. 
 The highest possible resolution for a square area is about 2000 x 2000 pixels.}
 
-\item{SizeLinks}{Size of plotted link paths}
+\item{SizeLinks}{Size of plotted link paths.}
 
-\item{SizePlotTitle}{Size of plot title}
+\item{SizePlotTitle}{Size of plot title.}
 
-\item{TitleLinkLocations}{First part of title of plot}
+\item{TitleLinkLocations}{First part of title of plot.}
 
 \item{OSMTop}{Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be 
-plotted (for OpenStreetMap only)}
+plotted (for OpenStreetMap only).}
 }
 \description{
 Function which visualises microwave link paths on a map.
 }
 \examples{
-PlotLinkLocations(AlphaLinkLocations=AlphaLinkLocations,
-BBoxOSMauto=BBoxOSMauto,OSMBottom=OSMBottom,
-ColourLinks=ColourLinks,ColourType=ColourType,
-dataf=dataf,DateTime=DateTime,ExtraTextLinkLocations=ExtraTextLinkLocations,
-FigFileLinkLocations=FigFileLinkLocations,FigHeight=FigHeight,
-FigWidth=FigWidth,FolderFigures=FolderFigures,FontFamily=FontFamily,
+PlotLinkLocations(AlphaLinkLocations=AlphaLinkLocations,BBoxOSMauto=BBoxOSMauto,
+OSMBottom=OSMBottom,ColourLinks=ColourLinks,ColourType=ColourType,dataf=dataf,
+DateTime=DateTime,ExtraTextLinkLocations=ExtraTextLinkLocations,
+FigFileLinkLocations=FigFileLinkLocations,FigHeight=FigHeight,FigWidth=FigWidth,
+FolderFigures=FolderFigures,FontFamily=FontFamily,
 GoogleLocDegSpecified=GoogleLocDegSpecified,GoogleLocLat=GoogleLocLat,
 GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
-GoogleLocNameSpecified=GoogleLocNameSpecified,
-GoogleMapType=GoogleMapType,GoogleZoomlevel=GoogleZoomlevel,
-LabelAxisLat=LabelAxisLat,LabelAxisLonGoogle=LabelAxisLonGoogle,
-LabelAxisLonOSM=LabelAxisLonOSM,OSMLeft=OSMLeft,
-MapBackground=MapBackground,OSMRight=OSMRight,OSMScale=OSMScale,
+GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
+GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
+LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
+OSMLeft=OSMLeft,MapBackground=MapBackground,OSMRight=OSMRight,OSMScale=OSMScale,
 SizeLinks=SizeLinks,SizePlotTitle=SizePlotTitle,
 TitleLinkLocations=TitleLinkLocations,OSMTop=OSMTop)
-}
-\author{
-Aart Overeem & Hidde Leijnse
 }
 \references{
 ''ManualRAINLINK.pdf''
 
-Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 }
-
+\author{
+Aart Overeem & Hidde Leijnse
+}

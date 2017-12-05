@@ -6,34 +6,34 @@
 \usage{
 Interpolation(Data, CoorSystemInputData = NULL, idp = 2,
   IntpMethod = "OK", nmax = 50, NUGGET, RANGE, RainGrid, Rmean, SILL,
-  Variogram, OutputDir = NULL)
+  TimeZone = "UTC", Variogram = "ClimVar", OutputDir = NULL)
 }
 \arguments{
-\item{Data}{Data frame with microwave link data
-Use "Manual" for spherical variogram model with nugget, sill, and range values 
-supplied as function arguments.}
+\item{Data}{Data frame with microwave link data.}
 
 \item{CoorSystemInputData}{Define coordinate system of input data (in case of
-WGS84 provide NULL)}
+WGS84 provide NULL).}
 
-\item{idp}{The inverse distance weighting power}
+\item{idp}{The inverse distance weighting power.}
 
 \item{IntpMethod}{Interpolation method: Ordinary kriging ("OK") or inverse distance weighted 
-interpolation ("IDW")}
+interpolation ("IDW").}
 
 \item{nmax}{The number of nearest observations that should be used for a kriging prediction 
-or simulation, where nearest is defined in terms of the space of the spatial locations}
+or simulation, where nearest is defined in terms of the space of the spatial locations.}
 
-\item{NUGGET}{Nugget of spherical variogram model (mm)}
+\item{NUGGET}{Nugget of spherical variogram model (mm).}
 
-\item{RANGE}{Range of spherical variogram model (km)}
+\item{RANGE}{Range of spherical variogram model (km).}
 
 \item{RainGrid}{Data frame containing information on the points in space where rainfall 
 needs to be estimated, is assumed to be in the same coordinate system as the original link data.}
 
-\item{Rmean}{Vector of link-derived rainfall intensities (mm h\eqn{^{-1}}) with length equal to Data}
+\item{Rmean}{Vector of link-derived rainfall intensities (mm h\eqn{^{-1}}) with length equal to Data.}
 
-\item{SILL}{Sill of spherical variogram model (mm\eqn{^2})}
+\item{SILL}{Sill of spherical variogram model (mm\eqn{^2}).}
+
+\item{TimeZone}{Time zone of data (e.g. "UTC").}
 
 \item{Variogram}{For OK: which variogram to use? Use "ClimvdBeek" for climatological spherical 
 variogram model.
@@ -45,7 +45,7 @@ written to this directory.
 If not supplied, the interpolated fields will be returned.}
 }
 \value{
-Interpolated field of rainfall intensities (mm h\eqn{^{-1}})
+Interpolated field of rainfall intensities (mm h\eqn{^{-1}}).
 }
 \description{
 Interpolation of link-based path-averaged rainfall estimates. 
@@ -63,19 +63,22 @@ algorithm is developed for interpolation of link-based rainfall estimates, which
 averages. The subfunction IntpPathToPoint computes the path-averaged rainfall intensities 
 for unique link paths. And it assigns path-averaged intensity to the point at the middle of 
 the link path.
+
+The time interval does not have to be an integer but should be equidistant. The minimum time 
+interval length is automatically computed and is employed as the time 
+interval length.
 }
 \examples{
 Interpolation(Data=DataPreprocessed,CoorSystemInputData=NULL,idp=2.0,
 IntpMethod="OK",nmax=50,NUGGET=0.37,RANGE=18.7,RainGrid=RainGrid,
-Rmean=Rmean,SILL=3.7,Variogram="ClimVar",OutputDir="RainMapsLinks15min")
-}
-\author{
-Aart Overeem & Hidde Leijnse
+Rmean=Rmean,SILL=3.7,TimeZone="UTC",Variogram="ClimVar",OutputDir="RainMapsLinks15min")
 }
 \references{
 ''ManualRAINLINK.pdf''
 
-Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review..
+Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 }
-
+\author{
+Aart Overeem & Hidde Leijnse
+}

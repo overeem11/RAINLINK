@@ -16,7 +16,7 @@ data(Linkdata)
 }
 \description{
 Data were obtained from September 9, 0800 UTC - September 11, 0800 UTC (2011).
-The data set contains data from 2613 microwave links.
+The data set contains data from 2612 microwave links.
 }
 \details{
 Several functions in the RAINLINK package read a data frame with microwave
@@ -26,18 +26,17 @@ below, i.e. the variables in the data set supplied to PreprocessingMinMaxRSL.
 For each link and time interval the following variables are provided:
 
 \itemize{
-  \item Frequency: microwave frequency f (GHz)
+  \item Frequency: microwave frequency f (GHz).
   \item DateTime: date and end time of observation (YYYYMMDDhhmm, i.e. year 
-(2011), month (09), day (11), hour (08), minutes (00): 201109110800)
-  \item Pmin: minimum received power P\eqn{_{\mbox{min}}} (dBm)
-  \item Pmax: maximum received power P\eqn{_{\mbox{max}}} (dBm)
-  \item PathLength: length of microwave link path (km)
-  \item XStart: Longitude of start of links (\eqn{^{\circ}}; WGS84)
-  \item YStart: Latitude of start of links (\eqn{^{\circ}}; WGS84)
-  \item Xend: Longitude of end of links (\eqn{^{\circ}}; WGS84)
-  \item YEnd: Latitude of end of links (\eqn{^{\circ}}; WGS84)
-  \item ID: Link identifier
+(2011), month (09), day (11), hour (08), minutes (00): 201109110800).
+  \item Pmin: minimum received power P\eqn{_{\mbox{min}}} (dBm).
+  \item Pmax: maximum received power P\eqn{_{\mbox{max}}} (dBm).
+  \item PathLength: length of microwave link path L (km).
+  \item XStart: Longitude of start of links (\eqn{^{\circ}}; WGS84).
+  \item YStart: Latitude of start of links (\eqn{^{\circ}}; WGS84).
+  \item Xend: Longitude of end of links (\eqn{^{\circ}}; WGS84).
+  \item YEnd: Latitude of end of links (\eqn{^{\circ}}; WGS84).
+  \item ID: Link identifier.
 }
 }
 \keyword{datasets}
-

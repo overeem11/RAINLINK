@@ -9,21 +9,21 @@ OrdinaryKriging(nmax, Nugget, rain.grid, Rainlink, Range, Sill)
 }
 \arguments{
 \item{nmax}{The number of nearest observations that should be used for a kriging prediction 
-or simulation, where nearest is defined in terms of the space of the spatial locations}
+or simulation, where nearest is defined in terms of the space of the spatial locations.}
 
-\item{Nugget}{Nugget of spherical variogram model (mm)}
+\item{Nugget}{Nugget of spherical variogram model (mm).}
 
-\item{rain.grid}{Interpolation grid in Azimuthal Equidistant Cartesian coordinate system}
+\item{rain.grid}{Interpolation grid in Azimuthal Equidistant Cartesian coordinate system.}
 
 \item{Rainlink}{Coordinates of links in Azimuthal Equidistant Cartesian coordinate system 
-and rainfall intensity (latitude in km, longitude in km, intensity in mm h\eqn{^{-1}})}
+and rainfall intensity (latitude in km, longitude in km, intensity in mm h\eqn{^{-1}}).}
 
-\item{Range}{Range of spherical variogram model (km)}
+\item{Range}{Range of spherical variogram model (km).}
 
-\item{Sill}{Sill of spherical variogram model (mm\eqn{^2})}
+\item{Sill}{Sill of spherical variogram model (mm\eqn{^2}).}
 }
 \value{
-Interpolated field of rainfall intensities
+Interpolated field of rainfall intensities.
 }
 \description{
 Subfunction for ordinary kriging interpolation of point values using spherical 
@@ -33,13 +33,12 @@ variogram model with predefined parameters sill, range, and nugget.
 OrdinaryKriging(nmax=50,Nugget=0.37,rain.grid=rain.grid,Rainlink=Rainlink,
 Range=18.7,Sill=3.7)
 }
-\author{
-Aart Overeem & Hidde Leijnse
-}
 \references{
 ''ManualRAINLINK.pdf''
 
-Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 }
-
+\author{
+Aart Overeem & Hidde Leijnse
+}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/RefLevelMinMaxRSL.R
 \name{RefLevelMinMaxRSL}
 \alias{RefLevelMinMaxRSL}
-\title{Function for determination of reference signal level, which is representative of dry weather.}
+\title{Function for determination of reference signal level (Pref), which is representative of dry weather.}
 \usage{
 RefLevelMinMaxRSL(Data, Dry = NULL, HoursRefLevel = 2.5,
   PeriodHoursRefLevel = 24)
@@ -10,36 +10,44 @@ RefLevelMinMaxRSL(Data, Dry = NULL, HoursRefLevel = 2.5,
 \arguments{
 \item{Data}{Data frame with microwave link data.}
 
-\item{Dry}{Data frame: Should interval be considered dry for reference level 
-determination? (0 = wet; 1 = dry)}
+\item{Dry}{Data frame: Should interval be considered dry for reference level
+determination? (0 = wet; 1 = dry).}
 
-\item{HoursRefLevel}{Minimum number of hours that should be dry in preceding 
-PeriodHoursRefLevel hours for computing reference level (h)}
+\item{HoursRefLevel}{Minimum number of hours that should be dry in preceding
+PeriodHoursRefLevel hours for computing reference level (h).}
 
 \item{PeriodHoursRefLevel}{Period over which reference level is to be determined
-(h)}
+(h).}
 }
 \value{
-Reference level (dB)
+Reference level (dB).
 }
 \description{
-Function for determination of reference signal level, which is representative 
+Function for determination of reference signal level, which is representative
 of dry weather.
 
 Works for a sampling strategy where minimum and maximum received signal powers
 are provided, and the transmitted power levels are constant.
+
+Also works for a sampling strategy where instantaneous transmitted and received signal levels are obtained.
+In case of instantaneous signal levels, it does not matter whether transmitted power levels vary or are constant.
+The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
+for instructions. 
+
+The time interval does not have to be an integer but should be equidistant. The minimum time 
+interval length in the time series is automatically computed and is employed as the time 
+interval length.
 }
 \examples{
 RefLevelMinMaxRSL(Data=DataPreprocessed,Dry=NULL,HoursRefLevel=2.5,
 PeriodHoursRefLevel=24)
 }
-\author{
-Aart Overeem & Hidde Leijnse
-}
 \references{
 ''ManualRAINLINK.pdf''
 
-Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 }
-
+\author{
+Aart Overeem & Hidde Leijnse & Manuel F. Rios Gaona
+}

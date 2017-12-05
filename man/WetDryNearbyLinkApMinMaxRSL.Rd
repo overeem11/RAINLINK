@@ -12,33 +12,33 @@ WetDryNearbyLinkApMinMaxRSL(Data, CoorSystemInputData = NULL,
   ThresholdNumberLinks = 3, ThresholdWetDry = 2)
 }
 \arguments{
-\item{Data}{Data frame with microwave link data}
+\item{Data}{Data frame with microwave link data.}
 
 \item{CoorSystemInputData}{Define coordinate system of input data (in case of
-WGS84 provide NULL)}
+WGS84 provide NULL).}
 
 \item{MinHoursPmin}{Minimum number of hours in the previous PeriodHoursPmin hours needed 
-for computing max(P\eqn{_{\mbox{min}}}) (h)}
+for computing max(P\eqn{_{\mbox{min}}}) (h).}
 
 \item{PeriodHoursPmin}{Number of hours that is considered for computation of 
-max(P\eqn{_{\mbox{min}}}) (h)}
+max(P\eqn{_{\mbox{min}}}) (h).}
 
-\item{Radius}{Radius in wet-dry classification (km)}
+\item{Radius}{Radius in wet-dry classification (km).}
 
-\item{Step8}{If TRUE step 8 in the wet-dry classification is performed, else it is not executed}
+\item{Step8}{If TRUE step 8 in the wet-dry classification is performed, else it is not executed.}
 
-\item{ThresholdMedian}{Threshold value (dB)}
+\item{ThresholdMedian}{Threshold value (dB).}
 
-\item{ThresholdMedianL}{Threshold value (dB km\eqn{^{-1}})}
+\item{ThresholdMedianL}{Threshold value (dB km\eqn{^{-1}}).}
 
-\item{ThresholdNumberLinks}{Only use data if number of available links is at least larger than this 
+\item{ThresholdNumberLinks}{Only use data if number of available (surrounding) links is at least larger than this 
 threshold for the time interval under consideration. The selected link is also counted.}
 }
 \value{
-Data frame: Should interval be considered dry for reference level 
+Data frame: Should interval be considered dry for reference level.
 determination? (0 = wet; 1 = dry)
 
-Values for filter to remove outliers (dB km\eqn{^{-1}} h)
+Values F for filter to remove outliers (dB km\eqn{^{-1}} h)
 }
 \description{
 The received signal powers often decrease during non-rainy periods, 
@@ -47,7 +47,7 @@ formation on the antennas. To prevent this rainfall overestimation a reliable
 classification of wet and dry periods is needed. This is also beneficial for 
 determining an appropriate reference signal level, representative for dry weather. 
 In order to define wet and dry periods, we assume that rain is correlated in space, and 
-hence that several links in a given area should experience a decrease in received signal 
+hence that several links in a given area should experience a decrease in minimum received signal 
 level in the case of rain. A time interval is labeled as wet if at least half of the links 
 in the vicinity (for chosen radius) of the selected link experience such a decrease. This 
 so called nearby link approach is applied in this function. The function also prepares 
@@ -56,19 +56,27 @@ powers.
 
 Works for a sampling strategy where minimum and maximum received signal powers
 are provided, and the transmitted power levels are constant.
+
+Also works for a sampling strategy where instantaneous transmitted and received signal levels are obtained.
+In case of instantaneous signal levels, it does not matter whether transmitted power levels vary or are constant.
+The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
+for instructions. 
+
+The time interval does not have to be an integer but should be equidistant. The minimum time 
+interval length in the time series is automatically computed and is employed as the time 
+interval length.
 }
 \examples{
 WetDryNearbyLinkApMinMaxRSL(Data=DataPreprocessed,CoorSystemInputData=NULL, 
 MinHoursPmin=6,PeriodHoursPmin=24,Radius=15,Step8=TRUE,ThresholdMedian=-1.4, 
 ThresholdMedianL=-0.7,ThresholdNumberLinks=3,ThresholdWetDry=2)
 }
-\author{
-Aart Overeem & Hidde Leijnse
-}
 \references{
 ''ManualRAINLINK.pdf''
 
-Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 }
-
+\author{
+Aart Overeem & Hidde Leijnse
+}
