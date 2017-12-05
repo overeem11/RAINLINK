@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.1
-## Copyright (C) 2016 Aart Overeem
+## Version 1.11
+## Copyright (C) 2017 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -22,18 +22,17 @@
 #' I.e. find the grid cell which belongs to the location for which latitude and longitude are provided.
 #'
 #' @param CoorSystemInputData Coordinate system of the input data (e.g. "+init=epsg:4326" for WGS84 in degrees).
-#' @param dataf Data frame of (interpolated) rainfall values
-#' @param FileGrid File with interpolation grid in same coordinate system as CoorSystemInputData
+#' @param dataf Data frame of (interpolated) rainfall values.
+#' @param FileGrid File with interpolation grid in same coordinate system as CoorSystemInputData.
 #' @param Lat Latitude of location for which (interpolated) rainfall value is to be extracted 
-#' (in coordinate system CoorSystemInputData)
+#' (in coordinate system CoorSystemInputData).
 #' @param Lot Longitude of location for which (interpolated) rainfall value is to be extracted 
-#' (in coordinate system CoorSystemInputData)
+#' (in coordinate system CoorSystemInputData).
 #' @param XMiddle The longitude of the centre of the Azimuthal Equidistant Cartesian coordinate system, 
-#' given in the coordinate system of the input data
+#' given in the coordinate system of the input data.
 #' @param YMiddle The latitude of the centre of the Azimuthal Equidistant Cartesian coordinate system, 
-#' given in the coordinate system of the input data
-#'
-#' @return Rainfall value for selected location (in unit of provided input rainfall data)
+#' given in the coordinate system of the input data.
+#' @return Rainfall value for selected location (in unit of provided input rainfall data).
 #' @export ReadRainLocation
 #' @examples
 #' ReadRainLocation(CoorSystemInputData=CoorSystemInputData,dataf=dataf,FileGrid=FileGrid,
@@ -41,12 +40,13 @@
 #' @author Aart Overeem & Hidde Leijnse
 #' @references ''ManualRAINLINK.pdf''
 #'
-#' Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-#' microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+#' Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+#' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
 
 ReadRainLocation <- function(CoorSystemInputData,dataf,FileGrid,Lat,Lon,XMiddle,YMiddle)
 {
+
 	# Construct projection string for Azimuthal Equidistant Cartesian coordinate system:
 	projstring <- paste("+proj=aeqd +a=6378.137 +b=6356.752 +R_A +lat_0=",YMiddle," +lon_0=",XMiddle," +x_0=0 +y_0=0",sep="")
 
@@ -80,6 +80,7 @@ ReadRainLocation <- function(CoorSystemInputData,dataf,FileGrid,Lat,Lon,XMiddle,
 	RainfallPoint <- dataf[GridCellNr]
 
 	return(RainfallPoint)
+
 }
 
 

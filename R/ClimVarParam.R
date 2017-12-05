@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.1
-## Copyright (C) 2016 Aart Overeem
+## Version 1.11
+## Copyright (C) 2017 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -26,30 +26,31 @@
 #' Van de Beek et al. (2012). They use durations of 1 - 24 h. In this function the 
 #' relationships can be extrapolated to, e.g. 15-min, data. 
 #'
-#' @param DateStr The end date of the chosen daily period
-#' @param TimeScaleHours Rainfall aggregation interval in hours
-#' @return Data frame with values of sill, range and nugget
+#' @param DateStr The end date of the chosen daily period.
+#' @param TimeScaleHours Rainfall aggregation interval in hours.
+#' @param TimeZone Time zone of data (e.g. "UTC").
+#' @return Data frame with values of sill, range and nugget.
 #' @export ClimVarParam
 #' @examples
-#' ClimVarParam(DateStr="20110911",TimeScaleHours=TimeScaleHours)
+#' ClimVarParam(DateStr="20110911",TimeScaleHours=0.25,TimeZone="UTC")
 #' @author Aart Overeem & Hidde Leijnse
 #' @references ''ManualRAINLINK.pdf''
 #'
-#' Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-#' microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+#' Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+#' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 #'
-#'  Van de Beek, C. Z., Leijnse, H., Torfs, P. J. J. F., and Uijlenhoet, R.: Seasonal semi-variance of Dutch 
-#' rainfall at hourly to daily scales, Adv. Water Resour., 45, 76-85, doi:10.1016/j.advwatres.2012.03.023, 2012.
+#'  Van de Beek, C. Z., Leijnse, H., Torfs, P. J. J. F., and Uijlenhoet, R., 2012: Seasonal semi-variance of Dutch 
+#' rainfall at hourly to daily scales, Adv. Water Resour., 45, 76-85, doi:10.1016/j.advwatres.2012.03.023.
 
 
-ClimVarParam <- function(DateStr, TimeScaleHours)
+ClimVarParam <- function(DateStr, TimeScaleHours, TimeZone)
 {
 
 	# Set frequency:
 	f <- 1/365
 	
 	# Calculate sill, range and nugget of spherical variogram for this particular day:
-	t <- strptime(DateStr, "%Y%m%d")$yday+1  # Determines day of year (Julian day number)
+	t <- strptime(DateStr, "%Y%m%d",tz=TimeZone)$yday+1  # Determines day of year (Julian day number)
 	   
 	RANGE <- (15.51 * TimeScaleHours^0.09 + 2.06 * TimeScaleHours^-0.12 * cos(2*pi*f * (t - 7.37 * TimeScaleHours^0.22) ) )^4  
 	Sill <- (0.84 * TimeScaleHours^-0.25 + 0.20 * TimeScaleHours^-0.37 * cos(2*pi*f * (t - 162 * TimeScaleHours^-0.03) ) )^4

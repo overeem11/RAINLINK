@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.1
-## Copyright (C) 2016 Aart Overeem
+## Version 1.11
+## Copyright (C) 2017 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -26,32 +26,33 @@
 #' assigned to a point at the middle of the link path. Path-averaged rainfall 
 #' intensities are obtained, so data from full-duplex links are averaged.
 #'
-#' @param ID Link identifier
-#' @param Rmean Data frame with mean path-averaged rainfall intensities (mm h\eqn{^{-1}})
-#' @param XEnd Easting of end of links (km)
-#' @param XStart Easting of start of links (km)
-#' @param YEnd Northing of end of links (km)
-#' @param YStart Northing of start of links (km)
+#' @param ID Link identifier.
+#' @param Rmean Data frame with mean path-averaged rainfall intensities (mm h\eqn{^{-1}}).
+#' @param XEnd Easting of end of links (km).
+#' @param XStart Easting of start of links (km).
+#' @param YEnd Northing of end of links (km).
+#' @param YStart Northing of start of links (km).
 #' @return Coordinates of links in Azimuthal Equidistant Cartesian coordinate system
-#' (latitude, longitude) and rainfall intensity (mm h\eqn{^{-1}}))
+#' (latitude, longitude) and rainfall intensity (mm h\eqn{^{-1}})).
 #' @export IntpPathToPoint
 #' @examples
-#' IntpPathToPoint(ID,Rmean,Xend,XStart,YEnd,YStart)
+#' IntpPathToPoint(ID=ID,Rmean=Rmean,Xend=Xend,XStart=XStart,YEnd=YEnd,YStart=YStart)
 #' @author Aart Overeem & Hidde Leijnse
 #' @references ''ManualRAINLINK.pdf''
 #'
-#' Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-#' microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+#' Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+#' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
 
 IntpPathToPoint <- function(ID,Rmean,XEnd,XStart,YEnd,YStart)
 {
+
 	# Determine coordinates of middle of link:
-	X_middle <- (XStart + XEnd) / 2
-	Y_middle <- (YStart + YEnd) / 2  
+	X_middleLinks <- (XStart + XEnd) / 2
+	Y_middleLinks <- (YStart + YEnd) / 2  
 
 	# Determine unique middle of links:
-	Coord_dataf <- data.frame(cbind(X_middle, Y_middle))
+	Coord_dataf <- data.frame(cbind(X_middleLinks, Y_middleLinks))
 	Coord_uniq <- unique(Coord_dataf)
 	Rainlink <- array(NA, c(length(Coord_uniq[, 1]), 3))
 
@@ -67,7 +68,7 @@ IntpPathToPoint <- function(ID,Rmean,XEnd,XStart,YEnd,YStart)
 	Rainlink[, 2] <- Coord_uniq[, 2]
 	for (i in 1 : NrPaths)
 	{
-		Rainlink[i, 3] <- mean(Rmean[Rainlink[i, 1] == X_middle & Rainlink[i, 2] == Y_middle], na.rm = TRUE)
+		Rainlink[i, 3] <- mean(Rmean[Rainlink[i, 1] == X_middleLinks & Rainlink[i, 2] == Y_middleLinks], na.rm = TRUE)
 	}
 	
 	Rainlink <- as.data.frame(Rainlink)
@@ -76,4 +77,5 @@ IntpPathToPoint <- function(ID,Rmean,XEnd,XStart,YEnd,YStart)
 	coordinates(Rainlink) <- centres
 	
 	return(na.omit(Rainlink))
+
 }

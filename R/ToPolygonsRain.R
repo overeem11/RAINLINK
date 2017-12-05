@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.1
-## Copyright (C) 2016 Aart Overeem
+## Version 1.11
+## Copyright (C) 2017 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -20,20 +20,21 @@
 #' Subfunction which assignes values of rainfall grid to polygons.
 #' @description Subfunction which assignes values of rainfall grid to polygons.
 #'
-#' @param Data Field of rainfall depths at the chosen grid
-#' @return Field of rainfall depths for the polygons at the chosen grid
+#' @param Data Field of rainfall depths at the chosen grid.
+#' @return Field of rainfall depths for the polygons at the chosen grid.
 #' @export ToPolygonsRain
 #' @examples
 #' ToPolygonsRain(Data=Data)
 #' @author Aart Overeem & Hidde Leijnse
 #' @references ''ManualRAINLINK.pdf''
 #'
-#' Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-#' microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+#' Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+#' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
 
 ToPolygonsRain <- function(Data) 
 {
+
 	LengthRainvalues = length(Data)
 	LengthPolygons = LengthRainvalues*6
 	Value = array(NA,c(LengthPolygons,1))
@@ -44,4 +45,5 @@ ToPolygonsRain <- function(Data)
 	Value <- data.frame(Value)
 
 	return(Value)
+
 }

@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.1
-## Copyright (C) 2016 Aart Overeem
+## Version 1.11
+## Copyright (C) 2017 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -23,13 +23,16 @@
 #' daily accumulations). These outliers can be removed by using a filter that is based on the 
 #' assumption that rainfall is correlated in space. The filter discards a time interval of a 
 #' link for which the cumulative difference between its specific attenuation and that of the 
-#' surrounding links over the previous 24 h (including the present time interval) becomes 
+#' surrounding links over the previous 24 h (including the present time interval), F, becomes 
 #' lower than a threshold value in dB h km\eqn{^{-1}}. 
 #'
-#' The outlier filter has been tested on minimum received signal powers, i.e.
+#' Works for a sampling strategy where minimum and maximum received signal powers
+#' are provided, and the transmitted power levels are constant.
+#'
+#' The outlier filter has been extensively tested on minimum received signal powers, i.e.
 #' for a sampling strategy where minimum and maximum received signal powers
 #' are provided, and the transmitted power levels are constant.
-#' This function can also be applied for other sampling strategies, because
+#' This function can also be applied in case of other sampling strategies, because
 #' it does not explicitly require minimum and maximum received signal powers.
 #' It just applies the selection on all rows in a data frame.
 #' Whether the outlier filter will give good results when applied to link data
@@ -37,24 +40,28 @@
 #' Hence, ''MinMaxRSL'' is kept in this function name to stress that it
 #' has been tested for a sampling strategy where minimum and maximum received 
 #' powers are provided.
+#' Update: Now also works for a sampling strategy where instantaneous transmitted and received signal levels are obtained.
+#' In case of instantaneous signal levels, it does not matter whether transmitted power levels vary or are constant.
+#' The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
+#' for instructions. 
 #'
 #' Can only be applied when function WetDryNearbyLinkApMinMaxRSL has been executed.
 #' 
-#' @param Data Data frame with microwave link data
-#' @param F Values for filter to remove outliers (dB km\eqn{^{-1}} h)
-#' @param FilterThreshold Outlier filter threshold (dB h km\eqn{^{-1}})
-#' @return Data frame with microwave link data
+#' @param Data Data frame with microwave link data.
+#' @param F Values for filter to remove outliers (dB km\eqn{^{-1}} h).
+#' @param FilterThreshold Outlier filter threshold (dB h km\eqn{^{-1}}).
+#' @return Data frame with microwave link data.
 #' @export OutlierFilterMinMaxRSL
 #' @examples
 #' OutlierFilterMinMaxRSL(Data=DataPreprocessed,F=WetDry$F,FilterThreshold=-32.5)
 #' @author Aart Overeem & Hidde Leijnse
 #' @references ''ManualRAINLINK.pdf''
 #'
-#' Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-#' microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+#' Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+#' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
 
-OutlierFilterMinMaxRSL <- function(Data,F,FilterThreshold) 
+OutlierFilterMinMaxRSL <- function(Data,F,FilterThreshold=-32.5) 
 {
 
 	# Set Pmin variable to NA when F exceeds the threshold

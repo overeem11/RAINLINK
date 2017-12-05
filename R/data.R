@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
-## in a cellular communication network.## R function 'WetDryLinkApproach.R'.
+## in a cellular communication network.
 ## 
-## Version 1.1
-## Copyright (C) 2016 Aart Overeem
+## Version 1.11
+## Copyright (C) 2017 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
 #' links used vertically polarised signals. 
 #'
 #' Data were obtained from September 9, 0800 UTC - September 11, 0800 UTC (2011).
-#' The data set contains data from 2613 microwave links.
+#' The data set contains data from 2612 microwave links.
 #'
 #' Several functions in the RAINLINK package read a data frame with microwave
 #' link data. Such a data frame always contains the variables as indicated
@@ -35,17 +35,17 @@
 #' For each link and time interval the following variables are provided: 
 #' 
 #' \itemize{
-#'   \item Frequency: microwave frequency f (GHz)
+#'   \item Frequency: microwave frequency f (GHz).
 #'   \item DateTime: date and end time of observation (YYYYMMDDhhmm, i.e. year 
-#' (2011), month (09), day (11), hour (08), minutes (00): 201109110800)
-#'   \item Pmin: minimum received power P\eqn{_{\mbox{min}}} (dBm)
-#'   \item Pmax: maximum received power P\eqn{_{\mbox{max}}} (dBm)
-#'   \item PathLength: length of microwave link path (km)
-#'   \item XStart: Longitude of start of links (\eqn{^{\circ}}; WGS84)
-#'   \item YStart: Latitude of start of links (\eqn{^{\circ}}; WGS84)
-#'   \item Xend: Longitude of end of links (\eqn{^{\circ}}; WGS84)
-#'   \item YEnd: Latitude of end of links (\eqn{^{\circ}}; WGS84)
-#'   \item ID: Link identifier
+#' (2011), month (09), day (11), hour (08), minutes (00): 201109110800).
+#'   \item Pmin: minimum received power P\eqn{_{\mbox{min}}} (dBm).
+#'   \item Pmax: maximum received power P\eqn{_{\mbox{max}}} (dBm).
+#'   \item PathLength: length of microwave link path L (km).
+#'   \item XStart: Longitude of start of links (\eqn{^{\circ}}; WGS84).
+#'   \item YStart: Latitude of start of links (\eqn{^{\circ}}; WGS84).
+#'   \item Xend: Longitude of end of links (\eqn{^{\circ}}; WGS84).
+#'   \item YEnd: Latitude of end of links (\eqn{^{\circ}}; WGS84).
+#'   \item ID: Link identifier.
 #' }
 #' 
 #' @docType data

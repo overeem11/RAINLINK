@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.1
-## Copyright (C) 2016 Aart Overeem
+## Version 1.11
+## Copyright (C) 2017 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -23,14 +23,14 @@
 #' variogram model with predefined parameters sill, range, and nugget.
 #'
 #' @param nmax The number of nearest observations that should be used for a kriging prediction 
-#' or simulation, where nearest is defined in terms of the space of the spatial locations
-#' @param Nugget Nugget of spherical variogram model (mm)
-#' @param rain.grid Interpolation grid in Azimuthal Equidistant Cartesian coordinate system
+#' or simulation, where nearest is defined in terms of the space of the spatial locations.
+#' @param Nugget Nugget of spherical variogram model (mm).
+#' @param rain.grid Interpolation grid in Azimuthal Equidistant Cartesian coordinate system.
 #' @param Rainlink Coordinates of links in Azimuthal Equidistant Cartesian coordinate system 
-#' and rainfall intensity (latitude in km, longitude in km, intensity in mm h\eqn{^{-1}})
-#' @param Range Range of spherical variogram model (km)
-#' @param Sill Sill of spherical variogram model (mm\eqn{^2})
-#' @return Interpolated field of rainfall intensities
+#' and rainfall intensity (latitude in km, longitude in km, intensity in mm h\eqn{^{-1}}).
+#' @param Range Range of spherical variogram model (km).
+#' @param Sill Sill of spherical variogram model (mm\eqn{^2}).
+#' @return Interpolated field of rainfall intensities.
 #' @export OrdinaryKriging
 #' @examples
 #' OrdinaryKriging(nmax=50,Nugget=0.37,rain.grid=rain.grid,Rainlink=Rainlink,
@@ -38,8 +38,8 @@
 #' @author Aart Overeem & Hidde Leijnse
 #' @references ''ManualRAINLINK.pdf''
 #'
-#' Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-#' microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+#' Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+#' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
 
 OrdinaryKriging <- function(nmax,Nugget,rain.grid,Rainlink,Range,Sill)

@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.1
-## Copyright (C) 2016 Aart Overeem
+## Version 1.11
+## Copyright (C) 2017 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -34,42 +34,48 @@
 #' for unique link paths. And it assigns path-averaged intensity to the point at the middle of 
 #' the link path.
 #'
-#' @param Data Data frame with microwave link data
+#' The time interval does not have to be an integer but should be equidistant. The minimum time 
+#' interval length is automatically computed and is employed as the time 
+#' interval length.
+#'
+#' @param Data Data frame with microwave link data.
 #' @param CoorSystemInputData Define coordinate system of input data (in case of
-#' WGS84 provide NULL)
-#' @param idp The inverse distance weighting power
+#' WGS84 provide NULL).
+#' @param idp The inverse distance weighting power.
 #' @param IntpMethod Interpolation method: Ordinary kriging ("OK") or inverse distance weighted 
-#' interpolation ("IDW")
+#' interpolation ("IDW").
 #' @param nmax The number of nearest observations that should be used for a kriging prediction 
-#' or simulation, where nearest is defined in terms of the space of the spatial locations
-#' @param NUGGET Nugget of spherical variogram model (mm)
-#' @param RANGE Range of spherical variogram model (km)
-#' @param RainGrid Data frame containing information on the points in space where rainfall 
-#' needs to be estimated, is assumed to be in the same coordinate system as the original link data.
-#' @param Rmean Vector of link-derived rainfall intensities (mm h\eqn{^{-1}}) with length equal to Data
-#' @param SILL Sill of spherical variogram model (mm\eqn{^2})
+#' or simulation, where nearest is defined in terms of the space of the spatial locations.
+#' @param NUGGET Nugget of spherical variogram model (mm).
 #' @param OutputDir If supplied (not NULL), files with resulting interpolated rainfall fields will be 
 #' written to this directory.
 #' If not supplied, the interpolated fields will be returned.
+#' @param RANGE Range of spherical variogram model (km).
+#' @param RainGrid Data frame containing information on the points in space where rainfall 
+#' needs to be estimated, is assumed to be in the same coordinate system as the original link data.
+#' @param Rmean Vector of link-derived rainfall intensities (mm h\eqn{^{-1}}) with length equal to Data.
+#' @param SILL Sill of spherical variogram model (mm\eqn{^2}).
+#' @param TimeZone Time zone of data (e.g. "UTC").
 #' @param Variogram For OK: which variogram to use? Use "ClimvdBeek" for climatological spherical 
 #' variogram model.
 #' Use "Manual" for spherical variogram model with NUGGET, SILL, and RANGE values supplied as 
 #' function arguments.
-#' @return Interpolated field of rainfall intensities (mm h\eqn{^{-1}})
+#' @return Interpolated field of rainfall intensities (mm h\eqn{^{-1}}).
 #' @export Interpolation
 #' @examples
 #' Interpolation(Data=DataPreprocessed,CoorSystemInputData=NULL,idp=2.0,
 #' IntpMethod="OK",nmax=50,NUGGET=0.37,RANGE=18.7,RainGrid=RainGrid,
-#' Rmean=Rmean,SILL=3.7,Variogram="ClimVar",OutputDir="RainMapsLinks15min")
+#' Rmean=Rmean,SILL=3.7,TimeZone="UTC",Variogram="ClimVar",OutputDir="RainMapsLinks15min")
 #' @author Aart Overeem & Hidde Leijnse
 #' @references ''ManualRAINLINK.pdf''
 #'
-#' Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-#' microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review..
+#' Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+#' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
 
-Interpolation <- function(Data,CoorSystemInputData=NULL,idp=2.0,IntpMethod="OK",nmax=50,NUGGET,RANGE,RainGrid,Rmean,SILL,Variogram,OutputDir=NULL)
+Interpolation <- function(Data,CoorSystemInputData=NULL,idp=2.0,IntpMethod="OK",nmax=50,NUGGET,RANGE,RainGrid,Rmean,SILL,TimeZone="UTC",Variogram="ClimVar",OutputDir=NULL)
 {
+
 	# Determine the middle of the area over which there are data (for reprojection onto a Cartesian coordinate system)
 	if (!is.null(CoorSystemInputData))
 	{
@@ -116,7 +122,7 @@ Interpolation <- function(Data,CoorSystemInputData=NULL,idp=2.0,IntpMethod="OK",
 	# Loop over all links for coordinate transformation and putting data in an array
    	for (p in 1 : N_links)
    	{
-		# Find indices corresppnding to this link
+		# Find indices corresponding to this link
 		Cond <- which(Data$ID == IDLink[p])
 		
 		#Convert coordinates to a system in km, centered on the area covered by the links
@@ -151,7 +157,7 @@ Interpolation <- function(Data,CoorSystemInputData=NULL,idp=2.0,IntpMethod="OK",
 		# Construct header of output file:
 		Header <- c("RainIntensity")
 		# Create directory for output files:
-		dir.create(OutputDir)
+		if(!dir.exists(OutputDir)){ dir.create(OutputDir) }
 	}
 	
 	for (i in 1 : N_t)
@@ -184,8 +190,8 @@ Interpolation <- function(Data,CoorSystemInputData=NULL,idp=2.0,IntpMethod="OK",
 			if (Variogram=="ClimVar")
 			{
 
-				ParamVarModel <- ClimVarParam(DateStr = as.character(t[i]), TimeScaleHours = dt / 3600)
-				attach(ParamVarModel)
+				ParamVarModel <- ClimVarParam(DateStr = as.character(t[i]), TimeScaleHours = dt / 3600, TimeZone = TimeZone)
+				attach(ParamVarModel, warn.conflicts = FALSE)
 				Method <- "# Ordinary kriging interpolation. Climatological sill, range, and nugget."
 
 			}
@@ -244,4 +250,5 @@ Interpolation <- function(Data,CoorSystemInputData=NULL,idp=2.0,IntpMethod="OK",
 	} else {
 		return(0)
 	}
+
 }

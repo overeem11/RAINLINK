@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.## R function 'WetDryLinkApproach.R'.
 ## 
-## Version 1.1
-## Copyright (C) 2016 Aart Overeem
+## Version 1.11
+## Copyright (C) 2017 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
 #' classification of wet and dry periods is needed. This is also beneficial for 
 #' determining an appropriate reference signal level, representative for dry weather. 
 #' In order to define wet and dry periods, we assume that rain is correlated in space, and 
-#' hence that several links in a given area should experience a decrease in received signal 
+#' hence that several links in a given area should experience a decrease in minimum received signal 
 #' level in the case of rain. A time interval is labeled as wet if at least half of the links 
 #' in the vicinity (for chosen radius) of the selected link experience such a decrease. This 
 #' so called nearby link approach is applied in this function. The function also prepares 
@@ -36,22 +36,31 @@
 #' Works for a sampling strategy where minimum and maximum received signal powers
 #' are provided, and the transmitted power levels are constant.
 #'
-#' @param Data Data frame with microwave link data
+#' Also works for a sampling strategy where instantaneous transmitted and received signal levels are obtained.
+#' In case of instantaneous signal levels, it does not matter whether transmitted power levels vary or are constant.
+#' The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
+#' for instructions. 
+#'
+#' The time interval does not have to be an integer but should be equidistant. The minimum time 
+#' interval length in the time series is automatically computed and is employed as the time 
+#' interval length.
+#'
+#' @param Data Data frame with microwave link data.
 #' @param CoorSystemInputData Define coordinate system of input data (in case of
-#' WGS84 provide NULL)
+#' WGS84 provide NULL).
 #' @param MinHoursPmin Minimum number of hours in the previous PeriodHoursPmin hours needed 
-#' for computing max(P\eqn{_{\mbox{min}}}) (h)
+#' for computing max(P\eqn{_{\mbox{min}}}) (h).
 #' @param PeriodHoursPmin Number of hours that is considered for computation of 
-#' max(P\eqn{_{\mbox{min}}}) (h)
-#' @param Radius Radius in wet-dry classification (km)
-#' @param Step8 If TRUE step 8 in the wet-dry classification is performed, else it is not executed
-#' @param ThresholdMedian Threshold value (dB)
-#' @param ThresholdMedianL Threshold value (dB km\eqn{^{-1}})
-#' @param ThresholdNumberLinks Only use data if number of available links is at least larger than this 
+#' max(P\eqn{_{\mbox{min}}}) (h).
+#' @param Radius Radius in wet-dry classification (km).
+#' @param Step8 If TRUE step 8 in the wet-dry classification is performed, else it is not executed.
+#' @param ThresholdMedian Threshold value (dB).
+#' @param ThresholdMedianL Threshold value (dB km\eqn{^{-1}}).
+#' @param ThresholdNumberLinks Only use data if number of available (surrounding) links is at least larger than this 
 #' threshold for the time interval under consideration. The selected link is also counted.
-#' @return Data frame: Should interval be considered dry for reference level 
+#' @return Data frame: Should interval be considered dry for reference level.
 #' determination? (0 = wet; 1 = dry)
-#' @return Values for filter to remove outliers (dB km\eqn{^{-1}} h)
+#' @return Values F for filter to remove outliers (dB km\eqn{^{-1}} h)
 #' @export WetDryNearbyLinkApMinMaxRSL
 #' @examples
 #' WetDryNearbyLinkApMinMaxRSL(Data=DataPreprocessed,CoorSystemInputData=NULL, 
@@ -60,8 +69,8 @@
 #' @author Aart Overeem & Hidde Leijnse
 #' @references ''ManualRAINLINK.pdf''
 #'
-#' Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-#' microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+#' Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+#' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
 
 WetDryNearbyLinkApMinMaxRSL <- function(Data,CoorSystemInputData=NULL,MinHoursPmin=6,PeriodHoursPmin=24,
@@ -152,23 +161,25 @@ Radius=15,Step8=TRUE,ThresholdMedian=-1.4,ThresholdMedianL=-0.7,ThresholdNumberL
 	for (i in 2 : N_t)
 	{
 		# Determine index of time at most PeriodHoursPmin before current time interval
-		ind_PrevPeriod[i] <- min(which(t_sec[ind_PrevPeriod[i - 1] : (i - 1)] > 
-		(t_sec[i] - PeriodHoursPmin * 3600))) + ind_PrevPeriod[i - 1] - 1
-		
-		# Compute the time for which valid data are available, and check if this is sufficient
-		t_valid <- colSums(!is.na(PminLink[ind_PrevPeriod[i] : i, ])) * dt
-		links_valid <- which(t_valid >= (MinHoursPmin * 3600))
-		if (length(links_valid) > 0)
-		{
-			for (j in links_valid)
-			{
-				# Compute maximum of Pmin over previous PeriodHoursPmin
-				PminLink_max[i, j] <- max(PminLink[ind_PrevPeriod[i] : i, j], na.rm = TRUE)
-			}
+		int.ind = which(t_sec[ind_PrevPeriod[i - 1] : (i - 1)] > (t_sec[i] - PeriodHoursPmin * 3600))
+		if (length(int.ind) > 0) {
+			ind_PrevPeriod[i] <- min(int.ind) + ind_PrevPeriod[i - 1] - 1
 			
-			# Compute Delta P and Delta P_L
-			DeltaP[i, links_valid] <- PminLink[i, links_valid] - PminLink_max[i, links_valid]
-			DeltaPL[i, links_valid] <- DeltaP[i, links_valid] / LengthLink[links_valid]
+			# Compute the time for which valid data are available, and check if this is sufficient
+			t_valid <- colSums(!is.na(PminLink[ind_PrevPeriod[i] : i, ])) * dt
+			links_valid <- which(t_valid >= (MinHoursPmin * 3600))
+			if (length(links_valid) > 0)
+			{
+				for (j in links_valid)
+				{
+					# Compute maximum of Pmin over previous PeriodHoursPmin
+					PminLink_max[i, j] <- max(PminLink[ind_PrevPeriod[i] : i, j], na.rm = TRUE)
+				}
+				
+				# Compute Delta P and Delta P_L
+				DeltaP[i, links_valid] <- PminLink[i, links_valid] - PminLink_max[i, links_valid]
+				DeltaPL[i, links_valid] <- DeltaP[i, links_valid] / LengthLink[links_valid]
+			}
 		}
 	}
 	

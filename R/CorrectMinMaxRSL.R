@@ -6,8 +6,8 @@
 ## Aart Overeem, Hidde Leijnse, Remko Uijlenhoet, 2015. Retrieval algorithm for rainfall mapping 
 ## from microwave links in a cellular communication network. Atmos. Meas. Tech. Discuss., revised version.    
 
-## Version 1.1
-## Copyright (C) 2016 Aart Overeem
+## Version 1.11
+## Copyright (C) 2017 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -23,9 +23,9 @@
 ## along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #' Function for correcting minimum and maximum received signal powers. 
-#' @description Function for correcting minimum and maximum received signal powers.
+#' @description Function for correcting minimum (Pmin) and maximum (Pmax) received signal powers.
 #' For a rainy time interval the corrected minimum received signal power becomes equal to 
-#' the minimum received signal power if this is below the reference signal level. 
+#' the minimum received signal power if this is below the reference signal level (Pref). 
 #' Otherwise the corrected minimum received signal power becomes equal to the 
 #' reference signal level. The corrected maximum received signal power becomes
 #' equal to the maximum received signal power if both the maximum received signal 
@@ -35,22 +35,28 @@
 #' Works for a sampling strategy where minimum and maximum received signal powers
 #' are provided, and the transmitted power levels are constant.
 #'
-#' @param Data Data frame with microwave link data
-#' @param Dry Data frame: Should interval be considered dry for reference level 
-#' determination? (0 = wet; 1 = dry)
-#' @param Pref Reference level (dB)
-#' @return Data frame with corrected minimum and maximum received powers (dB)
+#' Also works for a sampling strategy where instantaneous transmitted and received signal levels are obtained.
+#' In case of instantaneous signal levels, it does not matter whether transmitted power levels vary or are constant.
+#' The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
+#' for instructions. 
+#'
+#'
+#' @param Data Data frame with microwave link data.
+#' @param Dry Data frame: Should interval be considered dry for reference level
+#' determination? (0 = wet; 1 = dry).
+#' @param Pref Reference level (dB).
+#' @return Data frame with corrected minimum and maximum received powers (dB).
 #' @export CorrectMinMaxRSL
 #' @examples
 #' CorrectMinMaxRSL(Data=DataOutlierFiltered,Dry=WetDry$Dry,Pref=Pref)
 #' @author Aart Overeem & Hidde Leijnse
 #' @references ''ManualRAINLINK.pdf''
 #'
-#' Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-#' microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+#' Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+#' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
 
-CorrectMinMaxRSL <- function(Data,Dry=NULL,Pref)
+CorrectMinMaxRSL <- function(Data=DataOutlierFiltered,Dry=WetDry$Dry,Pref=Pref)
 {
 
 	# In case no wet-dry classification has been performed:

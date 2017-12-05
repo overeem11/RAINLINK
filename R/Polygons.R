@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.1
-## Copyright (C) 2016 Aart Overeem
+## Version 1.11
+## Copyright (C) 2017 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -20,21 +20,22 @@
 #' Subfunction which makes dataframe for polygons with rainfall estimates in specific rainfall class.
 #' @description Subfunction which makes dataframe for polygons with rainfall estimates in specific rainfall class.
 #'
-#' @param cond Row numbers of dataframe which fall in specific rainfall class
-#' @param Selected Coordinates of polygons and their assigned rainfall values
+#' @param cond Row numbers of dataframe which fall in specific rainfall class.
+#' @param Selected Coordinates of polygons and their assigned rainfall values.
 #' @return Data frame
 #' @export Polygons
 #' @examples
-#' Polygons(cond=cond,Selected=Selected)
+#' RAINLINK::Polygons(cond=cond,Selected=Selected)
 #' @author Aart Overeem & Hidde Leijnse
 #' @references ''ManualRAINLINK.pdf''
 #'
-#' Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-#' microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+#' Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+#' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
 
 Polygons <- function(cond, Selected) 
 {
+
 	LengthNA = length(cond)/5
 	dataf <- data.frame(c(-99999999))
 	if ( LengthNA > 0 )
@@ -51,4 +52,5 @@ Polygons <- function(cond, Selected)
 	}
 
 	return(dataf)
+
 }

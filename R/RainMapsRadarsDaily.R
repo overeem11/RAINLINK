@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.1
-## Copyright (C) 2016 Aart Overeem
+## Version 1.11
+## Copyright (C) 2017 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -22,28 +22,28 @@
 #' with polygons of pixels. The radar data have been obtained from 
 #' http://climate4impact.eu (catalog ``Radar precipitation climatology'') and are freely available.
 #'
-#' @param AlphaPlotLocation Transparency of plotted symbol for specified location on map
-#' @param AlphaPolygon Transparency of polygons
-#' @param AlphaScale Transparency of legend
+#' @param AlphaPlotLocation Transparency of plotted symbol for specified location on map.
+#' @param AlphaPolygon Transparency of polygons.
 #' @param AutDefineLegendTop Let R automatically define highest value of legend in case of "yes". 
 #' Then the highest class, i.e. the one plotted separately above the other classes, is not plotted anymore.
 #' @param BBoxOSMauto Compute bounding box from input data or used bounding box defined above? 
 #' (for OpenStreetMap only). Use "yes" if bounding box is to be computed from interpolation grid.
-#' @param ColoursNumber Number of colour classes in legend
-#' @param ColourPlotLocation Colour of plotted symbol for specified location on map
-#' @param ColourPlotLocationText Colour of plotted rainfall depth for specified location on map
+#' @param ColoursNumber Number of colour classes in legend.
+#' @param ColourPlotLocation Colour of plotted symbol for specified location on map.
+#' @param ColourPlotLocationText Colour of plotted rainfall depth for specified location on map.
+#' @param ColourScheme Hexadecimal codes or names for colours of legend.
 #' @param ColourType Colour or black-and-white background map? Use "color" for colour and "bw" for 
 #' black-and-white background map.
 #' @param ColourHighestClass Colour of highest class
 #' @param CoorSystemInputData Define coordinate system of input data 
-#' (e.g. "+init=epsg:4326" for WGS84 in degrees)
-#' @param DateMap End date of daily period for which rainfall map should be plotted
+#' (e.g. "+init=epsg:4326" for WGS84 in degrees).
+#' @param DateMap End date of daily period for which rainfall map should be plotted.
 #' @param ExtraDeg To reduce computational time, it is automatically determined which grid 
 #' cells fall within the plotted region. To also plot grid cell values which partly fall outside 
 #' the plotted region, a positive number for ExtraDeg should be specified (degrees). 
 #' This should typically be at least the size of one grid cell in degrees.
-#' @param ExtraText Second part of title of plot
-#' @param FigFileRadarsDaily Part of figure output file name
+#' @param ExtraText Second part of title of plot.
+#' @param FigFileRadarsDaily Part of figure output file name.
 #' @param FigHeight Figure height. 1280 times 1280 pixels seems maximum graphical resolution 
 #' for downloaded Google Maps. Because also axes and legend are plotted, it is advised to use e.g. 
 #' 1450 times 1450 pixels. Then the Google Map will remain approximately 1280 times 1280 pixels. 
@@ -60,10 +60,10 @@
 #' advised. The OpenStreetMap itself is stored in file "ggmapTemp.png". From this file the resolution of the 
 #' background map can be obtained. This can be useful for determining an appropriate FigWidth and FigHeight 
 #' above.
-#' @param FileGrid File with interpolation grid in same coordinate system as CoorSystemInputData
+#' @param FileGrid File with interpolation grid in same coordinate system as CoorSystemInputData.
 #' @param FileNameRadarDaily Filename of radar file of rainfall depths to be visualised (NetCDF4 format).
-#' @param FilePolygonsGrid Name of file with polygons of interpolation grid
-#' @param FolderFigures Folder name of figures
+#' @param FilePolygonsGrid Name of file with polygons of interpolation grid.
+#' @param FolderFigures Folder name of figures.
 #' @param FolderRadarRainMapsDaily Name of folder which contains daily radar rainfall files (input data)
 #' @param FontFamily Specify font family of text in figures. To select the default font use "". 
 #' Using "Times" may give warnings when executing the visualisation. In that case the font is not installed 
@@ -72,29 +72,32 @@
 #' is used as the centre of the Google Map. If both GoogleLocNameSpecified and GoogleLocDegSpecified are not 
 #' equal to "yes", the bounding box of the map is determined from the provided grid and used as centre of the 
 #' Google Map.
-#' @param GoogleLocLat Latitude of middle of Google Map (degrees)
+#' @param GoogleLocLat Latitude of middle of Google Map (degrees).
 #' @param GoogleLocLon Longitude of middle of Google Map (degrees).
 #' @param GoogleLocName Location of middle of Google Map, provided as text, e.g. name of city, street name, 
-#' country
+#' country.
 #' @param GoogleLocNameSpecified If GoogleLocNameSpecified is "yes" then the specified location name GoogleLocName 
 #' is used as the centre of the Google Map. If both GoogleLocNameSpecified and GoogleLocDegSpecified are not equal 
 #' to "yes", the bounding box of the map is determined from the provided grid and used as centre of the Google Map.
 #' @param GoogleMapType In case of Google Maps: which map type should be used? Available map types: "terrain", 
 #' "satellite", "roadmap", and "hybrid".
 #' @param GoogleZoomlevel Which zoom level to use for the Google Maps?
-#' @param LabelAxisLat Label name of vertical axis
-#' @param LabelAxisLonGoogle Label name of horizontal axis (for Google Maps only)
-#' @param LabelAxisLonOSM Label name of horizontal axis (for OpenStreetMap only)
-#' @param LatLocation Latitude of location on map (degrees)
-#' @param LatText Latitude of text (rainfall depth) of location on map (degrees)
-#' @param LegendTitleRadarsDaily Title of legend
-#' @param LonLocation Longitude of location on map (degrees)
-#' @param LonText Longitude of text (rainfall depth) of location on map (degrees)
+#' @param LabelAxisLat Label name of vertical axis.
+#' @param LabelAxisLonGoogle Label name of horizontal axis (for Google Maps only).
+#' @param LabelAxisLonOSM Label name of horizontal axis (for OpenStreetMap only).
+#' @param LatLocation Latitude of location on map (degrees).
+#' @param LatText Latitude of text (rainfall depth) of location on map (degrees).
+#' @param LegendTitleRadarsDaily Title of legend.
+#' @param LonLocation Longitude of location on map (degrees).
+#' @param LonText Longitude of text (rainfall depth) of location on map (degrees).
 #' @param ManualScale Manually supply the legend breaks if ManuelScale is not equal to "no". 
 #' Interval breaks are determined manually from ScaleLow and ScaleHigh. If ManualScale is "no" 
 #' interval breaks are determined automatically. 
 #' @param MapBackground Google Maps or OpenStreetMap as background? Use "Google" for Google Maps and "OSM" for 
 #' OpenStreetMap. Note that Google Maps will only plot on a square figure.
+#' It seems that mapping with OpenStreetMap (“get openstreetmap”) is no langer supported.
+#' This implies that mapping can only be done employing Google Maps. This is not related to
+#' the RAINLINK version.
 #' @param OSMBottom Latitude in degrees (WGS84) for bottom side of the area for which rainfall depths are to 
 #' be plotted (for OpenStreetMap only).
 #' @param OSMLeft Longitude in degrees (WGS84) for left side of the area for which rainfall depths are to be 
@@ -109,15 +112,11 @@
 #' scale. The file "ggmapTemp.png" is written to disk when an OpenStreetMap is loaded. The highest possible 
 #' resolution for a square area is about 2000 x 2000 pixels. 
 #' @param OSMTop Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be plotted 
-#' (for OpenStreetMap only)
-#' @param Palette Choose (RColorBrewer) palette. "Blues", "YlGnBu", "GnBu": sequential. 
-#' "Spectral", "RdYlBu", "BrBG": diverging. Unfortunately, it seems not possible to select 
-#' those colours from the full range of the palette. For 6 or less classes we get a reasonable 
-#' set of colours though.
-#' @param PathRadarRainfallDepth Path in NetCDF4 file with radar data
+#' (for OpenStreetMap only).
+#' @param PathRadarRainfallDepth Path in NetCDF4 file with radar data.
 #' @param PERIOD Select daily time interval, i.e. "0800" implies 0800 UTC previous day - 0800 UTC present day 
-#' (use 2400 for 0000 UTC)
-#' @param PlotLocation A location is plotted on map if PlotLocation is "yes"
+#' (use 2400 for 0000 UTC).
+#' @param PlotLocation A location is plotted on map if PlotLocation is "yes".
 #' @param PixelBorderCol Choose colour of pixel borders. Use NA (without quotes) to not plot pixel borders. 
 #' If the pixels are relatively small with respect to the plotted region, the graphical quality of the pixel borders 
 #' deteriorates due to low number of pixels (low resolution).
@@ -135,41 +134,67 @@
 #' ScaleBottomDaily For instance, if the highest class (> x mm) is plotted below instead of above the other 
 #' classes. Or if the number of classes does not match the number of chosen classes. Another way to prevent 
 #' this is to manually give the legend breaks (ManualScale not equal to "no").
-#' @param SizePixelBorder Size of pixel borders
-#' @param SizePlotLocation Size of symbol and and accompanied text for specified location on map
-#' @param SizePlotTitle Size of plot title
-#' @param SymbolPlotLocation Symbol to be plotted for specified location on map
-#' @param TitleRadars First part of title of plot
+#' @param SizePixelBorder Size of pixel borders.
+#' @param SizePlotLocation Size of symbol and and accompanied text for specified location on map.
+#' @param SizePlotTitle Size of plot title.
+#' @param SymbolPlotLocation Symbol to be plotted for specified location on map.
+#' @param TimeZone Time zone of data (e.g. "UTC").
+#' @param TitleRadars First part of title of plot.
 #' @param XMiddle The longitude of the centre of the Azimuthal Equidistant Cartesian coordinate system, 
-#' given in the coordinate system of the input data
+#' given in the coordinate system of the input data.
 #' @param YMiddle The latitude of the centre of the Azimuthal Equidistant Cartesian coordinate system, 
-#' given in the coordinate system of the input data
+#' given in the coordinate system of the input data.
 #' @export RainMapsRadarsDaily
 #' @examples
-#' RainMapsRadarsDaily(20110911) # To plot daily radar rainfall map ending at 11 September 2011.
+#' RainMapsRadarsDaily(AlphaPlotLocation=AlphaPlotLocation,AlphaPolygon=AlphaPolygon,
+#' AutDefineLegendTop=AutDefineLegendTop,BBoxOSMauto=BBoxOSMauto,
+#' ColoursNumber=ColoursNumber,ColourPlotLocation=ColourPlotLocation,
+#' ColourPlotLocationText=ColourPlotLocationText,ColourScheme=ColourScheme,
+#' ColourType=ColourType,CoorSystemInputData=CoorSystemInputData,DateMap=DateMap,
+#' ExtraDeg=ExtraDeg,ExtraText=ExtraText,FigFileRadarsDaily=FigFileRadarsDaily,
+#' FigHeight=FigHeight,FigWidth=FigWidth,FileGrid=FileGrid,
+#' FileNameRadarDaily=FileNameRadarDaily,FilePolygonsGrid=FilePolygonsGrid,
+#' FolderFigures=FolderFigures,FolderRadarRainMapsDaily=FolderRadarRainMapsDaily,
+#' FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,
+#' GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
+#' GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
+#' GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
+#' LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
+#' LatLocation=LatLocation,LatText=LatText,LegendTitleRadarsDaily=LegendTitleRadarsDaily,
+#' LonLocation=LonLocation,LonText=LonText,ManualScale=ManualScale,
+#' MapBackground=MapBackground,OSMBottom=OSMBottom,OSMLeft=OSMLeft,OSMRight=OSMRight,
+#' OSMScale=OSMScale,OSMTop=OSMTop,PathRadarRainfallDepth=PathRadarRainfallDepth,
+#' PERIOD=PERIOD,PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
+#' PlotBelowScaleBottom=PlotBelowScaleBottom,ScaleBottomDaily=ScaleBottomDaily,
+#' ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,ScaleTopDaily=ScaleTopDaily,
+#' SizePixelBorder=SizePixelBorder,SizePlotLocation=SizePlotLocation,
+#' SizePlotTitle=SizePlotTitle,SymbolPlotLocation=SymbolPlotLocation,TimeZone=TimeZone,
+#' TitleRadars=TitleRadars,XMiddle=XMiddle,
+#' YMiddle=YMiddle)
 #' @author Aart Overeem & Hidde Leijnse
 #' @references ''ManualRAINLINK.pdf''
 #'
-#' Overeem, A., Leijnse, H., and Uijlenhoet, R. (2016): Retrieval algorithm for rainfall mapping from
-#' microwave links in a cellular communication network, Atmospheric Measurement Techniques, under review.
+#' Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
+#' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
 
-RainMapsRadarsDaily <- function(AlphaPlotLocation,AlphaPolygon,AlphaScale,
+RainMapsRadarsDaily <- function(AlphaPlotLocation,AlphaPolygon,
 AutDefineLegendTop,BBoxOSMauto,ColoursNumber,ColourPlotLocation,
-ColourPlotLocationText,ColourType,ColourHighestClass,CoorSystemInputData,
+ColourPlotLocationText,ColourScheme,ColourType,ColourHighestClass,CoorSystemInputData,
 DateMap,ExtraDeg,ExtraText,FigFileRadarsDaily,FigHeight,FigWidth,FileGrid,
 FileNameRadarDaily,FilePolygonsGrid,FolderFigures,FolderRadarRainMapsDaily,
 FontFamily,GoogleLocDegSpecified,GoogleLocLat,GoogleLocLon,GoogleLocName,
 GoogleLocNameSpecified,GoogleMapType,GoogleZoomlevel,LabelAxisLat,
 LabelAxisLonGoogle,LabelAxisLonOSM,LatLocation,LatText,LegendTitleRadarsDaily,
 LonLocation,LonText,ManualScale,MapBackground,OSMBottom,OSMLeft,OSMRight,
-OSMScale,OSMTop,Palette,PathRadarRainfallDepth,PERIOD,PlotLocation,
+OSMScale,OSMTop,PathRadarRainfallDepth,PERIOD,PlotLocation,
 PixelBorderCol,PlotBelowScaleBottom,ScaleBottomDaily,ScaleHigh,ScaleLow,
 ScaleTopDaily,SizePixelBorder,SizePlotLocation,SizePlotTitle,
-SymbolPlotLocation,TIMESTEP,TitleRadars,XMiddle,YMiddle)
+SymbolPlotLocation,TIMESTEP,TimeZone,TitleRadars,XMiddle,YMiddle)
 {
+
 	# Create directory for output files:
-	dir.create(FolderFigures)
+	if(!dir.exists(FolderFigures)){ dir.create(FolderFigures) }
 
 	# Open daily radar rainfall file:
 	RadarFile <- paste(FolderRadarRainMapsDaily,"/",FileNameRadarDaily,sep="")
@@ -232,7 +257,6 @@ SymbolPlotLocation,TIMESTEP,TitleRadars,XMiddle,YMiddle)
 			color=ColourType)
 		}
 		LabelAxisLon <- LabelAxisLonOSM
-
 	}
 
 
@@ -240,10 +264,10 @@ SymbolPlotLocation,TIMESTEP,TitleRadars,XMiddle,YMiddle)
 	DateStr <- DateMap
 	
 	# Compute time and date of end of observation:
-	EndDateTime <- as.character(strptime(paste(DateStr,PERIOD,sep=""),"%Y%m%d%H%M")) 
+	EndDateTime <- as.character(strptime(paste(DateStr,PERIOD,sep=""),"%Y%m%d%H%M",tz=TimeZone)) 
 
 	# Compute time and date of start of observation:
-	StartDateTime <- as.character(strptime(paste(DateStr,PERIOD,sep=""),"%Y%m%d%H%M") - 86400)
+	StartDateTime <- as.character(strptime(paste(DateStr,PERIOD,sep=""),"%Y%m%d%H%M",tz=TimeZone) - 86400)
 
 
 	if ( nchar(EndDateTime)==10)
@@ -316,24 +340,33 @@ SymbolPlotLocation,TIMESTEP,TitleRadars,XMiddle,YMiddle)
 	theme(axis.ticks = element_line(size = 22)) +  
 	theme(plot.title = element_text(family = FontFamily, face="bold", size=SizePlotTitle, vjust=3))
 		
+	LabelNames <- paste(" ",formatC(ScaleLow, format="f", digits=1),"-",
+	formatC(ScaleHigh, format="f", digits=1),sep="") 
+	LabelValues = c(ScaleLow)
+	
+	Colours <- ColourScheme
+	MaxColour <- Colours[length(Colours)]
+	ColoursOrig <- rev(Colours)
+	Colours[length(Colours)] <- c(NA)
+	Colours <- Colours[!is.na(Colours)]
 
 	for (p in 1:ColoursNumber)
 	{ 
 		p <<- p
 		cond <- which(DataPolygons$rain>=ScaleLow[p]&DataPolygons$rain<ScaleHigh[p])
 		Selected = DataPolygons[cond,]
-		dataf <- Polygons(cond=cond, Selected=Selected)
+		dataf <- RAINLINK::Polygons(cond=cond, Selected=Selected)
 		if (dataf[1,1]!=-99999999)
 		{
-			Fig <- Fig + geom_polygon(aes(x = Lon, y = Lat, fill = value), data = dataf, 
+			Fig <- Fig + geom_polygon(aes(x = Lon, y = Lat, fill = value), fill = Colours[p], data = dataf, 
 			alpha=AlphaPolygon, col=PixelBorderCol, size=SizePixelBorder)   
 		}
 		if (dataf[1,1]==-99999999)
 		{
 			# To make sure that the colour scale is always plotted:
-			polygondata = data.frame(c(999),c(999))
-			names(polygondata) = c("polygonlon","polygonlat")		
-			Fig <- Fig + geom_polygon(aes(x = polygonlon, y = polygonlat, fill = ScaleLow[p]), 
+			polygondata = data.frame(c(999),c(999),ScaleLow[p])
+			names(polygondata) = c("polygonlon","polygonlat","value")	
+			Fig <- Fig + geom_polygon(aes(x = polygonlon, y = polygonlat, fill = value), fill = Colours[p], 
 			data = polygondata, alpha=AlphaPolygon, col=PixelBorderCol, size=SizePixelBorder)   
 		}
 	}
@@ -343,7 +376,7 @@ SymbolPlotLocation,TIMESTEP,TitleRadars,XMiddle,YMiddle)
 	{
 		cond <- which(DataPolygons$rain<ScaleBottomDaily)
 		Selected = DataPolygons[cond,]
-		dataf <- Polygons(cond=cond, Selected=Selected)
+		dataf <- RAINLINK::Polygons(cond=cond, Selected=Selected)
 		if (dataf[1,1]!=-99999999)
 		{
 			Fig <- Fig + geom_polygon(aes(x = Lon, y = Lat), data = dataf, 
@@ -357,20 +390,16 @@ SymbolPlotLocation,TIMESTEP,TitleRadars,XMiddle,YMiddle)
 	{
 		cond <- which(DataPolygons$rain>=ScaleHigh[ColoursNumber])
 		Selected = DataPolygons[cond,]
-		dataf <- Polygons(cond=cond, Selected=Selected)
+		dataf <- RAINLINK::Polygons(cond=cond, Selected=Selected)
 		if (dataf[1,1]!=-99999999)
 		{
 			Fig <- Fig + geom_polygon(aes(x = Lon, y = Lat), data = dataf, alpha=AlphaPolygon,
-			col=PixelBorderCol, size=SizePixelBorder, fill = ColourHighestClass)
+			col=PixelBorderCol, size=SizePixelBorder, fill = MaxColour)
 		}
 	}
 
 
-	LabelNames <- paste(" ",formatC(ScaleLow, format="f", digits=1),"-",
-	formatC(ScaleHigh, format="f", digits=1),sep="") 
-	LabelValues = c(ScaleLow)
-
-	pointdata <- data.frame(999,999)
+	pointdata <<- data.frame(999,999)
 	names(pointdata) = c("pointlon","pointlat")
 
 
@@ -392,17 +421,27 @@ SymbolPlotLocation,TIMESTEP,TitleRadars,XMiddle,YMiddle)
 	FigFinal <- Fig + theme(legend.text = element_text(size=rel(5),family=FontFamily)) + 
 	theme(legend.title = element_text(size=rel(5),family=FontFamily)) + coord_map(projection="mercator",
  	xlim=c(attr(map, "bb")$ll.lon, attr(map, "bb")$ur.lon), 
-	ylim=c(attr(map, "bb")$ll.lat, attr(map, "bb")$ur.lat)) + 
-	scale_fill_distiller(palette = Palette, breaks=LabelValues, limits=c(min(ScaleLow), 
-	max(ScaleHigh)), labels=LabelNames) + ggtitle(Title) +
-	guides(fill = guide_legend(override.aes = list(colour = NULL,alpha=AlphaScale),
-	reverse = TRUE,keywidth=10,keyheight=10,title=LegendTitleRadarsDaily)) 
+	ylim=c(attr(map, "bb")$ll.lat, attr(map, "bb")$ur.lat)) + ggtitle(Title)
+	
 	if (AutDefineLegendTop!="yes")
 	{
-		FigFinal <- FigFinal + geom_point(data=pointdata,aes(pointlon,pointlat,color="black"),size=67.5,shape=15,
-		alpha=AlphaPolygon) + theme(legend.key = element_blank()) + scale_color_manual(values=ColourHighestClass,name="",
-		labels=paste("> ",formatC(ScaleTopDaily, format="f", digits=1),sep="")) 
+		LabelNames2 <- c(LabelNames,paste("> ",formatC(ScaleTopDaily, format="f", digits=1),sep=""))
+		FigFinal <- FigFinal + geom_point(data=pointdata,aes(pointdata[,1],pointdata[,2],color="black"),size=67.5,shape=15,
+		alpha=AlphaPolygon,na.rm=TRUE) + theme(legend.key = element_blank()) + scale_color_manual(values=ColoursOrig,name=LegendTitleRadarsDaily,
+		labels=rev(LabelNames2),limits=rev(c(min(ScaleLow),ScaleHigh))) + theme(legend.title = element_text(face="bold"))
+		# With na.rm=TRUE we suppress warnings, which was needed since the following warning was provided many times: 
+		# "Removed 1 rows containing missing values (geom_point)". This warning can be disregarded.	
 	}
+
+	if (AutDefineLegendTop!="no")
+	{
+		FigFinal <- FigFinal + geom_point(data=pointdata,aes(pointdata[,1],pointdata[,2],color="black"),size=67.5,shape=15,
+		alpha=AlphaPolygon,na.rm=TRUE) + theme(legend.key = element_blank()) + scale_color_manual(values=rev(Colours),name=LegendTitleRadarsTimeStep,
+		labels=rev(LabelNames),limits=rev(c(ScaleLow))) + theme(legend.title = element_text(face="bold"))
+		# With na.rm=TRUE we suppress warnings, which was needed since the following warning was provided many times: 
+		# "Removed 1 rows containing missing values (geom_point)". This warning can be disregarded.
+	}
+
 	if (PlotLocation=="yes")
 	{
 		LonLocation <<- LonLocation
@@ -421,6 +460,7 @@ SymbolPlotLocation,TIMESTEP,TitleRadars,XMiddle,YMiddle)
 	}
 	print(FigFinal)
 	dev.off()
+
 }
 
 
