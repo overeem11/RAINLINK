@@ -45,7 +45,9 @@ if (GivePathLib=="yes")
 
 	# Load other packages:
 	library(sp,lib.loc=pathlib)		
-	library(gstat,lib.loc=pathlib)		
+	library(gstat,lib.loc=pathlib)	
+	library(crayon,lib.loc=pathlib)	
+	library(withr,lib.loc=pathlib)	
 	library(ggplot2,lib.loc=pathlib)	
 	library(ggmap,lib.loc=pathlib)		
 	library(maps,lib.loc=pathlib)		
@@ -63,7 +65,9 @@ if (GivePathLib=="no")
 
 	# Load other packages:
 	library(sp)		
-	library(gstat)		
+	library(gstat)	
+	library(crayon)	
+	library(withr)	
 	library(ggplot2)	
 	library(ggmap)	
 	library(maps)		
