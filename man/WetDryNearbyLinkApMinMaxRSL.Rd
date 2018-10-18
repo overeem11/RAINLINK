@@ -7,8 +7,8 @@ Function also prepares link data for determination of reference signal level and
 computing corrected received powers.}
 \usage{
 WetDryNearbyLinkApMinMaxRSL(Data, CoorSystemInputData = NULL,
-  MinHoursPmin = 6, PeriodHoursPmin = 24, Radius = 15, Step8 = TRUE,
-  ThresholdMedian = -1.4, ThresholdMedianL = -0.7,
+  MinHoursPmin = 6, PeriodHoursPmin = 24, Radius = 15,
+  Step8 = TRUE, ThresholdMedian = -1.4, ThresholdMedianL = -0.7,
   ThresholdNumberLinks = 3, ThresholdWetDry = 2)
 }
 \arguments{

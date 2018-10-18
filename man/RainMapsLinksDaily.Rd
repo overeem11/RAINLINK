@@ -18,8 +18,8 @@ RainMapsLinksDaily(AlphaLinksDaily, AlphaPlotLocation, AlphaPolygon,
   OSMBottom, OSMLeft, OSMRight, OSMScale, OSMTop, PERIOD, PlotLocation,
   PixelBorderCol, PlotBelowScaleBottom, PlotLocLinks, ScaleBottomDaily,
   ScaleHigh, ScaleLow, ScaleTopDaily, SizeLinks, SizePixelBorder,
-  SizePlotLocation, SizePlotTitle, SymbolPlotLocation, TIMESTEP, TitleLinks,
-  XMiddle, YMiddle)
+  SizePlotLocation, SizePlotTitle, SymbolPlotLocation, TIMESTEP,
+  TitleLinks, XMiddle, YMiddle)
 }
 \arguments{
 \item{AlphaLinksDaily}{Transparency of link paths.}

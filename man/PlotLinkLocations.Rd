@@ -5,12 +5,12 @@
 \title{Function which visualises microwave link paths on a map.}
 \usage{
 PlotLinkLocations(AlphaLinkLocations, BBoxOSMauto, OSMBottom, ColourLinks,
-  ColourType, dataf, DateTime, ExtraTextLinkLocations, FigFileLinkLocations,
-  FigHeight, FigWidth, FolderFigures, FontFamily, GoogleLocDegSpecified,
-  GoogleLocLat, GoogleLocLon, GoogleLocName, GoogleLocNameSpecified,
-  GoogleMapType, GoogleZoomlevel, LabelAxisLat, LabelAxisLonGoogle,
-  LabelAxisLonOSM, OSMLeft, MapBackground, OSMRight, OSMScale, SizeLinks,
-  SizePlotTitle, TitleLinkLocations, OSMTop)
+  ColourType, dataf, DateTime, ExtraTextLinkLocations,
+  FigFileLinkLocations, FigHeight, FigWidth, FolderFigures, FontFamily,
+  GoogleLocDegSpecified, GoogleLocLat, GoogleLocLon, GoogleLocName,
+  GoogleLocNameSpecified, GoogleMapType, GoogleZoomlevel, LabelAxisLat,
+  LabelAxisLonGoogle, LabelAxisLonOSM, OSMLeft, MapBackground, OSMRight,
+  OSMScale, SizeLinks, SizePlotTitle, TitleLinkLocations, OSMTop)
 }
 \arguments{
 \item{AlphaLinkLocations}{Transparency of link paths.}

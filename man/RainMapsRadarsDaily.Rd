@@ -6,18 +6,19 @@
 \usage{
 RainMapsRadarsDaily(AlphaPlotLocation, AlphaPolygon, AutDefineLegendTop,
   BBoxOSMauto, ColoursNumber, ColourPlotLocation, ColourPlotLocationText,
-  ColourScheme, ColourType, ColourHighestClass, CoorSystemInputData, DateMap,
-  ExtraDeg, ExtraText, FigFileRadarsDaily, FigHeight, FigWidth, FileGrid,
-  FileNameRadarDaily, FilePolygonsGrid, FolderFigures, FolderRadarRainMapsDaily,
-  FontFamily, GoogleLocDegSpecified, GoogleLocLat, GoogleLocLon, GoogleLocName,
-  GoogleLocNameSpecified, GoogleMapType, GoogleZoomlevel, LabelAxisLat,
-  LabelAxisLonGoogle, LabelAxisLonOSM, LatLocation, LatText,
-  LegendTitleRadarsDaily, LonLocation, LonText, ManualScale, MapBackground,
-  OSMBottom, OSMLeft, OSMRight, OSMScale, OSMTop, PathRadarRainfallDepth,
-  PERIOD, PlotLocation, PixelBorderCol, PlotBelowScaleBottom, ScaleBottomDaily,
-  ScaleHigh, ScaleLow, ScaleTopDaily, SizePixelBorder, SizePlotLocation,
-  SizePlotTitle, SymbolPlotLocation, TIMESTEP, TimeZone, TitleRadars, XMiddle,
-  YMiddle)
+  ColourScheme, ColourType, ColourHighestClass, CoorSystemInputData,
+  DateMap, ExtraDeg, ExtraText, FigFileRadarsDaily, FigHeight, FigWidth,
+  FileGrid, FileNameRadarDaily, FilePolygonsGrid, FolderFigures,
+  FolderRadarRainMapsDaily, FontFamily, GoogleLocDegSpecified,
+  GoogleLocLat, GoogleLocLon, GoogleLocName, GoogleLocNameSpecified,
+  GoogleMapType, GoogleZoomlevel, LabelAxisLat, LabelAxisLonGoogle,
+  LabelAxisLonOSM, LatLocation, LatText, LegendTitleRadarsDaily,
+  LonLocation, LonText, ManualScale, MapBackground, OSMBottom, OSMLeft,
+  OSMRight, OSMScale, OSMTop, PathRadarRainfallDepth, PERIOD, PlotLocation,
+  PixelBorderCol, PlotBelowScaleBottom, ScaleBottomDaily, ScaleHigh,
+  ScaleLow, ScaleTopDaily, SizePixelBorder, SizePlotLocation,
+  SizePlotTitle, SymbolPlotLocation, TIMESTEP, TimeZone, TitleRadars,
+  XMiddle, YMiddle)
 }
 \arguments{
 \item{AlphaPlotLocation}{Transparency of plotted symbol for specified location on map.}

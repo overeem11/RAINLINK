@@ -14,11 +14,12 @@ RainMapsLinksTimeStep(AlphaLinksTimeStep, AlphaPlotLocation, AlphaPolygon,
   GoogleLocDegSpecified, GoogleLocLat, GoogleLocLon, GoogleLocName,
   GoogleLocNameSpecified, GoogleMapType, GoogleZoomlevel, LabelAxisLat,
   LabelAxisLonGoogle, LabelAxisLonOSM, LatLocation, LatText,
-  LegendTitleLinksTimeStep, LonLocation, LonText, ManualScale, MapBackground,
-  OSMBottom, OSMLeft, OSMRight, OSMScale, OSMTop, PlotLocation, PixelBorderCol,
-  PlotBelowScaleBottom, PlotLocLinks, ScaleBottomTimeStep, ScaleHigh, ScaleLow,
-  ScaleTopTimeStep, SizeLinks, SizePixelBorder, SizePlotLocation, SizePlotTitle,
-  SymbolPlotLocation, TitleLinks, XMiddle, YMiddle)
+  LegendTitleLinksTimeStep, LonLocation, LonText, ManualScale,
+  MapBackground, OSMBottom, OSMLeft, OSMRight, OSMScale, OSMTop,
+  PlotLocation, PixelBorderCol, PlotBelowScaleBottom, PlotLocLinks,
+  ScaleBottomTimeStep, ScaleHigh, ScaleLow, ScaleTopTimeStep, SizeLinks,
+  SizePixelBorder, SizePlotLocation, SizePlotTitle, SymbolPlotLocation,
+  TitleLinks, XMiddle, YMiddle)
 }
 \arguments{
 \item{AlphaLinksTimeStep}{Transparency of link paths.}
