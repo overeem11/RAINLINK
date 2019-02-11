@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.11
-## Copyright (C) 2017 Aart Overeem
+## Version 1.12
+## Copyright (C) 2019 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
 #'
 #' @param AlphaLinkLocations Transparency of link paths.
 #' @param BBoxOSMauto Compute bounding box from input data or used bounding box defined above?
-#' (for OpenStreetMap only). Use "yes" if bounding box is to be computed from interpolation grid.
+#' (for OpenStreetMap and Stamen Map only). Use "yes" if bounding box is to be computed from interpolation grid.
 #' @param ColourLinks Colour of plotted link paths.
 #' @param ColourType Colour or black-and-white background map? Use "color" for colour and "bw" 
 #' for black-and-white background map.
@@ -72,17 +72,19 @@
 #' @param LabelAxisLat Label name of vertical axis.
 #' @param LabelAxisLonGoogle Label name of horizontal axis (for Google Maps only).
 #' @param LabelAxisLonOSM Label name of horizontal axis (for OpenStreetMap only).
-#' @param MapBackground Google Maps or OpenStreetMap as background? Use "Google" for Google Maps and 
-#' "OSM" for OpenStreetMap. Note that Google Maps will only plot on a square figure.
+#' @param LabelAxisLonStamen Label name of horizontal axis (for Stamen Map only).
+#' @param MapBackground Google Maps, OpenStreetMap or Stamen Map as background? Use "Google" for Google Maps, 
+#' "OSM" for OpenStreetMap and "Stamen" for Stamen Map (based on OpenStreetMap data). 
+#' Note that Google Maps will only plot on a square figure.
 #' It seems that mapping with OpenStreetMap (“get openstreetmap”) is no langer supported.
-#' This implies that mapping can only be done employing Google Maps. This is not related to
-#' the RAINLINK version.
+#' This implies that mapping can only be done employing Google Maps (if Google API key is obtained) or via
+#' Stamen Map. This is not related to the RAINLINK version.
 #' @param OSMBottom Latitude in degrees (WGS84) for bottom side of the area for which rainfall depths 
-#' are to be plotted (for OpenStreetMap only).
+#' are to be plotted (for OpenStreetMap & Stamen Maps only).
 #' @param OSMLeft Longitude in degrees (WGS84) for left side of the area for which rainfall depths are 
-#' to be plotted (for OpenStreetMap only). 
+#' to be plotted (for OpenStreetMap & Stamen Maps only). 
 #' @param OSMRight Longitude in degrees (WGS84) for right side of the area for which rainfall depths 
-#' are to be plotted (for OpenStreetMap only). 
+#' are to be plotted (for OpenStreetMap & Stamen Maps only). 
 #' @param OSMScale Give value of scale (for OpenStreetMap only). A proper choice of the scale parameter 
 #' in get_openstreetmap is difficult. It cannot be computed automatically. Hence, a scale parameter value 
 #' should be provided below. The scale parameter should be as small as possible to get the highest 
@@ -91,9 +93,13 @@
 #' appropriate value for scale. The file "ggmapTemp.png" is written to disk when an OpenStreetMap is loaded. 
 #' The highest possible resolution for a square area is about 2000 x 2000 pixels. 
 #' @param OSMTop Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be 
-#' plotted (for OpenStreetMap only).
+#' plotted (for OpenStreetMap & Stamen Maps only).
 #' @param SizeLinks Size of plotted link paths.
 #' @param SizePlotTitle Size of plot title.
+#' @param StamenMapType In case of Stamen Maps: which map type should be used? Available map types which 
+#' seem most useful and work: "toner-hybrid" &, recommended: "toner-lite", "terrain" & "watercolor".  
+#' @param StamenZoomlevel Which zoom level to use for the Stamen Maps? This determines the level of detail. 
+#' Large values take more time. It does not determine the domain of the area which is plotted.
 #' @param TitleLinkLocations First part of title of plot.
 #' @export PlotLinkLocations
 #' @examples
@@ -107,9 +113,10 @@
 #' GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
 #' GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
 #' LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
-#' OSMLeft=OSMLeft,MapBackground=MapBackground,OSMRight=OSMRight,OSMScale=OSMScale,
-#' SizeLinks=SizeLinks,SizePlotTitle=SizePlotTitle,
-#' TitleLinkLocations=TitleLinkLocations,OSMTop=OSMTop)
+#' LabelAxisLonStamen=LabelAxisLonStamen,OSMLeft=OSMLeft,MapBackground=MapBackground,
+#' OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,SizeLinks=SizeLinks,
+#' SizePlotTitle=SizePlotTitle,StamenMapType=StamenMapType,
+#' StamenZoomlevel=StamenZoomlevel,TitleLinkLocations=TitleLinkLocations)
 #' @author Aart Overeem & Hidde Leijnse
 #' @references ''ManualRAINLINK.pdf''
 #'
@@ -120,8 +127,9 @@
 PlotLinkLocations <- function(AlphaLinkLocations,BBoxOSMauto,OSMBottom,ColourLinks,ColourType,
 dataf,DateTime,ExtraTextLinkLocations,FigFileLinkLocations,FigHeight,FigWidth,FolderFigures,
 FontFamily,GoogleLocDegSpecified,GoogleLocLat,GoogleLocLon,GoogleLocName,GoogleLocNameSpecified,
-GoogleMapType,GoogleZoomlevel,LabelAxisLat,LabelAxisLonGoogle,LabelAxisLonOSM,OSMLeft,MapBackground,
-OSMRight,OSMScale,SizeLinks,SizePlotTitle,TitleLinkLocations,OSMTop)
+GoogleMapType,GoogleZoomlevel,LabelAxisLat,LabelAxisLonGoogle,LabelAxisLonOSM,LabelAxisLonStamen,
+OSMLeft,MapBackground,OSMRight,OSMScale,OSMTop,SizeLinks,SizePlotTitle,StamenMapType,StamenZoomlevel,
+TitleLinkLocations)
 {
 
 	# Create directory for output files:
@@ -176,6 +184,26 @@ OSMRight,OSMScale,SizeLinks,SizePlotTitle,TitleLinkLocations,OSMTop)
 
 		}
 		LabelAxisLon <- LabelAxisLonOSM
+	}
+
+
+	# Use Stamen Map as background. # Use predefined scale.
+	if (MapBackground=="Stamen")
+	{
+		if (BBoxOSMauto!="yes")
+		{
+			# Determine bounding box from specified coordinates.
+			map <- get_stamenmap(bbox = c(left = OSMLeft, bottom = OSMBottom, 
+			right = OSMRight, top = OSMTop),zoom=StamenZoomlevel,maptype=StamenMapType,crop=T,messaging=F,urlonly=FALSE,force=FALSE)
+		}
+		if (BBoxOSMauto=="yes")
+		{
+			# Determine bounding box determined from interpolation grid:
+			bbox <- make_bbox(PolygonsGrid[,1], PolygonsGrid[,2])
+
+			map <- get_stamenmap(bbox = bbox,zoom=StamenZoomlevel,maptype=StamenMapType,crop=T,messaging=F,urlonly=FALSE,force=FALSE)
+		}
+		LabelAxisLon <- LabelAxisLonStamen
 	}
 
 

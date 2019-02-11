@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.11
-## Copyright (C) 2017 Aart Overeem
+## Version 1.12
+## Copyright (C) 2019 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@
 #' @param AutDefineLegendTop Let R automatically define highest value of legend in case of "yes". 
 #' Then the highest class, i.e. the one plotted separately above the other classes, is not plotted anymore.
 #' @param BBoxOSMauto Compute bounding box from input data or used bounding box defined above? 
-#' (for OpenStreetMap only). Use "yes" if bounding box is to be computed from interpolation grid.
+#' (for OpenStreetMap and Stamen Map only). Use "yes" if bounding box is to be computed from interpolation grid.
 #' @param ColourLinks Colour of plotted link paths.
 #' @param ColoursNumber Number of colour classes in legend.
 #' @param ColourPlotLocation Colour of plotted symbol for specified location on map.
@@ -94,6 +94,7 @@
 #' @param LabelAxisLat Label name of vertical axis.
 #' @param LabelAxisLonGoogle Label name of horizontal axis (for Google Maps only).
 #' @param LabelAxisLonOSM Label name of horizontal axis (for OpenStreetMap only).
+#' @param LabelAxisLonStamen Label name of horizontal axis (for Stamen Map only).
 #' @param LatLocation Latitude of location on map (degrees).
 #' @param LatText Latitude of text (rainfall depth) of location on map (degrees).
 #' @param LegendTitleLinksDaily Title of legend.
@@ -102,17 +103,18 @@
 #' @param ManualScale Manually supply the legend breaks if ManuelScale is not equal to "no". 
 #' Interval breaks are determined manually from ScaleLow and ScaleHigh. If ManualScale is "no" 
 #' interval breaks are determined automatically. 
-#' @param MapBackground Google Maps or OpenStreetMap as background? Use "Google" for Google Maps and "OSM" 
-#' for OpenStreetMap. Note that Google Maps will only plot on a square figure.
+#' @param MapBackground Google Maps, OpenStreetMap or Stamen Map as background? Use "Google" for Google Maps, 
+#' "OSM" for OpenStreetMap and "Stamen" for Stamen Map (based on OpenStreetMap data). 
+#' Note that Google Maps will only plot on a square figure.
 #' It seems that mapping with OpenStreetMap (“get openstreetmap”) is no langer supported.
-#' This implies that mapping can only be done employing Google Maps. This is not related to
-#' the RAINLINK version.
+#' This implies that mapping can only be done employing Google Maps (if Google API key is obtained) or via
+#' Stamen Map. This is not related to the RAINLINK version.
 #' @param OSMBottom Latitude in degrees (WGS84) for bottom side of the area for which rainfall depths 
-#' are to be plotted (for OpenStreetMap only).
+#' are to be plotted (for OpenStreetMap & Stamen Maps only).
 #' @param OSMLeft Longitude in degrees (WGS84) for left side of the area for which rainfall depths 
-#' are to be plotted (for OpenStreetMap only). 
+#' are to be plotted (for OpenStreetMap & Stamen Maps only). 
 #' @param OSMRight Longitude in degrees (WGS84) for right side of the area for which rainfall depths 
-#' are to be plotted (for OpenStreetMap only). 
+#' are to be plotted (for OpenStreetMap & Stamen Maps only). 
 #' @param OSMScale Give value of scale (for OpenStreetMap only). A proper choice of the scale parameter 
 #' in get_openstreetmap is difficult. It cannot be computed automatically. Hence, a scale parameter value 
 #' should be provided below. The scale parameter should be as small as possible to get the highest 
@@ -121,7 +123,7 @@
 #' the appropriate value for scale. The file "ggmapTemp.png" is written to disk when an OpenStreetMap is 
 #' loaded. The highest possible resolution for a square area is about 2000 x 2000 pixels. 
 #' @param OSMTop Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be 
-#' plotted (for OpenStreetMap only).
+#' plotted (for OpenStreetMap & Stamen Maps only).
 #' @param PERIOD Select daily time interval, i.e. "0800" implies 0800 UTC previous day - 0800 UTC present 
 #' day (use 2400 for 0000 UTC).
 #' @param PlotLocation A location is plotted on map if PlotLocation is "yes".
@@ -150,6 +152,10 @@
 #' @param SizePixelBorder Size of pixel borders.
 #' @param SizePlotLocation Size of symbol and and accompanied text for specified location on map.
 #' @param SizePlotTitle Size of plot title.
+#' @param StamenMapType In case of Stamen Maps: which map type should be used? Available map types which 
+#' seem most useful and work: "toner-hybrid" &, recommended: "toner-lite", "terrain" & "watercolor".  
+#' @param StamenZoomlevel Which zoom level to use for the Stamen Maps? This determines the level of detail. 
+#' Large values take more time. It does not determine the domain of the area which is plotted.
 #' @param SymbolPlotLocation Symbol to be plotted for specified location on map.
 #' @param TIMESTEP Duration of time interval of sampling strategy (min).
 #' @param TitleLinks First part of title of plot.
@@ -175,16 +181,18 @@
 #' GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
 #' GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
 #' LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
-#' LatLocation=LatLocation,LatText=LatText,LegendTitleLinksDaily=LegendTitleLinksDaily,
-#' LonLocation=LonLocation,LonText=LonText,ManualScale=ManualScale,
-#' MapBackground=MapBackground,OSMBottom=OSMBottom,OSMLeft=OSMLeft,OSMRight=OSMRight,
-#' OSMScale=OSMScale,OSMTop=OSMTop,PERIOD=PERIOD,PlotLocation=PlotLocation,
-#' PixelBorderCol=PixelBorderCol,PlotBelowScaleBottom=PlotBelowScaleBottom,
-#' PlotLocLinks=PlotLocLinks,ScaleBottomDaily=ScaleBottomDaily,ScaleHigh=ScaleHigh,
-#' ScaleLow=ScaleLow,ScaleTopDaily=ScaleTopDaily,SizeLinks=SizeLinks,
-#' SizePixelBorder=SizePixelBorder,SizePlotLocation=SizePlotLocation,
-#' SizePlotTitle=SizePlotTitle,SymbolPlotLocation=SymbolPlotLocation,TIMESTEP=TIMESTEP,
-#' TitleLinks=TitleLinks,XMiddle=XMiddle,YMiddle=YMiddle)
+#' LabelAxisLonStamen=LabelAxisLonStamen,LatLocation=LatLocation,LatText=LatText,
+#' LegendTitleLinksDaily=LegendTitleLinksDaily,LonLocation=LonLocation,LonText=LonText,
+#' ManualScale=ManualScale,MapBackground=MapBackground,OSMBottom=OSMBottom,OSMLeft=OSMLeft,
+#' OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,PERIOD=PERIOD,
+#' PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
+#' PlotBelowScaleBottom=PlotBelowScaleBottom,PlotLocLinks=PlotLocLinks,
+#' ScaleBottomDaily=ScaleBottomDaily,ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,
+#' ScaleTopDaily=ScaleTopDaily,SizeLinks=SizeLinks,SizePixelBorder=SizePixelBorder,
+#' SizePlotLocation=SizePlotLocation,SizePlotTitle=SizePlotTitle,
+#' StamenMapType=StamenMapType,StamenZoomlevel=StamenZoomlevel,
+#' SymbolPlotLocation=SymbolPlotLocation,TIMESTEP=TIMESTEP,TitleLinks=TitleLinks,
+#' XMiddle=XMiddle,YMiddle=YMiddle)
 #' @author Aart Overeem & Hidde Leijnse
 #' @references ''ManualRAINLINK.pdf''
 #'
@@ -199,11 +207,12 @@ CoorSystemInputData,DateTimeEndRainMaps,DateTimeStartRainMaps,ExtraDeg,ExtraText
 FigFileLinksDaily,FigHeight,FigWidth,FileGrid,FilePolygonsGrid,FolderFigures,
 FolderRainMaps,FolderRainEstimates,FontFamily,GoogleLocDegSpecified,GoogleLocLat,
 GoogleLocLon,GoogleLocName,GoogleLocNameSpecified,GoogleMapType,GoogleZoomlevel,
-LabelAxisLat,LabelAxisLonGoogle,LabelAxisLonOSM,LatLocation,LatText,LegendTitleLinksDaily,
-LonLocation,LonText,ManualScale,MapBackground,OSMBottom,OSMLeft,OSMRight,OSMScale,OSMTop,
-PERIOD,PlotLocation,PixelBorderCol,PlotBelowScaleBottom,PlotLocLinks,
+LabelAxisLat,LabelAxisLonGoogle,LabelAxisLonOSM,LabelAxisLonStamen,LatLocation,LatText,
+LegendTitleLinksDaily,LonLocation,LonText,ManualScale,MapBackground,OSMBottom,OSMLeft,OSMRight,
+OSMScale,OSMTop,PERIOD,PlotLocation,PixelBorderCol,PlotBelowScaleBottom,PlotLocLinks,
 ScaleBottomDaily,ScaleHigh,ScaleLow,ScaleTopDaily,SizeLinks,SizePixelBorder,SizePlotLocation,
-SizePlotTitle,SymbolPlotLocation,TIMESTEP,TitleLinks,XMiddle,YMiddle)
+SizePlotTitle,StamenMapType,StamenZoomlevel,SymbolPlotLocation,TIMESTEP,TitleLinks,XMiddle,
+YMiddle)
 {
 
 	# Create directory for output files:
@@ -283,6 +292,26 @@ SizePlotTitle,SymbolPlotLocation,TIMESTEP,TitleLinks,XMiddle,YMiddle)
 		}
 		LabelAxisLon <- LabelAxisLonOSM
 
+	}
+
+
+	# Use Stamen Map as background. # Use predefined scale.
+	if (MapBackground=="Stamen")
+	{
+		if (BBoxOSMauto!="yes")
+		{
+			# Determine bounding box from specified coordinates.
+			map <- get_stamenmap(bbox = c(left = OSMLeft, bottom = OSMBottom, 
+			right = OSMRight, top = OSMTop),zoom=StamenZoomlevel,maptype=StamenMapType,crop=T,messaging=F,urlonly=FALSE,force=FALSE)
+		}
+		if (BBoxOSMauto=="yes")
+		{
+			# Determine bounding box determined from interpolation grid:
+			bbox <- make_bbox(PolygonsGrid[,1], PolygonsGrid[,2])
+
+			map <- get_stamenmap(bbox = bbox,zoom=StamenZoomlevel,maptype=StamenMapType,crop=T,messaging=F,urlonly=FALSE,force=FALSE)
+		}
+		LabelAxisLon <- LabelAxisLonStamen
 	}
 
 
