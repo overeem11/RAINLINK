@@ -1,4 +1,0 @@
-load("~/Desktop/CMLARE/RAINLINK/data/Linkdata.RData",ex <- new.env())
-ls.str(ex) 
-
-
