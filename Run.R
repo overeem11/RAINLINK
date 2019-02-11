@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.11
-## Copyright (C) 2017 Aart Overeem
+## Version 1.12
+## Copyright (C) 2019 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -206,6 +206,9 @@ cat(sprintf("Finished. (%.1f seconds)\n",round((proc.time()-StartTime)[3],digits
 # 8. Visualisation#
 ###################
 
+# It seems that mapping with OpenStreetMap (``get_openstreetmap'') is no langer supported. Google Maps is also not supported anymore, unless you obtain a Google API key. 
+# The employed ggmap function also allows to use Stamen Maps. This functionality has been added to RAINLINK's visualisation functions.
+
 # Executing the "RainMaps...R" functions can often give the error below for Google Maps, which is
 # caused by the Google server. Apparently, maps have been downloaded too often. Just try again (and again). 
 # Error in data.frame(ll.lat = ll[1], ll.lon = ll[2], ur.lat = ur[1], ur.lon = ur[2]) : 
@@ -217,8 +220,6 @@ cat(sprintf("Finished. (%.1f seconds)\n",round((proc.time()-StartTime)[3],digits
 # Warning message:
 # In revgeocode(c(LonLocation, LatLocation)) :
 # reverse geocode failed - bad location? location = "4.85"reverse geocode failed - bad location? location = "52.39"
-
-
 
 
 ############################
@@ -233,19 +234,34 @@ DateTimeEndRainMaps <- "201109102045"
 # Both should be "201109102015" to reproduce Figure 7 from AMT manuscript.
 
 # Run function RainMapsLinksTimeStep:
-RainMapsLinksTimeStep(AlphaLinksTimeStep=AlphaLinksTimeStep,AlphaPlotLocation=AlphaPlotLocation,AlphaPolygon=AlphaPolygon,
-AutDefineLegendTop=AutDefineLegendTop,BBoxOSMauto=BBoxOSMauto,ColourLinks=ColourLinks,ColoursNumber=ColoursNumber,ColourPlotLocation=ColourPlotLocation,
-ColourPlotLocationText=ColourPlotLocationText,ColourScheme=ColourScheme,ColourType=ColourType,ConversionDepthToIntensity=ConversionDepthToIntensity,
-CoorSystemInputData=CoorSystemInputData,DateTimeEndRainMaps=DateTimeEndRainMaps,DateTimeStartRainMaps=DateTimeStartRainMaps,ExtraDeg=ExtraDeg,ExtraText=ExtraText,
-FigFileLinksTimeStep=FigFileLinksTimeStep,FigHeight=FigHeight,FigWidth=FigWidth,FileGrid=FileGrid,FilePolygonsGrid=FilePolygonsGrid,FolderFigures=FolderFigures,
-FolderRainMaps=FolderRainMaps,FolderRainEstimates=FolderRainEstimates,FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,GoogleLocLat=GoogleLocLat,
-GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,GoogleZoomlevel=GoogleZoomlevel,
-LabelAxisLat=LabelAxisLat,LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,LatLocation=LatLocation,LatText=LatText,
-LegendTitleLinksTimeStep=LegendTitleLinksTimeStep,LonLocation=LonLocation,LonText=LonText,ManualScale=ManualScale,MapBackground=MapBackground,OSMBottom=OSMBottom,
-OSMLeft=OSMLeft,OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
-PlotBelowScaleBottom=PlotBelowScaleBottom,PlotLocLinks=PlotLocLinks,ScaleBottomTimeStep=ScaleBottomTimeStep,ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,
-ScaleTopTimeStep=ScaleTopTimeStep,SizeLinks=SizeLinks,SizePixelBorder=SizePixelBorder,SizePlotLocation=SizePlotLocation,SizePlotTitle=SizePlotTitle,
-SymbolPlotLocation=SymbolPlotLocation,TitleLinks=TitleLinks,XMiddle=XMiddle,YMiddle=YMiddle)
+RainMapsLinksTimeStep(AlphaLinksTimeStep=AlphaLinksTimeStep,
+AlphaPlotLocation=AlphaPlotLocation,AlphaPolygon=AlphaPolygon,
+AutDefineLegendTop=AutDefineLegendTop,BBoxOSMauto=BBoxOSMauto,ColourLinks=ColourLinks,
+ColoursNumber=ColoursNumber,ColourPlotLocation=ColourPlotLocation,
+ColourPlotLocationText=ColourPlotLocationText,ColourScheme=ColourScheme,
+ColourType=ColourType,ConversionDepthToIntensity=ConversionDepthToIntensity,
+CoorSystemInputData=CoorSystemInputData,DateTimeEndRainMaps=DateTimeEndRainMaps,
+DateTimeStartRainMaps=DateTimeStartRainMaps,ExtraDeg=ExtraDeg,ExtraText=ExtraText,
+FigFileLinksTimeStep=FigFileLinksTimeStep,FigHeight=FigHeight,FigWidth=FigWidth,
+FileGrid=FileGrid,FilePolygonsGrid=FilePolygonsGrid,FolderFigures=FolderFigures,
+FolderRainMaps=FolderRainMaps,FolderRainEstimates=FolderRainEstimates,
+FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,
+GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
+GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
+GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
+LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
+LabelAxisLonStamen=LabelAxisLonStamen,LatLocation=LatLocation,LatText=LatText,
+LegendTitleLinksTimeStep=LegendTitleLinksTimeStep,LonLocation=LonLocation,
+LonText=LonText,ManualScale=ManualScale,MapBackground=MapBackground,OSMBottom=OSMBottom,
+OSMLeft=OSMLeft,OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,
+PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
+PlotBelowScaleBottom=PlotBelowScaleBottom,PlotLocLinks=PlotLocLinks,
+ScaleBottomTimeStep=ScaleBottomTimeStep,ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,
+ScaleTopTimeStep=ScaleTopTimeStep,SizeLinks=SizeLinks,SizePixelBorder=SizePixelBorder,
+SizePlotLocation=SizePlotLocation,SizePlotTitle=SizePlotTitle,
+StamenMapType=StamenMapType,StamenZoomlevel=StamenZoomlevel,
+SymbolPlotLocation=SymbolPlotLocation,TitleLinks=TitleLinks,XMiddle=XMiddle,
+YMiddle=YMiddle)
 
 
 
@@ -260,20 +276,34 @@ DateTimeStartRainMaps <- "201109100800"
 DateTimeEndRainMaps <- "201109110800"
 
 # Run function RainMapsLinksDaily:
-RainMapsLinksDaily(AlphaLinksDaily=AlphaLinksDaily,AlphaPlotLocation=AlphaPlotLocation,AlphaPolygon=AlphaPolygon,
-AutDefineLegendTop=AutDefineLegendTop,BBoxOSMauto=BBoxOSMauto,ColourLinks=ColourLinks,ColoursNumber=ColoursNumber,ColourPlotLocation=ColourPlotLocation,
-ColourPlotLocationText=ColourPlotLocationText,ColourScheme=ColourScheme,ColourType=ColourType,ConversionDepthToIntensity=ConversionDepthToIntensity,
-CoorSystemInputData=CoorSystemInputData,DateTimeEndRainMaps=DateTimeEndRainMaps,DateTimeStartRainMaps=DateTimeStartRainMaps,ExtraDeg=ExtraDeg,
-ExtraText=ExtraText,FigFileLinksDaily=FigFileLinksDaily,FigHeight=FigHeight,FigWidth=FigWidth,FileGrid=FileGrid,FilePolygonsGrid=FilePolygonsGrid,
-FolderFigures=FolderFigures,FolderRainMaps=FolderRainMaps,FolderRainEstimates=FolderRainEstimates,FontFamily=FontFamily,
-GoogleLocDegSpecified=GoogleLocDegSpecified,GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
-GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
-LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,LatLocation=LatLocation,LatText=LatText,
-LegendTitleLinksDaily=LegendTitleLinksDaily,LonLocation=LonLocation,LonText=LonText,ManualScale=ManualScale,MapBackground=MapBackground,
-OSMBottom=OSMBottom,OSMLeft=OSMLeft,OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,PERIOD=PERIOD,PlotLocation=PlotLocation,
-PixelBorderCol=PixelBorderCol,PlotBelowScaleBottom=PlotBelowScaleBottom,PlotLocLinks=PlotLocLinks,ScaleBottomDaily=ScaleBottomDaily,
-ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,ScaleTopDaily=ScaleTopDaily,SizeLinks=SizeLinks,SizePixelBorder=SizePixelBorder,SizePlotLocation=SizePlotLocation,
-SizePlotTitle=SizePlotTitle,SymbolPlotLocation=SymbolPlotLocation,TIMESTEP=TIMESTEP,TitleLinks=TitleLinks,XMiddle=XMiddle,YMiddle=YMiddle)
+RainMapsLinksDaily(AlphaLinksDaily=AlphaLinksDaily,AlphaPlotLocation=AlphaPlotLocation,
+AlphaPolygon=AlphaPolygon,AutDefineLegendTop=AutDefineLegendTop,BBoxOSMauto=BBoxOSMauto,
+ColourLinks=ColourLinks,ColoursNumber=ColoursNumber,
+ColourPlotLocation=ColourPlotLocation,ColourPlotLocationText=ColourPlotLocationText,
+ColourScheme=ColourScheme,ColourType=ColourType,
+ConversionDepthToIntensity=ConversionDepthToIntensity,
+CoorSystemInputData=CoorSystemInputData,DateTimeEndRainMaps=DateTimeEndRainMaps,
+DateTimeStartRainMaps=DateTimeStartRainMaps,ExtraDeg=ExtraDeg,ExtraText=ExtraText,
+FigFileLinksDaily=FigFileLinksDaily,FigHeight=FigHeight,FigWidth=FigWidth,
+FileGrid=FileGrid,FilePolygonsGrid=FilePolygonsGrid,FolderFigures=FolderFigures,
+FolderRainMaps=FolderRainMaps,FolderRainEstimates=FolderRainEstimates,
+FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,
+GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
+GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
+GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
+LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
+LabelAxisLonStamen=LabelAxisLonStamen,LatLocation=LatLocation,LatText=LatText,
+LegendTitleLinksDaily=LegendTitleLinksDaily,LonLocation=LonLocation,LonText=LonText,
+ManualScale=ManualScale,MapBackground=MapBackground,OSMBottom=OSMBottom,OSMLeft=OSMLeft,
+OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,PERIOD=PERIOD,
+PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
+PlotBelowScaleBottom=PlotBelowScaleBottom,PlotLocLinks=PlotLocLinks,
+ScaleBottomDaily=ScaleBottomDaily,ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,
+ScaleTopDaily=ScaleTopDaily,SizeLinks=SizeLinks,SizePixelBorder=SizePixelBorder,
+SizePlotLocation=SizePlotLocation,SizePlotTitle=SizePlotTitle,
+StamenMapType=StamenMapType,StamenZoomlevel=StamenZoomlevel,
+SymbolPlotLocation=SymbolPlotLocation,TIMESTEP=TIMESTEP,TitleLinks=TitleLinks,
+XMiddle=XMiddle,YMiddle=YMiddle)
 
 
 
@@ -293,19 +323,30 @@ FolderRadarRainMapsTimeStep <- "Radar5min"
 
 # Run function RainMapsRadarsTimeStep:
 RainMapsRadarsTimeStep(AlphaPlotLocation=AlphaPlotLocation,AlphaPolygon=AlphaPolygon,
-AutDefineLegendTop=AutDefineLegendTop,BBoxOSMauto=BBoxOSMauto,ColoursNumber=ColoursNumber,ColourPlotLocation=ColourPlotLocation,
-ColourPlotLocationText=ColourPlotLocationText,ColourScheme=ColourScheme,ColourType=ColourType,
-CoorSystemInputData=CoorSystemInputData,ExtraDeg=ExtraDeg,ExtraText=ExtraText,FigFileRadarsTimeStep=FigFileRadarsTimeStep,FigHeight=FigHeight,
-FigWidth=FigWidth,FileGrid=FileGrid,FilePolygonsGrid=FilePolygonsGrid,FolderFigures=FolderFigures,FolderRadarRainMapsTimeStep=FolderRadarRainMapsTimeStep,
-FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,GoogleLocLat=GoogleLocLat,
-GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,GoogleZoomlevel=GoogleZoomlevel,
-LabelAxisLat=LabelAxisLat,LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,LatLocation=LatLocation,LatText=LatText,
-LegendTitleRadarsTimeStep=LegendTitleRadarsTimeStep,LonLocation=LonLocation,LonText=LonText,ManualScale=ManualScale,MapBackground=MapBackground,
-OSMBottom=OSMBottom,OSMLeft=OSMLeft,OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,PathRadarRainfallDepth=PathRadarRainfallDepth,
-PERIOD=PERIOD,PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,PlotBelowScaleBottom=PlotBelowScaleBottom,
-ScaleBottomTimeStep=ScaleBottomTimeStep,ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,ScaleTopTimeStep=ScaleTopTimeStep,SizePixelBorder=SizePixelBorder,
-SizePlotLocation=SizePlotLocation,SizePlotTitle=SizePlotTitle,SymbolPlotLocation=SymbolPlotLocation,TIMESTEP=TIMESTEP,TimeZone=TimeZone,TitleRadars=TitleRadars,XMiddle=XMiddle,
-YMiddle=YMiddle)
+AutDefineLegendTop=AutDefineLegendTop,BBoxOSMauto=BBoxOSMauto,
+ColoursNumber=ColoursNumber,ColourPlotLocation=ColourPlotLocation,
+ColourPlotLocationText=ColourPlotLocationText,ColourScheme=ColourScheme,
+ColourType=ColourType,CoorSystemInputData=CoorSystemInputData,ExtraDeg=ExtraDeg,
+ExtraText=ExtraText,FigFileRadarsTimeStep=FigFileRadarsTimeStep,FigHeight=FigHeight,
+FigWidth=FigWidth,FileGrid=FileGrid,FilePolygonsGrid=FilePolygonsGrid,
+FolderFigures=FolderFigures,FolderRadarRainMapsTimeStep=FolderRadarRainMapsTimeStep,
+FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,
+GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
+GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
+GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
+LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
+LabelAxisLonStamen=LabelAxisLonStamen,LatLocation=LatLocation,LatText=LatText,
+LegendTitleRadarsTimeStep=LegendTitleRadarsTimeStep,LonLocation=LonLocation,
+LonText=LonText,ManualScale=ManualScale,MapBackground=MapBackground,
+OSMBottom=OSMBottom,OSMLeft=OSMLeft,OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,
+PathRadarRainfallDepth=PathRadarRainfallDepth,PERIOD=PERIOD,PlotLocation=PlotLocation,
+PixelBorderCol=PixelBorderCol,PlotBelowScaleBottom=PlotBelowScaleBottom,
+ScaleBottomTimeStep=ScaleBottomTimeStep,ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,
+ScaleTopTimeStep=ScaleTopTimeStep,SizePixelBorder=SizePixelBorder,
+SizePlotLocation=SizePlotLocation,SizePlotTitle=SizePlotTitle,
+StamenMapType=StamenMapType,StamenZoomlevel=StamenZoomlevel,
+SymbolPlotLocation=SymbolPlotLocation,TIMESTEP=TIMESTEP,TimeZone=TimeZone,
+TitleRadars=TitleRadars,XMiddle=XMiddle,YMiddle=YMiddle)
 
 
 	
@@ -328,19 +369,31 @@ FolderRadarRainMapsDaily <- "Radar24H"
 
 # Run function RainMapsRadarsDaily:
 RainMapsRadarsDaily(AlphaPlotLocation=AlphaPlotLocation,AlphaPolygon=AlphaPolygon,
-AutDefineLegendTop=AutDefineLegendTop,BBoxOSMauto=BBoxOSMauto,ColoursNumber=ColoursNumber,ColourPlotLocation=ColourPlotLocation,
-ColourPlotLocationText=ColourPlotLocationText,ColourScheme=ColourScheme,ColourType=ColourType,CoorSystemInputData=CoorSystemInputData,DateMap=DateMap,ExtraDeg=ExtraDeg,
-ExtraText=ExtraText,FigFileRadarsDaily=FigFileRadarsDaily,FigHeight=FigHeight,FigWidth=FigWidth,FileGrid=FileGrid,FileNameRadarDaily=FileNameRadarDaily,
-FilePolygonsGrid=FilePolygonsGrid,FolderFigures=FolderFigures,FolderRadarRainMapsDaily=FolderRadarRainMapsDaily,FontFamily=FontFamily,
-GoogleLocDegSpecified=GoogleLocDegSpecified,GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
-GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
-LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,LatLocation=LatLocation,LatText=LatText,
-LegendTitleRadarsDaily=LegendTitleRadarsDaily,LonLocation=LonLocation,LonText=LonText,ManualScale=ManualScale,MapBackground=MapBackground,
-OSMBottom=OSMBottom,OSMLeft=OSMLeft,OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,PathRadarRainfallDepth=PathRadarRainfallDepth,
-PERIOD=PERIOD,PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,PlotBelowScaleBottom=PlotBelowScaleBottom,
-ScaleBottomDaily=ScaleBottomDaily,ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,ScaleTopDaily=ScaleTopDaily,SizePixelBorder=SizePixelBorder,
-SizePlotLocation=SizePlotLocation,SizePlotTitle=SizePlotTitle,SymbolPlotLocation=SymbolPlotLocation,TimeZone=TimeZone,TitleRadars=TitleRadars,XMiddle=XMiddle,
-YMiddle=YMiddle)
+AutDefineLegendTop=AutDefineLegendTop,BBoxOSMauto=BBoxOSMauto,
+ColoursNumber=ColoursNumber,ColourPlotLocation=ColourPlotLocation,
+ColourPlotLocationText=ColourPlotLocationText,ColourScheme=ColourScheme,
+ColourType=ColourType,CoorSystemInputData=CoorSystemInputData,DateMap=DateMap,
+ExtraDeg=ExtraDeg,ExtraText=ExtraText,FigFileRadarsDaily=FigFileRadarsDaily,
+FigHeight=FigHeight,FigWidth=FigWidth,FileGrid=FileGrid,
+FileNameRadarDaily=FileNameRadarDaily,FilePolygonsGrid=FilePolygonsGrid,
+FolderFigures=FolderFigures,FolderRadarRainMapsDaily=FolderRadarRainMapsDaily,
+FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,
+GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
+GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
+GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
+LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
+LabelAxisLonStamen=LabelAxisLonStamen,LatLocation=LatLocation,LatText=LatText,
+LegendTitleRadarsDaily=LegendTitleRadarsDaily,LonLocation=LonLocation,
+LonText=LonText,ManualScale=ManualScale,MapBackground=MapBackground,
+OSMBottom=OSMBottom,OSMLeft=OSMLeft,OSMRight=OSMRight,OSMScale=OSMScale,
+OSMTop=OSMTop,PathRadarRainfallDepth=PathRadarRainfallDepth,PERIOD=PERIOD,
+PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
+PlotBelowScaleBottom=PlotBelowScaleBottom,ScaleBottomDaily=ScaleBottomDaily,
+ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,ScaleTopDaily=ScaleTopDaily,
+SizePixelBorder=SizePixelBorder,SizePlotLocation=SizePlotLocation,
+SizePlotTitle=SizePlotTitle,StamenMapType=StamenMapType,
+StamenZoomlevel=StamenZoomlevel,SymbolPlotLocation=SymbolPlotLocation,
+TimeZone=TimeZone,TitleRadars=TitleRadars,XMiddle=XMiddle,YMiddle=YMiddle)
 
 
 
@@ -391,6 +444,7 @@ revgeocode(c(Lon,Lat))
 # Give latitude and longitude for location known by street name and municipality:
 geocode("Domplein 1, Utrecht")
     
+# Please note that revgeocode & geocode only work when Google API key has been obtained.
 
 
 
@@ -414,13 +468,20 @@ Filename <- Files[condTime]
 dataf <- read.table(Filename,header=TRUE)
 
 # Plot link locations on a map:
-PlotLinkLocations(AlphaLinkLocations=AlphaLinkLocations,BBoxOSMauto=BBoxOSMauto,OSMBottom=OSMBottom,ColourLinks=ColourLinks,
-ColourType=ColourType,dataf=dataf,DateTime=DateTime,ExtraTextLinkLocations=ExtraTextLinkLocations,FigFileLinkLocations=FigFileLinkLocations,
-FigHeight=FigHeight,FigWidth=FigWidth,FolderFigures=FolderFigures,FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,
-GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,GoogleLocNameSpecified=GoogleLocNameSpecified,
-GoogleMapType=GoogleMapType,GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,LabelAxisLonGoogle=LabelAxisLonGoogle,
-LabelAxisLonOSM=LabelAxisLonOSM,OSMLeft=OSMLeft,MapBackground=MapBackground,OSMRight=OSMRight,OSMScale=OSMScale,
-SizeLinks=SizeLinks,SizePlotTitle=SizePlotTitle,TitleLinkLocations=TitleLinkLocations,OSMTop=OSMTop)
+PlotLinkLocations(AlphaLinkLocations=AlphaLinkLocations,BBoxOSMauto=BBoxOSMauto,
+OSMBottom=OSMBottom,ColourLinks=ColourLinks,ColourType=ColourType,dataf=dataf,
+DateTime=DateTime,ExtraTextLinkLocations=ExtraTextLinkLocations,
+FigFileLinkLocations=FigFileLinkLocations,FigHeight=FigHeight,FigWidth=FigWidth,
+FolderFigures=FolderFigures,FontFamily=FontFamily,
+GoogleLocDegSpecified=GoogleLocDegSpecified,GoogleLocLat=GoogleLocLat,
+GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
+GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
+GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
+LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
+LabelAxisLonStamen=LabelAxisLonStamen,OSMLeft=OSMLeft,MapBackground=MapBackground,
+OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,SizeLinks=SizeLinks,
+SizePlotTitle=SizePlotTitle,StamenMapType=StamenMapType,
+StamenZoomlevel=StamenZoomlevel,TitleLinkLocations=TitleLinkLocations)
 
 
 
