@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.11
-## Copyright (C) 2017 Aart Overeem
+## Version 1.12
+## Copyright (C) 2019 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -44,6 +44,7 @@ if (GivePathLib=="yes")
 	library(RAINLINK,lib.loc=pathlib)
 
 	# Load other packages:
+	library(curl,lib.loc=pathlib)
 	library(sp,lib.loc=pathlib)		
 	library(gstat,lib.loc=pathlib)	
 	library(crayon,lib.loc=pathlib)	
@@ -64,6 +65,7 @@ if (GivePathLib=="no")
 	library(RAINLINK)
 
 	# Load other packages:
+	library(curl)	
 	library(sp)		
 	library(gstat)	
 	library(crayon)	
@@ -258,8 +260,8 @@ FolderFigures <- "Figures"
 
 
 # Google Maps or OpenStreetMap as background?
-MapBackground <- "Google"
-# Use "Google" for Google Maps and "OSM" for OpenStreetMap.
+MapBackground <- "Stamen"
+# Use "Google" for Google Maps and "OSM" for OpenStreetMap and "Stamen" for Stamen Map (based on OpenStreetMap data).
 # Google Maps will only plot on a square figure.
 
 
@@ -336,30 +338,30 @@ GoogleMapType <- "terrain"
 
 # Which zoom level to use for the Google Maps?
 GoogleZoomlevel <- 8
-# 14 nice zoomlevel for satellite map Amsterdam.
+# 14 nice zoom level for satellite map Amsterdam.
 # 13 nice zoom level for satellite map Rotterdam
-# 8 for whole Netherlands if "Eemhof" is center.
+# 8 nice zoom level for whole Netherlands if "Eemhof" is center.
 #################################
 
 
 
-###################################
-# OPENSTREETMAP: SPECIFIC SETTINGS#
-###################################
-# Area for which rainfall depths are to be plotted (for OpenStreetMap only):
-# Amsterdam region (for OpenStreetMap only):
+##################################################
+# OPENSTREETMAP and Stamen Map: SPECIFIC SETTINGS#
+##################################################
+# Area for which rainfall depths are to be plotted (for OpenStreetMap and Stamen Map only):
+# Amsterdam region (for OpenStreetMap and Stamen Map only):
 OSMLeft <- 4.84			# Longitude in degrees (WGS84) for left side of the area for which rainfall depths are to be plotted (for OpenStreetMap only). 
 OSMBottom <- 52.336		# Latitude in degrees (WGS84) for bottom side of the area for which rainfall depths are to be plotted (for OpenStreetMap only).
 OSMRight <- 4.95		# Longitude in degrees (WGS84) for right side of the area for which rainfall depths are to be plotted (for OpenStreetMap only). 
 OSMTop <- 52.404		# Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be plotted (for OpenStreetMap only).
 
-# Rotterdam region (for OpenStreetMap only):
+# Rotterdam region (for OpenStreetMap and Stamen Map only):
 #left <- 4.41		# Longitude in degrees (WGS84)
 #bottom <- 51.9		# Latitude in degrees (WGS84)
 #right <- 4.52		# Longitude in degrees (WGS84)
 #top <- 51.97		# Latitude in degrees (WGS84)
 
-# Utrecht region (for OpenStreetMap only):
+# Utrecht region (for OpenStreetMap and Stamen Map only):
 #left <- 5.0900		# Longitude in degrees (WGS84)
 #bottom <- 52.0700	# Latitude in degrees (WGS84)
 #right <- 5.1350		# Longitude in degrees (WGS84)
@@ -368,12 +370,12 @@ OSMTop <- 52.404		# Latitude in degrees (WGS84) for top side of the area for whi
 #http://www.openstreetmap.org/export can be used to select area and find minimum scale in order to obtain maximum graphical resolution.
 
 
-# Compute bounding box from input data or used bounding box defined above? (for OpenStreetMap only):
+# Compute bounding box from input data or used bounding box defined above? (for OpenStreetMap and Stamen Map only):
 # Use "yes" if bounding box is to be computed from interpolation grid.
-BBoxOSMauto <- "no"
+BBoxOSMauto <- "yes"
 
 
-# Give value of scale (for OpenStreetMap only):
+# Give value of scale (for OpenStreetMap only, so not for Stamen Map):
 # A proper choice of the scale parameter in get_openstreetmap is difficult. 
 # It cannot be computed automatically. Hence, a scale parameter value should
 # be provided below. The scale parameter should be as small as possible to get the highest 
@@ -387,6 +389,18 @@ OSMScale <- 24000  # Scale for Amsterdam.
 # works well if BBoxOSMauto <- "no" and with values 
 # for left, right, top, bottom as defined above for Amsterdam.
 # For Rotterdam (as defined above): Scale <- 22500
+
+
+# Which zoom level to use for the Stamen Maps? This determines the level of detail. Large values take more time. It does not determine the domain of the area which is plotted.
+StamenZoomlevel <- 8
+# 15 nice zoom level for map Amsterdam.
+# 8 or 9 nice zoom level for whole Netherlands.
+
+
+# In case of Stamen Maps: which map type should be used?
+StamenMapType <- "toner-lite"
+# Available map types which seem most useful and work: "toner-hybrid" &, recommended: "toner-lite", "terrain" & "watercolor". 
+# It is not possible to make a coloured map black-and-white or vice versa. Hence, it does not make sense to add this option.
 ###################################
 
 
@@ -416,6 +430,7 @@ LegendTitleRadarsDaily <- paste("Daily\nrainfall\ndepth\n(mm)\n",sep="")
 LabelAxisLat <- bquote("Latitude "*(degree))
 LabelAxisLonOSM <- bquote(atop("Longitude "*(degree), "\uA9OpenStreetMap contributors; openstreetmap.org")) 
 LabelAxisLonGoogle <- bquote(atop("Longitude "*(degree), "\uA9Google Maps")) 
+LabelAxisLonStamen <- bquote(atop("Longitude "*(degree), "\uA9Map tiles by Stamen Design. Data by OpenStreetMap.")) 
 
 
 # Plot grid lines for polygons below threshold ScaleBottomTimeStep or ScaleBottomDaily?
@@ -520,6 +535,8 @@ SizeLinks <- 3 # For Netherlands
 # The user can choose to plot a symbol including the corresponding rainfall depth for a specified location on the map.
 # A location is plotted on map if PlotLocation is "yes":
 PlotLocation <- "no"
+# Note that the name of the location is only plotted if the Google API key has been obtained. Otherwise, an error message will be provided and the name will not be plotted.
+# However, the rainfall depth and the symbol will be plotted.
 # Latitude of location on map (degrees):
 LatLocation <- 52.3702165
 # Latitude of text (rainfall depth) of location on map (degrees):
@@ -553,11 +570,12 @@ FigFileLinkLocations <- "LinkLocationsTheNetherlands"
 ###############################################################
 # To reproduce Figure 7 from AMT paper: Amsterdam zoomed plot:#
 ###############################################################
+#BBoxOSMauto <- "no"
 #MapBackground <- "OSM"
 #ColourType <- "color"
 #AlphaLinksTimeStep <- 0.4	
 #ScaleBottomTimeStep <- 0.2	# mm. 
-#ScaleTopTimeStep <- 3.7		# mm
+#ScaleTopTimeStep <- 3.7	# mm
 #ExtraText <- "Amsterdam"
 #SizeLinks <- 7  
 #PixelBorderCol <- "gray55"
@@ -576,12 +594,35 @@ FigFileLinkLocations <- "LinkLocationsTheNetherlands"
 #In addition: Warning message:
 #In download.file(url, destfile = destfile, quiet = !messaging, mode = "wb") :
 #  cannot open URL 'http://tile.openstreetmap.org/cgi-bin/export?bbox=4.84,52.336,4.95,52.404&scale=24000&format=png': HTTP status was '400 #Bad Request'
+
 # TO REPRODUCE Figure 7 WITH GOOGLE MAPS USE:
+#BBoxOSMauto <- "no"
 #MapBackground <- "Google"
+#AlphaLinksTimeStep <- 0.4	
+#ScaleBottomTimeStep <- 0.2	# mm. 
+#ScaleTopTimeStep <- 3.7	# mm
+#ExtraText <- "Amsterdam"
+#SizeLinks <- 7  
+#PixelBorderCol <- "gray55"
+#FigFileLinksTimeStep <- paste("Links",gsub(" ","",ExtraText),TIMESTEP,"min",sep="")
 #GoogleZoomlevel <- 13
 #GoogleLocName <- "Amsterdam"
 # To obtain satellite map as background use this:
 #GoogleMapType <- "satellite"
 #ColourType <- "bw"
+
+# TO REPRODUCE Figure 7 WITH STAMEN MAPS USE:
+#BBoxOSMauto <- "no"
+#MapBackground <- "Stamen"
+#AlphaLinksTimeStep <- 0.4	
+#ScaleBottomTimeStep <- 0.2	# mm. 
+#ScaleTopTimeStep <- 3.7	# mm
+#ExtraText <- "Amsterdam"
+#SizeLinks <- 7  
+#PixelBorderCol <- "gray55"
+#FigFileLinksTimeStep <- paste("Links",gsub(" ","",ExtraText),TIMESTEP,"min",sep="")
+#StamenMapType <- "terrain"
+#StamenZoomlevel <- 15
+
 
 
