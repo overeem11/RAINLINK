@@ -9,17 +9,18 @@ PlotLinkLocations(AlphaLinkLocations, BBoxOSMauto, OSMBottom, ColourLinks,
   FigFileLinkLocations, FigHeight, FigWidth, FolderFigures, FontFamily,
   GoogleLocDegSpecified, GoogleLocLat, GoogleLocLon, GoogleLocName,
   GoogleLocNameSpecified, GoogleMapType, GoogleZoomlevel, LabelAxisLat,
-  LabelAxisLonGoogle, LabelAxisLonOSM, OSMLeft, MapBackground, OSMRight,
-  OSMScale, SizeLinks, SizePlotTitle, TitleLinkLocations, OSMTop)
+  LabelAxisLonGoogle, LabelAxisLonOSM, LabelAxisLonStamen, OSMLeft,
+  MapBackground, OSMRight, OSMScale, OSMTop, SizeLinks, SizePlotTitle,
+  StamenMapType, StamenZoomlevel, TitleLinkLocations)
 }
 \arguments{
 \item{AlphaLinkLocations}{Transparency of link paths.}
 
 \item{BBoxOSMauto}{Compute bounding box from input data or used bounding box defined above?
-(for OpenStreetMap only). Use "yes" if bounding box is to be computed from interpolation grid.}
+(for OpenStreetMap and Stamen Map only). Use "yes" if bounding box is to be computed from interpolation grid.}
 
 \item{OSMBottom}{Latitude in degrees (WGS84) for bottom side of the area for which rainfall depths 
-are to be plotted (for OpenStreetMap only).}
+are to be plotted (for OpenStreetMap & Stamen Maps only).}
 
 \item{ColourLinks}{Colour of plotted link paths.}
 
@@ -90,17 +91,20 @@ provided grid and used as centre of the Google Map.}
 
 \item{LabelAxisLonOSM}{Label name of horizontal axis (for OpenStreetMap only).}
 
-\item{OSMLeft}{Longitude in degrees (WGS84) for left side of the area for which rainfall depths are 
-to be plotted (for OpenStreetMap only).}
+\item{LabelAxisLonStamen}{Label name of horizontal axis (for Stamen Map only).}
 
-\item{MapBackground}{Google Maps or OpenStreetMap as background? Use "Google" for Google Maps and 
-"OSM" for OpenStreetMap. Note that Google Maps will only plot on a square figure.
+\item{OSMLeft}{Longitude in degrees (WGS84) for left side of the area for which rainfall depths are 
+to be plotted (for OpenStreetMap & Stamen Maps only).}
+
+\item{MapBackground}{Google Maps, OpenStreetMap or Stamen Map as background? Use "Google" for Google Maps, 
+"OSM" for OpenStreetMap and "Stamen" for Stamen Map (based on OpenStreetMap data). 
+Note that Google Maps will only plot on a square figure.
 It seems that mapping with OpenStreetMap (“get openstreetmap”) is no langer supported.
-This implies that mapping can only be done employing Google Maps. This is not related to
-the RAINLINK version.}
+This implies that mapping can only be done employing Google Maps (if Google API key is obtained) or via
+Stamen Map. This is not related to the RAINLINK version.}
 
 \item{OSMRight}{Longitude in degrees (WGS84) for right side of the area for which rainfall depths 
-are to be plotted (for OpenStreetMap only).}
+are to be plotted (for OpenStreetMap & Stamen Maps only).}
 
 \item{OSMScale}{Give value of scale (for OpenStreetMap only). A proper choice of the scale parameter 
 in get_openstreetmap is difficult. It cannot be computed automatically. Hence, a scale parameter value 
@@ -110,14 +114,20 @@ should manually supply get_openstreetmap with a scale. It may require some itera
 appropriate value for scale. The file "ggmapTemp.png" is written to disk when an OpenStreetMap is loaded. 
 The highest possible resolution for a square area is about 2000 x 2000 pixels.}
 
+\item{OSMTop}{Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be 
+plotted (for OpenStreetMap & Stamen Maps only).}
+
 \item{SizeLinks}{Size of plotted link paths.}
 
 \item{SizePlotTitle}{Size of plot title.}
 
-\item{TitleLinkLocations}{First part of title of plot.}
+\item{StamenMapType}{In case of Stamen Maps: which map type should be used? Available map types which 
+seem most useful and work: "toner-hybrid" &, recommended: "toner-lite", "terrain" & "watercolor".}
 
-\item{OSMTop}{Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be 
-plotted (for OpenStreetMap only).}
+\item{StamenZoomlevel}{Which zoom level to use for the Stamen Maps? This determines the level of detail. 
+Large values take more time. It does not determine the domain of the area which is plotted.}
+
+\item{TitleLinkLocations}{First part of title of plot.}
 }
 \description{
 Function which visualises microwave link paths on a map.
@@ -133,9 +143,10 @@ GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
 GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
 GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
 LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
-OSMLeft=OSMLeft,MapBackground=MapBackground,OSMRight=OSMRight,OSMScale=OSMScale,
-SizeLinks=SizeLinks,SizePlotTitle=SizePlotTitle,
-TitleLinkLocations=TitleLinkLocations,OSMTop=OSMTop)
+LabelAxisLonStamen=LabelAxisLonStamen,OSMLeft=OSMLeft,MapBackground=MapBackground,
+OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,SizeLinks=SizeLinks,
+SizePlotTitle=SizePlotTitle,StamenMapType=StamenMapType,
+StamenZoomlevel=StamenZoomlevel,TitleLinkLocations=TitleLinkLocations)
 }
 \references{
 ''ManualRAINLINK.pdf''

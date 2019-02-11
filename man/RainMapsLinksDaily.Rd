@@ -13,13 +13,14 @@ RainMapsLinksDaily(AlphaLinksDaily, AlphaPlotLocation, AlphaPolygon,
   FolderFigures, FolderRainMaps, FolderRainEstimates, FontFamily,
   GoogleLocDegSpecified, GoogleLocLat, GoogleLocLon, GoogleLocName,
   GoogleLocNameSpecified, GoogleMapType, GoogleZoomlevel, LabelAxisLat,
-  LabelAxisLonGoogle, LabelAxisLonOSM, LatLocation, LatText,
-  LegendTitleLinksDaily, LonLocation, LonText, ManualScale, MapBackground,
-  OSMBottom, OSMLeft, OSMRight, OSMScale, OSMTop, PERIOD, PlotLocation,
-  PixelBorderCol, PlotBelowScaleBottom, PlotLocLinks, ScaleBottomDaily,
-  ScaleHigh, ScaleLow, ScaleTopDaily, SizeLinks, SizePixelBorder,
-  SizePlotLocation, SizePlotTitle, SymbolPlotLocation, TIMESTEP,
-  TitleLinks, XMiddle, YMiddle)
+  LabelAxisLonGoogle, LabelAxisLonOSM, LabelAxisLonStamen, LatLocation,
+  LatText, LegendTitleLinksDaily, LonLocation, LonText, ManualScale,
+  MapBackground, OSMBottom, OSMLeft, OSMRight, OSMScale, OSMTop, PERIOD,
+  PlotLocation, PixelBorderCol, PlotBelowScaleBottom, PlotLocLinks,
+  ScaleBottomDaily, ScaleHigh, ScaleLow, ScaleTopDaily, SizeLinks,
+  SizePixelBorder, SizePlotLocation, SizePlotTitle, StamenMapType,
+  StamenZoomlevel, SymbolPlotLocation, TIMESTEP, TitleLinks, XMiddle,
+  YMiddle)
 }
 \arguments{
 \item{AlphaLinksDaily}{Transparency of link paths.}
@@ -32,7 +33,7 @@ RainMapsLinksDaily(AlphaLinksDaily, AlphaPlotLocation, AlphaPolygon,
 Then the highest class, i.e. the one plotted separately above the other classes, is not plotted anymore.}
 
 \item{BBoxOSMauto}{Compute bounding box from input data or used bounding box defined above? 
-(for OpenStreetMap only). Use "yes" if bounding box is to be computed from interpolation grid.}
+(for OpenStreetMap and Stamen Map only). Use "yes" if bounding box is to be computed from interpolation grid.}
 
 \item{ColourLinks}{Colour of plotted link paths.}
 
@@ -128,6 +129,8 @@ provided grid and used as centre of the Google Map.}
 
 \item{LabelAxisLonOSM}{Label name of horizontal axis (for OpenStreetMap only).}
 
+\item{LabelAxisLonStamen}{Label name of horizontal axis (for Stamen Map only).}
+
 \item{LatLocation}{Latitude of location on map (degrees).}
 
 \item{LatText}{Latitude of text (rainfall depth) of location on map (degrees).}
@@ -142,20 +145,21 @@ provided grid and used as centre of the Google Map.}
 Interval breaks are determined manually from ScaleLow and ScaleHigh. If ManualScale is "no" 
 interval breaks are determined automatically.}
 
-\item{MapBackground}{Google Maps or OpenStreetMap as background? Use "Google" for Google Maps and "OSM" 
-for OpenStreetMap. Note that Google Maps will only plot on a square figure.
+\item{MapBackground}{Google Maps, OpenStreetMap or Stamen Map as background? Use "Google" for Google Maps, 
+"OSM" for OpenStreetMap and "Stamen" for Stamen Map (based on OpenStreetMap data). 
+Note that Google Maps will only plot on a square figure.
 It seems that mapping with OpenStreetMap (“get openstreetmap”) is no langer supported.
-This implies that mapping can only be done employing Google Maps. This is not related to
-the RAINLINK version.}
+This implies that mapping can only be done employing Google Maps (if Google API key is obtained) or via
+Stamen Map. This is not related to the RAINLINK version.}
 
 \item{OSMBottom}{Latitude in degrees (WGS84) for bottom side of the area for which rainfall depths 
-are to be plotted (for OpenStreetMap only).}
+are to be plotted (for OpenStreetMap & Stamen Maps only).}
 
 \item{OSMLeft}{Longitude in degrees (WGS84) for left side of the area for which rainfall depths 
-are to be plotted (for OpenStreetMap only).}
+are to be plotted (for OpenStreetMap & Stamen Maps only).}
 
 \item{OSMRight}{Longitude in degrees (WGS84) for right side of the area for which rainfall depths 
-are to be plotted (for OpenStreetMap only).}
+are to be plotted (for OpenStreetMap & Stamen Maps only).}
 
 \item{OSMScale}{Give value of scale (for OpenStreetMap only). A proper choice of the scale parameter 
 in get_openstreetmap is difficult. It cannot be computed automatically. Hence, a scale parameter value 
@@ -166,7 +170,7 @@ the appropriate value for scale. The file "ggmapTemp.png" is written to disk whe
 loaded. The highest possible resolution for a square area is about 2000 x 2000 pixels.}
 
 \item{OSMTop}{Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be 
-plotted (for OpenStreetMap only).}
+plotted (for OpenStreetMap & Stamen Maps only).}
 
 \item{PERIOD}{Select daily time interval, i.e. "0800" implies 0800 UTC previous day - 0800 UTC present 
 day (use 2400 for 0000 UTC).}
@@ -209,6 +213,12 @@ this is to manually give the legend breaks (ManualScale not equal to "no").}
 
 \item{SizePlotTitle}{Size of plot title.}
 
+\item{StamenMapType}{In case of Stamen Maps: which map type should be used? Available map types which 
+seem most useful and work: "toner-hybrid" &, recommended: "toner-lite", "terrain" & "watercolor".}
+
+\item{StamenZoomlevel}{Which zoom level to use for the Stamen Maps? This determines the level of detail. 
+Large values take more time. It does not determine the domain of the area which is plotted.}
+
 \item{SymbolPlotLocation}{Symbol to be plotted for specified location on map.}
 
 \item{TIMESTEP}{Duration of time interval of sampling strategy (min).}
@@ -246,16 +256,18 @@ GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
 GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
 GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
 LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
-LatLocation=LatLocation,LatText=LatText,LegendTitleLinksDaily=LegendTitleLinksDaily,
-LonLocation=LonLocation,LonText=LonText,ManualScale=ManualScale,
-MapBackground=MapBackground,OSMBottom=OSMBottom,OSMLeft=OSMLeft,OSMRight=OSMRight,
-OSMScale=OSMScale,OSMTop=OSMTop,PERIOD=PERIOD,PlotLocation=PlotLocation,
-PixelBorderCol=PixelBorderCol,PlotBelowScaleBottom=PlotBelowScaleBottom,
-PlotLocLinks=PlotLocLinks,ScaleBottomDaily=ScaleBottomDaily,ScaleHigh=ScaleHigh,
-ScaleLow=ScaleLow,ScaleTopDaily=ScaleTopDaily,SizeLinks=SizeLinks,
-SizePixelBorder=SizePixelBorder,SizePlotLocation=SizePlotLocation,
-SizePlotTitle=SizePlotTitle,SymbolPlotLocation=SymbolPlotLocation,TIMESTEP=TIMESTEP,
-TitleLinks=TitleLinks,XMiddle=XMiddle,YMiddle=YMiddle)
+LabelAxisLonStamen=LabelAxisLonStamen,LatLocation=LatLocation,LatText=LatText,
+LegendTitleLinksDaily=LegendTitleLinksDaily,LonLocation=LonLocation,LonText=LonText,
+ManualScale=ManualScale,MapBackground=MapBackground,OSMBottom=OSMBottom,OSMLeft=OSMLeft,
+OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,PERIOD=PERIOD,
+PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
+PlotBelowScaleBottom=PlotBelowScaleBottom,PlotLocLinks=PlotLocLinks,
+ScaleBottomDaily=ScaleBottomDaily,ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,
+ScaleTopDaily=ScaleTopDaily,SizeLinks=SizeLinks,SizePixelBorder=SizePixelBorder,
+SizePlotLocation=SizePlotLocation,SizePlotTitle=SizePlotTitle,
+StamenMapType=StamenMapType,StamenZoomlevel=StamenZoomlevel,
+SymbolPlotLocation=SymbolPlotLocation,TIMESTEP=TIMESTEP,TitleLinks=TitleLinks,
+XMiddle=XMiddle,YMiddle=YMiddle)
 }
 \references{
 ''ManualRAINLINK.pdf''
