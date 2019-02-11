@@ -1,0 +1,16 @@
+citHeader("To cite the RAINLINK package in publications, please use:")
+
+citEntry(
+  entry = "Article",
+  author = "Overeem, A., Leijnse, H. and Uijlenhoet, R.",
+  title = "Retrieval algorithm for rainfall mapping from microwave links in a cellular communication network",
+  journal = "Atmos. Meas. Tech.",
+  year = "2016",
+  volume = "9",
+  pages = "2425-2444",
+  url = "https://doi.org/10.5194/amt-9-2425-2016",
+  textVersion  = "Overeem, A., Leijnse, H. and Uijlenhoet, R. (2016): 
+Retrieval algorithm for rainfall mapping from microwave links in a cellular communication network, 
+Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016")
+
+
