@@ -467,21 +467,23 @@ Filename <- Files[condTime]
 # Read data from input file:
 dataf <- read.table(Filename,header=TRUE)
 
+# Make figure smaller (if whole Netherlands is plotted):
+FigWidth <- 1600
+
 # Plot link locations on a map:
 PlotLinkLocations(AlphaLinkLocations=AlphaLinkLocations,BBoxOSMauto=BBoxOSMauto,
 OSMBottom=OSMBottom,ColourLinks=ColourLinks,ColourType=ColourType,dataf=dataf,
 DateTime=DateTime,ExtraTextLinkLocations=ExtraTextLinkLocations,
-FigFileLinkLocations=FigFileLinkLocations,FigHeight=FigHeight,FigWidth=FigWidth,
-FolderFigures=FolderFigures,FontFamily=FontFamily,
-GoogleLocDegSpecified=GoogleLocDegSpecified,GoogleLocLat=GoogleLocLat,
-GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
+FigFileLinkLocations=FigFileLinkLocations,FigHeight=FigHeight,
+FigWidth=FigWidth,FilePolygonsGrid=FilePolygonsGrid,FolderFigures=FolderFigures,
+FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,
+GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
 GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
 GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
 LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
-LabelAxisLonStamen=LabelAxisLonStamen,OSMLeft=OSMLeft,MapBackground=MapBackground,
+LabelAxisLonStamen=LabelAxisLonStamen,MapBackground=MapBackground,OSMLeft=OSMLeft,
 OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,SizeLinks=SizeLinks,
 SizePlotTitle=SizePlotTitle,StamenMapType=StamenMapType,
 StamenZoomlevel=StamenZoomlevel,TitleLinkLocations=TitleLinkLocations)
-
 
 
