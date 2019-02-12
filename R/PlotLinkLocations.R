@@ -50,6 +50,7 @@
 #' pixels. Hence, using FigWidth and FigHeight of 2000 pixels or higher is advised. The OpenStreetMap 
 #' itself is stored in file "ggmapTemp.png". From this file the resolution of the background map can 
 #' be obtained. This can be useful for determining an appropriate FigWidth and FigHeight above.
+#' @param FilePolygonsGrid Name of file with polygons of interpolation grid.
 #' @param FolderFigures Folder name of figures.
 #' @param FontFamily Specify font family of text in figures. To select the default font use "". 
 #' Using "Times" may give warnings when executing the visualisation. In that case the font is not 
@@ -106,14 +107,14 @@
 #' PlotLinkLocations(AlphaLinkLocations=AlphaLinkLocations,BBoxOSMauto=BBoxOSMauto,
 #' OSMBottom=OSMBottom,ColourLinks=ColourLinks,ColourType=ColourType,dataf=dataf,
 #' DateTime=DateTime,ExtraTextLinkLocations=ExtraTextLinkLocations,
-#' FigFileLinkLocations=FigFileLinkLocations,FigHeight=FigHeight,FigWidth=FigWidth,
-#' FolderFigures=FolderFigures,FontFamily=FontFamily,
-#' GoogleLocDegSpecified=GoogleLocDegSpecified,GoogleLocLat=GoogleLocLat,
-#' GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
+#' FigFileLinkLocations=FigFileLinkLocations,FigHeight=FigHeight,
+#' FigWidth=FigWidth,FilePolygonsGrid=FilePolygonsGrid,FolderFigures=FolderFigures,
+#' FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,
+#' GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
 #' GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
 #' GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
 #' LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
-#' LabelAxisLonStamen=LabelAxisLonStamen,OSMLeft=OSMLeft,MapBackground=MapBackground,
+#' LabelAxisLonStamen=LabelAxisLonStamen,MapBackground=MapBackground,OSMLeft=OSMLeft,
 #' OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,SizeLinks=SizeLinks,
 #' SizePlotTitle=SizePlotTitle,StamenMapType=StamenMapType,
 #' StamenZoomlevel=StamenZoomlevel,TitleLinkLocations=TitleLinkLocations)
@@ -125,15 +126,16 @@
 
 
 PlotLinkLocations <- function(AlphaLinkLocations,BBoxOSMauto,OSMBottom,ColourLinks,ColourType,
-dataf,DateTime,ExtraTextLinkLocations,FigFileLinkLocations,FigHeight,FigWidth,FolderFigures,
-FontFamily,GoogleLocDegSpecified,GoogleLocLat,GoogleLocLon,GoogleLocName,GoogleLocNameSpecified,
-GoogleMapType,GoogleZoomlevel,LabelAxisLat,LabelAxisLonGoogle,LabelAxisLonOSM,LabelAxisLonStamen,
-OSMLeft,MapBackground,OSMRight,OSMScale,OSMTop,SizeLinks,SizePlotTitle,StamenMapType,StamenZoomlevel,
-TitleLinkLocations)
+dataf,DateTime,ExtraTextLinkLocations,FigFileLinkLocations,FigHeight,FigWidth,FilePolygonsGrid,
+FolderFigures,FontFamily,GoogleLocDegSpecified,GoogleLocLat,GoogleLocLon,GoogleLocName,
+GoogleLocNameSpecified,GoogleMapType,GoogleZoomlevel,LabelAxisLat,LabelAxisLonGoogle,LabelAxisLonOSM,
+LabelAxisLonStamen,MapBackground,OSMLeft,OSMRight,OSMScale,OSMTop,SizeLinks,SizePlotTitle,StamenMapType,
+StamenZoomlevel,TitleLinkLocations)
 {
 
 	# Create directory for output files:
 	if(!dir.exists(FolderFigures)){ dir.create(FolderFigures) }
+
 
 	# Use Google Map as background.
 	if (MapBackground=="Google")
@@ -155,6 +157,8 @@ TitleLinkLocations)
 		}
 		if (GoogleLocDegSpecified!="yes"&GoogleLocNameSpecified!="yes")
 		{
+			# Read polygons describing the interpolation/radar grid:
+			PolygonsGrid <- read.table(FilePolygonsGrid)
 			# Map is extracted for bounding box determined from interpolation grid:
 			bbox <- make_bbox(PolygonsGrid[,1], PolygonsGrid[,2])
 			map <- get_map(location = bbox, maptype = GoogleMapType, source = "google",color=ColourType,
@@ -175,13 +179,13 @@ TitleLinkLocations)
 		}
 		if (BBoxOSMauto=="yes")
 		{
-
+			# Read polygons describing the interpolation/radar grid:
+			PolygonsGrid <- read.table(FilePolygonsGrid)
 			# Determine bounding box determined from interpolation grid:
 			bbox <- make_bbox(PolygonsGrid[,1], PolygonsGrid[,2])
 
 			map <- get_openstreetmap(bbox = bbox,format="png",scale=OSMScale,
 			color=ColourType)
-
 		}
 		LabelAxisLon <- LabelAxisLonOSM
 	}
@@ -198,6 +202,8 @@ TitleLinkLocations)
 		}
 		if (BBoxOSMauto=="yes")
 		{
+			# Read polygons describing the interpolation/radar grid:
+			PolygonsGrid <- read.table(FilePolygonsGrid)
 			# Determine bounding box determined from interpolation grid:
 			bbox <- make_bbox(PolygonsGrid[,1], PolygonsGrid[,2])
 
