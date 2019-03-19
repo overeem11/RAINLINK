@@ -43,7 +43,8 @@
 #'
 #' @param Data Data frame with microwave link data.
 #' @param Dry Data frame: Should interval be considered dry for reference level
-#' determination? (0 = wet; 1 = dry).
+#' determination? (0 = wet; 1 = dry). Use Dry=NULL if no wet-dry classification
+#' has been performed.
 #' @param Pref Reference level (dB).
 #' @return Data frame with corrected minimum and maximum received powers (dB).
 #' @export CorrectMinMaxRSL
@@ -56,7 +57,7 @@
 #' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
 
-CorrectMinMaxRSL <- function(Data=DataOutlierFiltered,Dry=WetDry$Dry,Pref=Pref)
+CorrectMinMaxRSL <- function(Data=DataOutlierFiltered,Dry=NULL,Pref=Pref)
 {
 
 	# In case no wet-dry classification has been performed:

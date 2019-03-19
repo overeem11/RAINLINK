@@ -35,14 +35,16 @@
 #'
 #' @param Data Data frame with microwave link data.
 #' @param Dry Data frame: Should interval be considered dry for reference level
-#' determination? (0 = wet; 1 = dry).
+#' determination? (0 = wet; 1 = dry). Use Dry=NULL if no wet-dry classification
+#' has been performed. Then every time interval is considered dry and hence used
+#' for the reference level determination.
 #' @param HoursRefLevel Minimum number of hours that should be dry in preceding
 #' PeriodHoursRefLevel hours for computing reference level (h).
 #' @param PeriodHoursRefLevel Period over which reference level is to be determined
 #' (h).
 #' @return Reference level (dB).
 #' @export RefLevelMinMaxRSL
-#' @examples RefLevelMinMaxRSL(Data=DataPreprocessed,Dry=NULL,HoursRefLevel=2.5,
+#' @examples RefLevelMinMaxRSL(Data=DataPreprocessed,Dry=WetDry$Dry,HoursRefLevel=2.5,
 #' PeriodHoursRefLevel=24)
 #' @author Aart Overeem & Hidde Leijnse & Manuel F. Rios Gaona
 #' @references ''ManualRAINLINK.pdf''
