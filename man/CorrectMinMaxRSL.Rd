@@ -4,14 +4,14 @@
 \alias{CorrectMinMaxRSL}
 \title{Function for correcting minimum and maximum received signal powers.}
 \usage{
-CorrectMinMaxRSL(Data = DataOutlierFiltered, Dry = WetDry$Dry,
-  Pref = Pref)
+CorrectMinMaxRSL(Data = DataOutlierFiltered, Dry = NULL, Pref = Pref)
 }
 \arguments{
 \item{Data}{Data frame with microwave link data.}
 
 \item{Dry}{Data frame: Should interval be considered dry for reference level
-determination? (0 = wet; 1 = dry).}
+determination? (0 = wet; 1 = dry). Use Dry=NULL if no wet-dry classification
+has been performed.}
 
 \item{Pref}{Reference level (dB).}
 }

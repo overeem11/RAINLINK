@@ -11,7 +11,9 @@ RefLevelMinMaxRSL(Data, Dry = NULL, HoursRefLevel = 2.5,
 \item{Data}{Data frame with microwave link data.}
 
 \item{Dry}{Data frame: Should interval be considered dry for reference level
-determination? (0 = wet; 1 = dry).}
+determination? (0 = wet; 1 = dry). Use Dry=NULL if no wet-dry classification
+has been performed. Then every time interval is considered dry and hence used
+for the reference level determination.}
 
 \item{HoursRefLevel}{Minimum number of hours that should be dry in preceding
 PeriodHoursRefLevel hours for computing reference level (h).}
@@ -39,7 +41,7 @@ interval length in the time series is automatically computed and is employed as 
 interval length.
 }
 \examples{
-RefLevelMinMaxRSL(Data=DataPreprocessed,Dry=NULL,HoursRefLevel=2.5,
+RefLevelMinMaxRSL(Data=DataPreprocessed,Dry=WetDry$Dry,HoursRefLevel=2.5,
 PeriodHoursRefLevel=24)
 }
 \references{
