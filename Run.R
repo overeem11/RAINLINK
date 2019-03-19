@@ -89,7 +89,7 @@ cat(sprintf("Finished. (%.1f seconds)\n",round((proc.time()-StartTime)[3],digits
 # If wet-dry classification (function WetDryNearbyLinkApMinMaxRSL) has not been applied, run the R function as follows:
 StartTime <- proc.time()
 
-Pref <- RefLevelMinMaxRSL(Data=DataPreprocessed,HoursRefLevel=HoursRefLevel,PeriodHoursRefLevel=PeriodHoursRefLevel)
+Pref <- RefLevelMinMaxRSL(Data=DataPreprocessed,Dry=NULL,HoursRefLevel=HoursRefLevel,PeriodHoursRefLevel=PeriodHoursRefLevel)
 
 cat(sprintf("Finished. (%.1f seconds)\n",round((proc.time()-StartTime)[3],digits=1)))
 
@@ -115,7 +115,7 @@ Pcor <- CorrectMinMaxRSL(Data=DataOutlierFiltered,Dry=WetDry$Dry,Pref=Pref)
 
 
 # If wet-dry classification (function WetDryNearbyLinkApMinMaxRSL) has not been applied, run the R function as follows:
-Pcor <- CorrectMinMaxRSL(Data=DataPreprocessed,Pref=Pref)
+Pcor <- CorrectMinMaxRSL(Data=DataPreprocessed,Dry=NULL,Pref=Pref)
 
 
 
