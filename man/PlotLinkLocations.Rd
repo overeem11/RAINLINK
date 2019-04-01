@@ -6,12 +6,13 @@
 \usage{
 PlotLinkLocations(AlphaLinkLocations, BBoxOSMauto, OSMBottom, ColourLinks,
   ColourType, dataf, DateTime, ExtraTextLinkLocations,
-  FigFileLinkLocations, FigHeight, FigWidth, FolderFigures, FontFamily,
-  GoogleLocDegSpecified, GoogleLocLat, GoogleLocLon, GoogleLocName,
-  GoogleLocNameSpecified, GoogleMapType, GoogleZoomlevel, LabelAxisLat,
-  LabelAxisLonGoogle, LabelAxisLonOSM, LabelAxisLonStamen, OSMLeft,
-  MapBackground, OSMRight, OSMScale, OSMTop, SizeLinks, SizePlotTitle,
-  StamenMapType, StamenZoomlevel, TitleLinkLocations)
+  FigFileLinkLocations, FigHeight, FigWidth, FilePolygonsGrid,
+  FolderFigures, FontFamily, GoogleLocDegSpecified, GoogleLocLat,
+  GoogleLocLon, GoogleLocName, GoogleLocNameSpecified, GoogleMapType,
+  GoogleZoomlevel, LabelAxisLat, LabelAxisLonGoogle, LabelAxisLonOSM,
+  LabelAxisLonStamen, MapBackground, OSMLeft, OSMRight, OSMScale, OSMTop,
+  OutputFileType, SizeLinks, SizePlotTitle, StamenMapType, StamenZoomlevel,
+  TitleLinkLocations)
 }
 \arguments{
 \item{AlphaLinkLocations}{Transparency of link paths.}
@@ -57,6 +58,8 @@ pixels. Hence, using FigWidth and FigHeight of 2000 pixels or higher is advised.
 itself is stored in file "ggmapTemp.png". From this file the resolution of the background map can 
 be obtained. This can be useful for determining an appropriate FigWidth and FigHeight above.}
 
+\item{FilePolygonsGrid}{Name of file with polygons of interpolation grid.}
+
 \item{FolderFigures}{Folder name of figures.}
 
 \item{FontFamily}{Specify font family of text in figures. To select the default font use "". 
@@ -93,15 +96,15 @@ provided grid and used as centre of the Google Map.}
 
 \item{LabelAxisLonStamen}{Label name of horizontal axis (for Stamen Map only).}
 
-\item{OSMLeft}{Longitude in degrees (WGS84) for left side of the area for which rainfall depths are 
-to be plotted (for OpenStreetMap & Stamen Maps only).}
-
 \item{MapBackground}{Google Maps, OpenStreetMap or Stamen Map as background? Use "Google" for Google Maps, 
 "OSM" for OpenStreetMap and "Stamen" for Stamen Map (based on OpenStreetMap data). 
 Note that Google Maps will only plot on a square figure.
 It seems that mapping with OpenStreetMap (“get openstreetmap”) is no langer supported.
 This implies that mapping can only be done employing Google Maps (if Google API key is obtained) or via
 Stamen Map. This is not related to the RAINLINK version.}
+
+\item{OSMLeft}{Longitude in degrees (WGS84) for left side of the area for which rainfall depths are 
+to be plotted (for OpenStreetMap & Stamen Maps only).}
 
 \item{OSMRight}{Longitude in degrees (WGS84) for right side of the area for which rainfall depths 
 are to be plotted (for OpenStreetMap & Stamen Maps only).}
@@ -116,6 +119,8 @@ The highest possible resolution for a square area is about 2000 x 2000 pixels.}
 
 \item{OSMTop}{Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be 
 plotted (for OpenStreetMap & Stamen Maps only).}
+
+\item{OutputFileType}{Choose output file type of image: jpeg, png or tiff.}
 
 \item{SizeLinks}{Size of plotted link paths.}
 
@@ -136,16 +141,16 @@ Function which visualises microwave link paths on a map.
 PlotLinkLocations(AlphaLinkLocations=AlphaLinkLocations,BBoxOSMauto=BBoxOSMauto,
 OSMBottom=OSMBottom,ColourLinks=ColourLinks,ColourType=ColourType,dataf=dataf,
 DateTime=DateTime,ExtraTextLinkLocations=ExtraTextLinkLocations,
-FigFileLinkLocations=FigFileLinkLocations,FigHeight=FigHeight,FigWidth=FigWidth,
-FolderFigures=FolderFigures,FontFamily=FontFamily,
-GoogleLocDegSpecified=GoogleLocDegSpecified,GoogleLocLat=GoogleLocLat,
-GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
+FigFileLinkLocations=FigFileLinkLocations,FigHeight=FigHeight,
+FigWidth=FigWidth,FilePolygonsGrid=FilePolygonsGrid,FolderFigures=FolderFigures,
+FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,
+GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
 GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
 GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
 LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
-LabelAxisLonStamen=LabelAxisLonStamen,OSMLeft=OSMLeft,MapBackground=MapBackground,
-OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,SizeLinks=SizeLinks,
-SizePlotTitle=SizePlotTitle,StamenMapType=StamenMapType,
+LabelAxisLonStamen=LabelAxisLonStamen,MapBackground=MapBackground,OSMLeft=OSMLeft,
+OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,OutputFileType=OutputFileType,
+SizeLinks=SizeLinks,SizePlotTitle=SizePlotTitle,StamenMapType=StamenMapType,
 StamenZoomlevel=StamenZoomlevel,TitleLinkLocations=TitleLinkLocations)
 }
 \references{

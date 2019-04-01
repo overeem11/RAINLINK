@@ -12,13 +12,14 @@ RainMapsRadarsDaily(AlphaPlotLocation, AlphaPolygon, AutDefineLegendTop,
   FolderRadarRainMapsDaily, FontFamily, GoogleLocDegSpecified,
   GoogleLocLat, GoogleLocLon, GoogleLocName, GoogleLocNameSpecified,
   GoogleMapType, GoogleZoomlevel, LabelAxisLat, LabelAxisLonGoogle,
-  LabelAxisLonOSM, LabelAxisLonStamen, LatLocation, LatText,
+  LabelAxisLonOSM, LabelAxisLonStamen, LatLocation, LatText, LegendSize,
   LegendTitleRadarsDaily, LonLocation, LonText, ManualScale, MapBackground,
-  OSMBottom, OSMLeft, OSMRight, OSMScale, OSMTop, PathRadarRainfallDepth,
-  PERIOD, PlotLocation, PixelBorderCol, PlotBelowScaleBottom,
-  ScaleBottomDaily, ScaleHigh, ScaleLow, ScaleTopDaily, SizePixelBorder,
-  SizePlotLocation, SizePlotTitle, StamenMapType, StamenZoomlevel,
-  SymbolPlotLocation, TIMESTEP, TimeZone, TitleRadars, XMiddle, YMiddle)
+  OSMBottom, OSMLeft, OSMRight, OSMScale, OSMTop, OutputFileType,
+  PathRadarRainfallDepth, PERIOD, PlotLocation, PixelBorderCol,
+  PlotBelowScaleBottom, ScaleBottomDaily, ScaleHigh, ScaleLow,
+  ScaleTopDaily, SizePixelBorder, SizePlotLocation, SizePlotTitle,
+  StamenMapType, StamenZoomlevel, SymbolPlotLocation, TIMESTEP, TimeZone,
+  TitleRadars, XMiddle, YMiddle)
 }
 \arguments{
 \item{AlphaPlotLocation}{Transparency of plotted symbol for specified location on map.}
@@ -123,6 +124,8 @@ to "yes", the bounding box of the map is determined from the provided grid and u
 
 \item{LatText}{Latitude of text (rainfall depth) of location on map (degrees).}
 
+\item{LegendSize}{Size of legend (choose e.g. 75 for 6 classes and 50 for 10 classes).}
+
 \item{LegendTitleRadarsDaily}{Title of legend.}
 
 \item{LonLocation}{Longitude of location on map (degrees).}
@@ -159,6 +162,8 @@ resolution for a square area is about 2000 x 2000 pixels.}
 
 \item{OSMTop}{Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be plotted 
 (for OpenStreetMap & Stamen Maps only).}
+
+\item{OutputFileType}{Choose output file type of image: jpeg, png or tiff.}
 
 \item{PathRadarRainfallDepth}{Path in NetCDF4 file with radar data.}
 
@@ -235,10 +240,11 @@ GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
 GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
 LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
 LabelAxisLonStamen=LabelAxisLonStamen,LatLocation=LatLocation,LatText=LatText,
-LegendTitleRadarsDaily=LegendTitleRadarsDaily,LonLocation=LonLocation,
-LonText=LonText,ManualScale=ManualScale,MapBackground=MapBackground,
-OSMBottom=OSMBottom,OSMLeft=OSMLeft,OSMRight=OSMRight,OSMScale=OSMScale,
-OSMTop=OSMTop,PathRadarRainfallDepth=PathRadarRainfallDepth,PERIOD=PERIOD,
+LegendSize=LegendSize,LegendTitleRadarsDaily=LegendTitleRadarsDaily,
+LonLocation=LonLocation,LonText=LonText,ManualScale=ManualScale,
+MapBackground=MapBackground,OSMBottom=OSMBottom,OSMLeft=OSMLeft,
+OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,OutputFileType=OutputFileType,
+PathRadarRainfallDepth=PathRadarRainfallDepth,PERIOD=PERIOD,
 PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
 PlotBelowScaleBottom=PlotBelowScaleBottom,ScaleBottomDaily=ScaleBottomDaily,
 ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,ScaleTopDaily=ScaleTopDaily,

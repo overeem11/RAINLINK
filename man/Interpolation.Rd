@@ -35,7 +35,7 @@ needs to be estimated, is assumed to be in the same coordinate system as the ori
 
 \item{TimeZone}{Time zone of data (e.g. "UTC").}
 
-\item{Variogram}{For OK: which variogram to use? Use "ClimvdBeek" for climatological spherical 
+\item{Variogram}{For OK: which variogram to use? Use "ClimVar" for climatological spherical 
 variogram model.
 Use "Manual" for spherical variogram model with NUGGET, SILL, and RANGE values supplied as 
 function arguments.}

@@ -14,13 +14,13 @@ RainMapsLinksDaily(AlphaLinksDaily, AlphaPlotLocation, AlphaPolygon,
   GoogleLocDegSpecified, GoogleLocLat, GoogleLocLon, GoogleLocName,
   GoogleLocNameSpecified, GoogleMapType, GoogleZoomlevel, LabelAxisLat,
   LabelAxisLonGoogle, LabelAxisLonOSM, LabelAxisLonStamen, LatLocation,
-  LatText, LegendTitleLinksDaily, LonLocation, LonText, ManualScale,
-  MapBackground, OSMBottom, OSMLeft, OSMRight, OSMScale, OSMTop, PERIOD,
-  PlotLocation, PixelBorderCol, PlotBelowScaleBottom, PlotLocLinks,
-  ScaleBottomDaily, ScaleHigh, ScaleLow, ScaleTopDaily, SizeLinks,
-  SizePixelBorder, SizePlotLocation, SizePlotTitle, StamenMapType,
-  StamenZoomlevel, SymbolPlotLocation, TIMESTEP, TitleLinks, XMiddle,
-  YMiddle)
+  LatText, LegendSize, LegendTitleLinksDaily, LonLocation, LonText,
+  ManualScale, MapBackground, OSMBottom, OSMLeft, OSMRight, OSMScale,
+  OSMTop, OutputFileType, PERIOD, PlotLocation, PixelBorderCol,
+  PlotBelowScaleBottom, PlotLocLinks, ScaleBottomDaily, ScaleHigh,
+  ScaleLow, ScaleTopDaily, SizeLinks, SizePixelBorder, SizePlotLocation,
+  SizePlotTitle, StamenMapType, StamenZoomlevel, SymbolPlotLocation,
+  TIMESTEP, TitleLinks, XMiddle, YMiddle)
 }
 \arguments{
 \item{AlphaLinksDaily}{Transparency of link paths.}
@@ -135,6 +135,8 @@ provided grid and used as centre of the Google Map.}
 
 \item{LatText}{Latitude of text (rainfall depth) of location on map (degrees).}
 
+\item{LegendSize}{Size of legend (choose e.g. 75 for 6 classes and 50 for 10 classes).}
+
 \item{LegendTitleLinksDaily}{Title of legend.}
 
 \item{LonLocation}{Longitude of location on map (degrees).}
@@ -171,6 +173,8 @@ loaded. The highest possible resolution for a square area is about 2000 x 2000 p
 
 \item{OSMTop}{Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be 
 plotted (for OpenStreetMap & Stamen Maps only).}
+
+\item{OutputFileType}{Choose output file type of image: jpeg, png or tiff.}
 
 \item{PERIOD}{Select daily time interval, i.e. "0800" implies 0800 UTC previous day - 0800 UTC present 
 day (use 2400 for 0000 UTC).}
@@ -257,10 +261,11 @@ GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
 GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
 LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
 LabelAxisLonStamen=LabelAxisLonStamen,LatLocation=LatLocation,LatText=LatText,
-LegendTitleLinksDaily=LegendTitleLinksDaily,LonLocation=LonLocation,LonText=LonText,
-ManualScale=ManualScale,MapBackground=MapBackground,OSMBottom=OSMBottom,OSMLeft=OSMLeft,
-OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,PERIOD=PERIOD,
-PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
+LegendSize=LegendSize,LegendTitleLinksDaily=LegendTitleLinksDaily,
+LonLocation=LonLocation,LonText=LonText,ManualScale=ManualScale,
+MapBackground=MapBackground,OSMBottom=OSMBottom,OSMLeft=OSMLeft,
+OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,OutputFileType=OutputFileType,
+PERIOD=PERIOD,PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
 PlotBelowScaleBottom=PlotBelowScaleBottom,PlotLocLinks=PlotLocLinks,
 ScaleBottomDaily=ScaleBottomDaily,ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,
 ScaleTopDaily=ScaleTopDaily,SizeLinks=SizeLinks,SizePixelBorder=SizePixelBorder,

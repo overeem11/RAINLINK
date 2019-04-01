@@ -14,12 +14,13 @@ RainMapsLinksTimeStep(AlphaLinksTimeStep, AlphaPlotLocation, AlphaPolygon,
   GoogleLocDegSpecified, GoogleLocLat, GoogleLocLon, GoogleLocName,
   GoogleLocNameSpecified, GoogleMapType, GoogleZoomlevel, LabelAxisLat,
   LabelAxisLonGoogle, LabelAxisLonOSM, LabelAxisLonStamen, LatLocation,
-  LatText, LegendTitleLinksTimeStep, LonLocation, LonText, ManualScale,
-  MapBackground, OSMBottom, OSMLeft, OSMRight, OSMScale, OSMTop,
-  PlotLocation, PixelBorderCol, PlotBelowScaleBottom, PlotLocLinks,
-  ScaleBottomTimeStep, ScaleHigh, ScaleLow, ScaleTopTimeStep, SizeLinks,
-  SizePixelBorder, SizePlotLocation, SizePlotTitle, StamenMapType,
-  StamenZoomlevel, SymbolPlotLocation, TitleLinks, XMiddle, YMiddle)
+  LatText, LegendSize, LegendTitleLinksTimeStep, LonLocation, LonText,
+  ManualScale, MapBackground, OSMBottom, OSMLeft, OSMRight, OSMScale,
+  OSMTop, OutputFileType, PlotLocation, PixelBorderCol,
+  PlotBelowScaleBottom, PlotLocLinks, ScaleBottomTimeStep, ScaleHigh,
+  ScaleLow, ScaleTopTimeStep, SizeLinks, SizePixelBorder, SizePlotLocation,
+  SizePlotTitle, StamenMapType, StamenZoomlevel, SymbolPlotLocation,
+  TitleLinks, XMiddle, YMiddle)
 }
 \arguments{
 \item{AlphaLinksTimeStep}{Transparency of link paths.}
@@ -129,6 +130,8 @@ to "yes", the bounding box of the map is determined from the provided grid and u
 
 \item{LatText}{Latitude of text (rainfall depth) of location on map (degrees).}
 
+\item{LegendSize}{Size of legend (choose e.g. 75 for 6 classes and 50 for 10 classes).}
+
 \item{LegendTitleLinksTimeStep}{Title of legend.}
 
 \item{LonLocation}{Longitude of location on map (degrees).}
@@ -164,6 +167,8 @@ loaded. The highest possible resolution for a square area is about 2000 x 2000 p
 
 \item{OSMTop}{Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be plotted 
 (for OpenStreetMap & Stamen Maps only).}
+
+\item{OutputFileType}{Choose output file type of image: jpeg, png or tiff.}
 
 \item{PlotLocation}{A location is plotted on map if PlotLocation is "yes".}
 
@@ -243,9 +248,10 @@ GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
 GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
 LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
 LabelAxisLonStamen=LabelAxisLonStamen,LatLocation=LatLocation,LatText=LatText,
-LegendTitleLinksTimeStep=LegendTitleLinksTimeStep,LonLocation=LonLocation,
-LonText=LonText,ManualScale=ManualScale,MapBackground=MapBackground,OSMBottom=OSMBottom,
-OSMLeft=OSMLeft,OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,
+LegendSize=LegendSize,LegendTitleLinksTimeStep=LegendTitleLinksTimeStep,
+LonLocation=LonLocation,LonText=LonText,ManualScale=ManualScale,
+MapBackground=MapBackground,OSMBottom=OSMBottom,OSMLeft=OSMLeft,
+OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,OutputFileType=OutputFileType,
 PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
 PlotBelowScaleBottom=PlotBelowScaleBottom,PlotLocLinks=PlotLocLinks,
 ScaleBottomTimeStep=ScaleBottomTimeStep,ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,
