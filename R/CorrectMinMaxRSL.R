@@ -1,12 +1,7 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
-
-## 
-## Described in paper:
-## Aart Overeem, Hidde Leijnse, Remko Uijlenhoet, 2015. Retrieval algorithm for rainfall mapping 
-## from microwave links in a cellular communication network. Atmos. Meas. Tech. Discuss., revised version.    
-
-## Version 1.12
+##
+## Version 1.13
 ## Copyright (C) 2019 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify

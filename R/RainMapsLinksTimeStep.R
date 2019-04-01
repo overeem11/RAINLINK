@@ -1,7 +1,7 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.12
+## Version 1.13
 ## Copyright (C) 2019 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
@@ -92,6 +92,7 @@
 #' @param LabelAxisLonStamen Label name of horizontal axis (for Stamen Map only).
 #' @param LatLocation Latitude of location on map (degrees).
 #' @param LatText Latitude of text (rainfall depth) of location on map (degrees).
+#' @param LegendSize Size of legend (choose e.g. 75 for 6 classes and 50 for 10 classes).
 #' @param LegendTitleLinksTimeStep Title of legend.
 #' @param LonLocation Longitude of location on map (degrees).
 #' @param LonText Longitude of text (rainfall depth) of location on map (degrees).
@@ -118,6 +119,7 @@
 #' loaded. The highest possible resolution for a square area is about 2000 x 2000 pixels. 
 #' @param OSMTop Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be plotted 
 #' (for OpenStreetMap & Stamen Maps only).
+#' @param OutputFileType Choose output file type of image: jpeg, png or tiff.
 #' @param PlotLocation A location is plotted on map if PlotLocation is "yes".
 #' @param PixelBorderCol Choose colour of pixel borders. Use NA (without quotes) to not plot pixel borders. 
 #' If the pixels are relatively small with respect to the plotted region, the graphical quality of the pixel borders 
@@ -171,9 +173,10 @@
 #' GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
 #' LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
 #' LabelAxisLonStamen=LabelAxisLonStamen,LatLocation=LatLocation,LatText=LatText,
-#' LegendTitleLinksTimeStep=LegendTitleLinksTimeStep,LonLocation=LonLocation,
-#' LonText=LonText,ManualScale=ManualScale,MapBackground=MapBackground,OSMBottom=OSMBottom,
-#' OSMLeft=OSMLeft,OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,
+#' LegendSize=LegendSize,LegendTitleLinksTimeStep=LegendTitleLinksTimeStep,
+#' LonLocation=LonLocation,LonText=LonText,ManualScale=ManualScale,
+#' MapBackground=MapBackground,OSMBottom=OSMBottom,OSMLeft=OSMLeft,
+#' OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,OutputFileType=OutputFileType,
 #' PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
 #' PlotBelowScaleBottom=PlotBelowScaleBottom,PlotLocLinks=PlotLocLinks,
 #' ScaleBottomTimeStep=ScaleBottomTimeStep,ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,
@@ -197,8 +200,8 @@ FigFileLinksTimeStep,FigHeight,FigWidth,FileGrid,FilePolygonsGrid,FolderFigures,
 FolderRainMaps,FolderRainEstimates,FontFamily,GoogleLocDegSpecified,GoogleLocLat,
 GoogleLocLon,GoogleLocName,GoogleLocNameSpecified,GoogleMapType,GoogleZoomlevel,
 LabelAxisLat,LabelAxisLonGoogle,LabelAxisLonOSM,LabelAxisLonStamen,LatLocation,LatText,
-LegendTitleLinksTimeStep,LonLocation,LonText,ManualScale,MapBackground,OSMBottom,OSMLeft,
-OSMRight,OSMScale,OSMTop,PlotLocation,PixelBorderCol,PlotBelowScaleBottom,
+LegendSize,LegendTitleLinksTimeStep,LonLocation,LonText,ManualScale,MapBackground,OSMBottom,OSMLeft,
+OSMRight,OSMScale,OSMTop,OutputFileType,PlotLocation,PixelBorderCol,PlotBelowScaleBottom,
 PlotLocLinks,ScaleBottomTimeStep,ScaleHigh,ScaleLow,ScaleTopTimeStep,SizeLinks,
 SizePixelBorder,SizePlotLocation,SizePlotTitle,StamenMapType,StamenZoomlevel,
 SymbolPlotLocation,TitleLinks,XMiddle,YMiddle)
@@ -458,11 +461,22 @@ SymbolPlotLocation,TitleLinks,XMiddle,YMiddle)
 		names(pointdata) = c("pointlon","pointlat")
 
 
-		# Plot remainder of figure and send to jpeg file:
+		# Plot remainder of figure and send to output file:
 		Title <- paste(paste(TitleLinks,"; ",ExtraText,sep=""),paste("End time: ",DateFiles[FileNr]),sep="\n")
-		FigFilename <- paste(FolderFigures,"/",FigFileLinksTimeStep,DateFiles[FileNr],".jpeg",sep="")
+		FigFilename <- paste(FolderFigures,"/",FigFileLinksTimeStep,DateFiles[FileNr],".",OutputFileType,sep="")
 		
-		jpeg(FigFilename,width = FigWidth, height = FigHeight) 
+                if (OutputFileType=="jpeg")
+                {
+		   jpeg(FigFilename,width = FigWidth, height = FigHeight) 
+                }
+                if (OutputFileType=="png")
+                {
+		   png(FigFilename,width = FigWidth, height = FigHeight) 
+                }
+                if (OutputFileType=="tiff")
+                {
+		   tiff(FigFilename,width = FigWidth, height = FigHeight) 
+                }
 		par(family=FontFamily)
 		FigFinal <- Fig + theme(legend.text = element_text(size=rel(5),family=FontFamily)) + 
 		theme(legend.title = element_text(size=rel(5),family=FontFamily)) + coord_map(projection="mercator",
@@ -474,7 +488,8 @@ SymbolPlotLocation,TitleLinks,XMiddle,YMiddle)
 			LabelNames2 <- c(LabelNames,paste("> ",formatC(ScaleTopTimeStep, format="f", digits=1),sep=""))
 			FigFinal <- FigFinal + geom_point(data=pointdata,aes(pointdata[,1],pointdata[,2],color="black"),size=67.5,shape=15,
 			alpha=AlphaPolygon,na.rm=TRUE) + theme(legend.key = element_blank()) + scale_color_manual(values=ColoursOrig,name=LegendTitleRadarsTimeStep,
-			labels=rev(LabelNames2),limits=rev(c(min(ScaleLow),ScaleHigh))) + theme(legend.title = element_text(face="bold"))
+			labels=rev(LabelNames2),limits=rev(c(min(ScaleLow),ScaleHigh))) + theme(legend.title = element_text(face="bold")) + 
+                        guides(color = guide_legend(override.aes = list(size = LegendSize)))
 			# With na.rm=TRUE we suppress warnings, which was needed since the following warning was provided many times: 
 			# "Removed 1 rows containing missing values (geom_point)". This warning can be disregarded.				
 		}
@@ -483,7 +498,8 @@ SymbolPlotLocation,TitleLinks,XMiddle,YMiddle)
 		{
 			FigFinal <- FigFinal + geom_point(data=pointdata,aes(pointdata[,1],pointdata[,2],color="black"),size=67.5,shape=15,
 			alpha=AlphaPolygon,na.rm=TRUE) + theme(legend.key = element_blank()) + scale_color_manual(values=rev(Colours),name=LegendTitleRadarsTimeStep,
-			labels=rev(LabelNames),limits=rev(c(ScaleLow))) + theme(legend.title = element_text(face="bold")) 
+			labels=rev(LabelNames),limits=rev(c(ScaleLow))) + theme(legend.title = element_text(face="bold")) + 
+                        guides(color = guide_legend(override.aes = list(size = LegendSize)))
 			# With na.rm=TRUE we suppress warnings, which was needed since the following warning was provided many times: 
 			# "Removed 1 rows containing missing values (geom_point)". This warning can be disregarded.
 		}

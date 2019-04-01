@@ -1,7 +1,7 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.12
+## Version 1.13
 ## Copyright (C) 2019 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
@@ -95,6 +95,7 @@
 #' The highest possible resolution for a square area is about 2000 x 2000 pixels. 
 #' @param OSMTop Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be 
 #' plotted (for OpenStreetMap & Stamen Maps only).
+#' @param OutputFileType Choose output file type of image: jpeg, png or tiff.
 #' @param SizeLinks Size of plotted link paths.
 #' @param SizePlotTitle Size of plot title.
 #' @param StamenMapType In case of Stamen Maps: which map type should be used? Available map types which 
@@ -115,8 +116,8 @@
 #' GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
 #' LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
 #' LabelAxisLonStamen=LabelAxisLonStamen,MapBackground=MapBackground,OSMLeft=OSMLeft,
-#' OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,SizeLinks=SizeLinks,
-#' SizePlotTitle=SizePlotTitle,StamenMapType=StamenMapType,
+#' OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,OutputFileType=OutputFileType,
+#' SizeLinks=SizeLinks,SizePlotTitle=SizePlotTitle,StamenMapType=StamenMapType,
 #' StamenZoomlevel=StamenZoomlevel,TitleLinkLocations=TitleLinkLocations)
 #' @author Aart Overeem & Hidde Leijnse
 #' @references ''ManualRAINLINK.pdf''
@@ -129,8 +130,8 @@ PlotLinkLocations <- function(AlphaLinkLocations,BBoxOSMauto,OSMBottom,ColourLin
 dataf,DateTime,ExtraTextLinkLocations,FigFileLinkLocations,FigHeight,FigWidth,FilePolygonsGrid,
 FolderFigures,FontFamily,GoogleLocDegSpecified,GoogleLocLat,GoogleLocLon,GoogleLocName,
 GoogleLocNameSpecified,GoogleMapType,GoogleZoomlevel,LabelAxisLat,LabelAxisLonGoogle,LabelAxisLonOSM,
-LabelAxisLonStamen,MapBackground,OSMLeft,OSMRight,OSMScale,OSMTop,SizeLinks,SizePlotTitle,StamenMapType,
-StamenZoomlevel,TitleLinkLocations)
+LabelAxisLonStamen,MapBackground,OSMLeft,OSMRight,OSMScale,OSMTop,OutputFileType,SizeLinks,SizePlotTitle,
+StamenMapType,StamenZoomlevel,TitleLinkLocations)
 {
 
 	# Create directory for output files:
@@ -238,9 +239,20 @@ StamenZoomlevel,TitleLinkLocations)
 
 	# Plot remainder of figure and send to jpeg file:
 	Title <- paste("\n",TitleLinkLocations,"\n",paste(ExtraTextLinkLocations,DateTime,sep=", "),sep="")
-	FigFilename <- paste(FolderFigures,"/",FigFileLinkLocations,DateTime,".jpeg",sep="")
+	FigFilename <- paste(FolderFigures,"/",FigFileLinkLocations,DateTime,".",OutputFileType,sep="")
 		
-	jpeg(FigFilename,width = FigWidth, height = FigHeight) 
+        if (OutputFileType=="jpeg")
+        {
+           jpeg(FigFilename,width = FigWidth, height = FigHeight) 
+        }
+        if (OutputFileType=="png")
+        {
+	   png(FigFilename,width = FigWidth, height = FigHeight) 
+        }
+        if (OutputFileType=="tiff")
+        {
+	   tiff(FigFilename,width = FigWidth, height = FigHeight) 
+        }
 	par(family=FontFamily)
 	FigFinal <- fig + theme(legend.text = element_text(size=rel(5),family=FontFamily)) + 
 	coord_map(projection="mercator",

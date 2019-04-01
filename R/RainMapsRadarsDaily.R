@@ -1,7 +1,7 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.12
+## Version 1.13
 ## Copyright (C) 2019 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
@@ -88,6 +88,7 @@
 #' @param LabelAxisLonStamen Label name of horizontal axis (for Stamen Map only).
 #' @param LatLocation Latitude of location on map (degrees).
 #' @param LatText Latitude of text (rainfall depth) of location on map (degrees).
+#' @param LegendSize Size of legend (choose e.g. 75 for 6 classes and 50 for 10 classes).
 #' @param LegendTitleRadarsDaily Title of legend.
 #' @param LonLocation Longitude of location on map (degrees).
 #' @param LonText Longitude of text (rainfall depth) of location on map (degrees).
@@ -115,6 +116,7 @@
 #' resolution for a square area is about 2000 x 2000 pixels. 
 #' @param OSMTop Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be plotted 
 #' (for OpenStreetMap & Stamen Maps only).
+#' @param OutputFileType Choose output file type of image: jpeg, png or tiff.
 #' @param PathRadarRainfallDepth Path in NetCDF4 file with radar data.
 #' @param PERIOD Select daily time interval, i.e. "0800" implies 0800 UTC previous day - 0800 UTC present day 
 #' (use 2400 for 0000 UTC).
@@ -167,10 +169,11 @@
 #' GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
 #' LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
 #' LabelAxisLonStamen=LabelAxisLonStamen,LatLocation=LatLocation,LatText=LatText,
-#' LegendTitleRadarsDaily=LegendTitleRadarsDaily,LonLocation=LonLocation,
-#' LonText=LonText,ManualScale=ManualScale,MapBackground=MapBackground,
-#' OSMBottom=OSMBottom,OSMLeft=OSMLeft,OSMRight=OSMRight,OSMScale=OSMScale,
-#' OSMTop=OSMTop,PathRadarRainfallDepth=PathRadarRainfallDepth,PERIOD=PERIOD,
+#' LegendSize=LegendSize,LegendTitleRadarsDaily=LegendTitleRadarsDaily,
+#' LonLocation=LonLocation,LonText=LonText,ManualScale=ManualScale,
+#' MapBackground=MapBackground,OSMBottom=OSMBottom,OSMLeft=OSMLeft,
+#' OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,OutputFileType=OutputFileType,
+#' PathRadarRainfallDepth=PathRadarRainfallDepth,PERIOD=PERIOD,
 #' PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
 #' PlotBelowScaleBottom=PlotBelowScaleBottom,ScaleBottomDaily=ScaleBottomDaily,
 #' ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,ScaleTopDaily=ScaleTopDaily,
@@ -192,8 +195,8 @@ FigFileRadarsDaily,FigHeight,FigWidth,FileGrid,FileNameRadarDaily,FilePolygonsGr
 FolderFigures,FolderRadarRainMapsDaily,FontFamily,GoogleLocDegSpecified,GoogleLocLat,
 GoogleLocLon,GoogleLocName,GoogleLocNameSpecified,GoogleMapType,GoogleZoomlevel,
 LabelAxisLat,LabelAxisLonGoogle,LabelAxisLonOSM,LabelAxisLonStamen,LatLocation,
-LatText,LegendTitleRadarsDaily,LonLocation,LonText,ManualScale,MapBackground,
-OSMBottom,OSMLeft,OSMRight,OSMScale,OSMTop,PathRadarRainfallDepth,PERIOD,PlotLocation,
+LatText,LegendSize,LegendTitleRadarsDaily,LonLocation,LonText,ManualScale,MapBackground,
+OSMBottom,OSMLeft,OSMRight,OSMScale,OSMTop,OutputFileType,PathRadarRainfallDepth,PERIOD,PlotLocation,
 PixelBorderCol,PlotBelowScaleBottom,ScaleBottomDaily,ScaleHigh,ScaleLow,
 ScaleTopDaily,SizePixelBorder,SizePlotLocation,SizePlotTitle,StamenMapType,
 StamenZoomlevel,SymbolPlotLocation,TIMESTEP,TimeZone,TitleRadars,XMiddle,YMiddle)
@@ -429,7 +432,7 @@ StamenZoomlevel,SymbolPlotLocation,TIMESTEP,TimeZone,TitleRadars,XMiddle,YMiddle
 	names(pointdata) = c("pointlon","pointlat")
 
 
-	# Plot remainder of figure and send to jpeg file:
+	# Plot remainder of figure and send to output file:
 	EndDateTime <- substr(EndDateTime,1,16)
 	EndDateTime <- gsub(" ","",EndDateTime)
 	EndDateTime <- gsub(":","",EndDateTime)
@@ -440,9 +443,20 @@ StamenZoomlevel,SymbolPlotLocation,TIMESTEP,TimeZone,TitleRadars,XMiddle,YMiddle
 	StartDateTime <- gsub("-","",StartDateTime)
 	DateTime <- paste(StartDateTime," - ",EndDateTime,sep="")
 	Title <- paste(paste(TitleRadars,"; ",ExtraText,sep=""),DateTime,sep="\n")
-	FigFilename <- paste(FolderFigures,"/",FigFileRadarsDaily,EndDateTime,".jpeg",sep="")
+	FigFilename <- paste(FolderFigures,"/",FigFileRadarsDaily,EndDateTime,".",OutputFileType,sep="")
 	
-	jpeg(FigFilename,width = FigWidth, height = FigHeight) 
+        if (OutputFileType=="jpeg")
+        {
+           jpeg(FigFilename,width = FigWidth, height = FigHeight) 
+        }
+        if (OutputFileType=="png")
+        {
+	   png(FigFilename,width = FigWidth, height = FigHeight) 
+        }
+        if (OutputFileType=="tiff")
+        {
+	   tiff(FigFilename,width = FigWidth, height = FigHeight) 
+        }
 	par(family=FontFamily)
 	FigFinal <- Fig + theme(legend.text = element_text(size=rel(5),family=FontFamily)) + 
 	theme(legend.title = element_text(size=rel(5),family=FontFamily)) + coord_map(projection="mercator",
@@ -454,7 +468,8 @@ StamenZoomlevel,SymbolPlotLocation,TIMESTEP,TimeZone,TitleRadars,XMiddle,YMiddle
 		LabelNames2 <- c(LabelNames,paste("> ",formatC(ScaleTopDaily, format="f", digits=1),sep=""))
 		FigFinal <- FigFinal + geom_point(data=pointdata,aes(pointdata[,1],pointdata[,2],color="black"),size=67.5,shape=15,
 		alpha=AlphaPolygon,na.rm=TRUE) + theme(legend.key = element_blank()) + scale_color_manual(values=ColoursOrig,name=LegendTitleRadarsDaily,
-		labels=rev(LabelNames2),limits=rev(c(min(ScaleLow),ScaleHigh))) + theme(legend.title = element_text(face="bold"))
+		labels=rev(LabelNames2),limits=rev(c(min(ScaleLow),ScaleHigh))) + theme(legend.title = element_text(face="bold")) + 
+                guides(color = guide_legend(override.aes = list(size = LegendSize)))
 		# With na.rm=TRUE we suppress warnings, which was needed since the following warning was provided many times: 
 		# "Removed 1 rows containing missing values (geom_point)". This warning can be disregarded.	
 	}
@@ -463,7 +478,8 @@ StamenZoomlevel,SymbolPlotLocation,TIMESTEP,TimeZone,TitleRadars,XMiddle,YMiddle
 	{
 		FigFinal <- FigFinal + geom_point(data=pointdata,aes(pointdata[,1],pointdata[,2],color="black"),size=67.5,shape=15,
 		alpha=AlphaPolygon,na.rm=TRUE) + theme(legend.key = element_blank()) + scale_color_manual(values=rev(Colours),name=LegendTitleRadarsTimeStep,
-		labels=rev(LabelNames),limits=rev(c(ScaleLow))) + theme(legend.title = element_text(face="bold"))
+		labels=rev(LabelNames),limits=rev(c(ScaleLow))) + theme(legend.title = element_text(face="bold")) + 
+                guides(color = guide_legend(override.aes = list(size = LegendSize)))
 		# With na.rm=TRUE we suppress warnings, which was needed since the following warning was provided many times: 
 		# "Removed 1 rows containing missing values (geom_point)". This warning can be disregarded.
 	}

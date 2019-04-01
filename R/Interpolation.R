@@ -1,7 +1,7 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.12
+## Version 1.13
 ## Copyright (C) 2019 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
@@ -56,7 +56,7 @@
 #' @param Rmean Vector of link-derived rainfall intensities (mm h\eqn{^{-1}}) with length equal to Data.
 #' @param SILL Sill of spherical variogram model (mm\eqn{^2}).
 #' @param TimeZone Time zone of data (e.g. "UTC").
-#' @param Variogram For OK: which variogram to use? Use "ClimvdBeek" for climatological spherical 
+#' @param Variogram For OK: which variogram to use? Use "ClimVar" for climatological spherical 
 #' variogram model.
 #' Use "Manual" for spherical variogram model with NUGGET, SILL, and RANGE values supplied as 
 #' function arguments.
