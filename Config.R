@@ -214,7 +214,7 @@ nmax <- 50	# for local kriging: the number of nearest observations that should b
 		# all observations are used
 
 # For "OK": which variogram to use?
-# Use "ClimvdBeek" for climatological spherical variogram model.
+# Use "ClimVar" for climatological spherical variogram model.
 # Use "Manual" for spherical variogram model with nugget, sill, and range values manually specified below.
 Variogram <- "ClimVar"
 NUGGET <- 0.37	# mm^2 
@@ -426,6 +426,10 @@ LegendTitleLinksDaily <- paste("Daily\nrainfall\ndepth\n(mm)\n",sep="")
 LegendTitleRadarsDaily <- paste("Daily\nrainfall\ndepth\n(mm)\n",sep="")
 
 
+# Size of legend:
+LegendSize <- 75
+
+
 # Label name of vertical and horizontal axis:
 LabelAxisLat <- bquote("Latitude "*(degree))
 LabelAxisLonOSM <- bquote(atop("Longitude "*(degree), "\uA9OpenStreetMap contributors; openstreetmap.org")) 
@@ -466,7 +470,9 @@ ManualScale <- "no"	# If "no", manual scale below is not used, and interval brea
 # For not equal to "no", interval breaks are determined manually:
 ScaleLow <- c(ScaleBottomDaily,6,11,16,21)	# or ScaleBottomTimeStep instead of ScaleBottomDaily.
 ScaleHigh <- c(6,11,16,21,ScaleTopDaily)	# or ScaleTopTimeStep instead of ScaleTopDaily.
-# Please note that in case of x values in ColoursNumber, ScaleLow and ScaleHigh should also contain x values.
+# Please note that in case of x values in ColoursNumber, ScaleLow and ScaleHigh should also contain x values!
+# So, in case you change the number of values in ScaleLow and ScaleHigh: do not forget to change the number for ColoursNumber above accordingly,
+# and be aware that the number of colors in ColourScheme below, when given as a list of hexadecimal codes or names, should also change accordingly.
 # Example for time steps:
 #ScaleBottomTimeStep <- 0.1	# mm. 
 #ScaleTopTimeStep <- 10.1	# mm.
@@ -507,6 +513,10 @@ FigFileLinksTimeStep <- paste("Links",gsub(" ","",ExtraText),TIMESTEP,"min",sep=
 FigFileRadarsTimeStep <- paste("Radars",gsub(" ","",ExtraText),TIMESTEP,"min",sep="")
 FigFileLinksDaily <- paste("LinksDaily",gsub(" ","",ExtraText),sep="")
 FigFileRadarsDaily <- paste("RadarsDaily",gsub(" ","",ExtraText),sep="")
+
+
+# Choose output file type of image: jpeg, png or tiff.
+OutputFileType <- "jpeg"
 ######################################
 
 
