@@ -1,7 +1,7 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.13
+## Version 1.14
 ## Copyright (C) 2019 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
@@ -346,8 +346,9 @@ YMiddle)
 			TEMP <- na.omit(TEMP)
 			rm(Data)
   		}
-		# Select unique links over entire day. Full-duplex links will be plotted twice.
-		DataCoor <- unique(data.frame(cbind(TEMP$XStart,TEMP$YStart,TEMP$XEnd,TEMP$YEnd)))
+		# Select unique links over entire day. Full-duplex links will be plotted twice. Links with only no data (= NA value for RainfallDepthPath) will not be plotted.
+                cond <- which(TEMP$RainfallDepthPath>=0)
+		DataCoor <- unique(data.frame(cbind(TEMP$XStart[cond],TEMP$YStart[cond],TEMP$XEnd[cond],TEMP$YEnd[cond])))
 	}
 
 	

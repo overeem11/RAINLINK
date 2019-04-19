@@ -1,7 +1,7 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.13
+## Version 1.14
 ## Copyright (C) 2019 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
@@ -142,7 +142,7 @@
 #' this is to manually give the legend breaks (ManualScale not equal to "no").
 #' @param SizeLinks  Size of plotted link paths.
 #' @param SizePixelBorder Size of pixel borders.
-#' @param SizePlotLocation Size of symbol and and accompanied text for specified location on map.
+#' @param SizePlotLocation Size of symbol and accompanied text for specified location on map.
 #' @param SizePlotTitle Size of plot title.
 #' @param StamenMapType In case of Stamen Maps: which map type should be used? Available map types which 
 #' seem most useful and work: "toner-hybrid" &, recommended: "toner-lite", "terrain" & "watercolor".  
@@ -315,7 +315,9 @@ SymbolPlotLocation,TitleLinks,XMiddle,YMiddle)
 		{		
 			FileLinkLoc <- gsub("map","data",substr(Files[FileNr],(nchar(FolderRainMaps)+2),nchar(Files[FileNr])))
 			TEMP <- read.table(paste(FolderRainEstimates,"/",FileLinkLoc,sep=""),header=TRUE)
-			DataCoor <- unique(data.frame(cbind(TEMP$XStart,TEMP$YStart,TEMP$XEnd,TEMP$YEnd)))
+		        # Select unique links. Full-duplex links will be plotted twice. Links with only no data (= NA value for RainfallDepthPath) will not be plotted.
+                        cond <- which(TEMP$RainfallDepthPath>=0)
+		        DataCoor <- unique(data.frame(cbind(TEMP$XStart[cond],TEMP$YStart[cond],TEMP$XEnd[cond],TEMP$YEnd[cond])))
 		}
 
 		IntervalNr <- as.numeric(substr(Files[FileNr],(nchar(FolderRainMaps)+18),(nchar(Files[FileNr])-4)))

@@ -1,7 +1,7 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.13
+## Version 1.14
 ## Copyright (C) 2019 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
@@ -35,8 +35,12 @@
 #' @param alpha Coefficient (\eqn{\alpha}) determining contribution of minimum and 
 #' maximum path-averaged rainfall intensity to mean path-averaged rainfall intensity (-).
 #' @param Data Data frame with microwave link data.
-#' @param kRPowerLawData Values of coefficients a and b employed to convert specific 
+#' @param kRPowerLawDataH Values of coefficients a and b employed to convert specific 
 #' attenuation to path-averaged rainfall intensity for a range of microwave frequencies.
+#' For horizontally polarized radiation.
+#' @param kRPowerLawDataV Values of coefficients a and b employed to convert specific 
+#' attenuation to path-averaged rainfall intensity for a range of microwave frequencies.
+#' For vertically polarized radiation.
 #' @param PmaxCor Data frame with corrected maximum received powers (dB).
 #' @param PminCor Data frame with corrected minimum received powers (dB).
 #' @param Pref Reference level (dB).
@@ -44,28 +48,37 @@
 #' @export RainRetrievalMinMaxRSL
 #' @examples
 #' RainRetrievalMinMaxRSL(Aa=2.3,alpha=0.33,Data=DataOutlierFiltered,
-#' kRPowerLawData=kRPowerLawData,PmaxCor=Pcor$PmaxCor,PminCor=Pcor$PminCor,Pref=Pref)
-#' @author Aart Overeem & Hidde Leijnse
+#' kRPowerLawDataH=kRPowerLawDataH,kRPowerLawDataV=kRPowerLawDataV,PmaxCor=Pcor$PmaxCor,
+#' PminCor=Pcor$PminCor,Pref=Pref)
+#' @author Aart Overeem & Hidde Leijnse & Lotte de Vos
 #' @references ''ManualRAINLINK.pdf''
 #'
 #' Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rainfall mapping from microwave links in a 
 #' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
 
-RainRetrievalMinMaxRSL <- function(Aa=2.3,alpha=0.33,Data,kRPowerLawData,PmaxCor,PminCor,Pref)
+RainRetrievalMinMaxRSL <- function(Aa=2.3,alpha=0.33,Data,kRPowerLawDataH,kRPowerLawDataV,PmaxCor,PminCor,Pref)
 {
 
 		# Find proper values of coefficients in R-k relationship:
 		FrequencyLinks <- unique(Data$Frequency)
-		a_vec <- approx(x = log(kRPowerLawData$f), y = kRPowerLawData$a, xout = log(FrequencyLinks), method = "linear")$y
-		b_vec <- approx(x = log(kRPowerLawData$f), y = kRPowerLawData$b, xout = log(FrequencyLinks), method = "linear")$y
+		a_vecV <- approx(x = log(kRPowerLawDataV$f), y = kRPowerLawDataV$a, xout = log(FrequencyLinks), method = "linear")$y
+		b_vecV <- approx(x = log(kRPowerLawDataV$f), y = kRPowerLawDataV$b, xout = log(FrequencyLinks), method = "linear")$y
+		a_vecH <- approx(x = log(kRPowerLawDataH$f), y = kRPowerLawDataH$a, xout = log(FrequencyLinks), method = "linear")$y
+		b_vecH <- approx(x = log(kRPowerLawDataH$f), y = kRPowerLawDataH$b, xout = log(FrequencyLinks), method = "linear")$y
 		a <- rep(NA, length(Data$Frequency))
 		b <- rep(NA, length(Data$Frequency))
 		for (i in 1 : length(FrequencyLinks))
 		{
-			ind <- which(Data$Frequency == FrequencyLinks[i])
-			a[ind] <- a_vec[i]
-			b[ind] <- b_vec[i]
+			indV <- which(Data$Frequency == FrequencyLinks[i] & (Data$Polarization == "V" | is.na(Data$Polarization))) 
+                        # If no information on polarization is known (shown as Data$Polarization = NA), assume vertical polarization.
+			if(length(indV) > 0){
+			a[indV] <- a_vecV[i]
+			b[indV] <- b_vecV[i]}
+			indH <- which(Data$Frequency == FrequencyLinks[i] & Data$Polarization == "H")
+			if(length(indH) > 0){
+			a[indH] <- a_vecH[i]
+			b[indH] <- b_vecH[i]}
 		}
 
 		

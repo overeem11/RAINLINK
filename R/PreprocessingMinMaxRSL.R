@@ -1,7 +1,7 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ## 
-## Version 1.13
+## Version 1.14
 ## Copyright (C) 2019 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
@@ -116,14 +116,18 @@ PreprocessingMinMaxRSL <- function(Data,MaxFrequency=Inf,MinFrequency=0,verbose=
 							print(paste("Warning: removing link with ID ", LinkID[i], " because of conflicting link characteristics", sep = ""))
 						}
 						
-						# Set ID variable to NA for this link so that it will be removed later
+						# Set ID variable to NA for this link so that it will be removed later:
 						Data$ID[SelID] <- NA
 					}
 	   	}
 	}
 
-	# Remove all rows for which one variable is NA, and return resulting data frame
-	return(na.omit(Data))
+	# Remove all rows for which one variable is NA (except Polarization), and return resulting data frame:
+	rows_with_missing_data <- which(is.na(Data$Frequency) | is.na(Data$DateTime) | is.na(Data$Pmin) | is.na(Data$Pmax) | is.na(Data$PathLength) | 
+	is.na(Data$XStart) | is.na(Data$YStart) | is.na(Data$XEnd) | is.na(Data$YEnd) | is.na(Data$ID))
+
+	if(length(rows_with_missing_data)>0){Data <- Data[-rows_with_missing_data,]}
+	return(Data)
 
 }
 
