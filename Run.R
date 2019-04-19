@@ -1,7 +1,7 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.12
+## Version 1.14
 ## Copyright (C) 2019 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
@@ -46,6 +46,15 @@ source("Config.R")
 # Load example data:
 data(Linkdata)
 
+# Add column with polarization if this column is not supplied in the link data:
+if ("Polarization" %in% names(Linkdata)==FALSE)
+{
+   Linkdata$Polarization <- rep(NA,nrow(Linkdata))
+}
+# When no information on polarization is provided, the above code creates a column of NA for Polarization. In the function "RainRetrievalMinMaxRSL.R" links with
+# NA values for polarization are processed with a & b values determined for vertically polarized signals.
+# If information on polarization of links is available, use H for horizontally polarized & V for vertically polarized in Linkdata$Polarization.
+# H, V & NA may occur in the same Linkdata file.
 
 # Run R function:
 StartTime <- proc.time()
@@ -124,13 +133,17 @@ Pcor <- CorrectMinMaxRSL(Data=DataPreprocessed,Dry=NULL,Pref=Pref)
 # 6. RainRetrievalMinMaxRSL#
 ############################
 
-kRPowerLawData <- read.table(FileRainRetr)
-colnames(kRPowerLawData) <- c("f", "a", "b")
+kRPowerLawDataH <- read.table(FileRainRetrHorizontal)
+colnames(kRPowerLawDataH) <- c("f", "a", "b")
+
+kRPowerLawDataV <- read.table(FileRainRetrVertical)
+colnames(kRPowerLawDataV) <- c("f", "a", "b")
+
 
 # Run R function:
 StartTime <- proc.time()
 
-Rmean <- RainRetrievalMinMaxRSL(Aa=Aa,alpha=alpha,Data=DataOutlierFiltered,kRPowerLawData=kRPowerLawData,PmaxCor=Pcor$PmaxCor,PminCor=Pcor$PminCor,Pref=Pref)
+Rmean <- RainRetrievalMinMaxRSL(Aa=Aa,alpha=alpha,Data=DataOutlierFiltered,kRPowerLawDataH=kRPowerLawDataH,kRPowerLawDataV=kRPowerLawDataV,PmaxCor=Pcor$PmaxCor,PminCor=Pcor$PminCor,Pref=Pref)
 
 cat(sprintf("Finished. (%.1f seconds)\n",round((proc.time()-StartTime)[3],digits=1)))
 
@@ -138,11 +151,12 @@ cat(sprintf("Finished. (%.1f seconds)\n",round((proc.time()-StartTime)[3],digits
 # If wet-dry classification (function WetDryNearbyLinkApMinMaxRSL) has not been applied, run the R function as follows:
 StartTime <- proc.time()
 
-Rmean <- RainRetrievalMinMaxRSL(Aa=Aa,alpha=alpha,Data=DataPreprocessed,kRPowerLawData=kRPowerLawData,PmaxCor=Pcor$PmaxCor,PminCor=Pcor$PminCor,Pref=Pref)
+Rmean <- RainRetrievalMinMaxRSL(Aa=Aa,alpha=alpha,Data=DataPreprocessed,kRPowerLawDataH=kRPowerLawDataH,kRPowerLawDataV=kRPowerLawDataV,PmaxCor=Pcor$PmaxCor,PminCor=Pcor$PminCor,Pref=Pref)
 
 cat(sprintf("Finished. (%.1f seconds)\n",round((proc.time()-StartTime)[3],digits=1)))
 
 
+# Write path-average rainfall data to files:
 # Duration of time interval of sampling strategy (min):
 TIMESTEP <- 15	
 	

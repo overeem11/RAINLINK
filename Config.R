@@ -1,7 +1,7 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.12
+## Version 1.14
 ## Copyright (C) 2019 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
@@ -182,12 +182,18 @@ Aa <- 2.3	# dB
 alpha <- 0.33	
 
 # Name of file with values of coefficients in R-k relationship (power-law between path-averaged rainfall intensity
-# and path-averaged specific attenuation):
-FileRainRetr <- "ab_values_vertical.txt"
+# and path-averaged specific attenuation) for vertically polarized signals:
+FileRainRetrVertical <- "ab_values_vertical.txt"
 # "ab_values_vertical.txt": Values of coefficients in k-R relationship from Leijnse, H., 2007: Hydrometeorological 
 # application of microwave links - Measurement of evaporation and precipitation. PhD thesis, Wageningen University, 
 # Wageningen. See page 65. Provided for frequencies from 1 - 100 GHz.
 
+# Name of file with values of coefficients in R-k relationship (power-law between path-averaged rainfall intensity
+# and path-averaged specific attenuation) for horizontally polarized signals:
+FileRainRetrHorizontal <- "ab_values_horizontal.txt"
+# "ab_values_horizontal.txt": Leijnse, H., R. Uijlenhoet, and A. Berne, 2010: Errors and uncertainties in microwave 
+# link rainfall estimation explored using drop size measurements and high-resolution radar data. J. Hydrometeorol., 
+# 11 (6), 1330–1344, doi:https://doi.org/10.1175/2010JHM1243.1.
 
 
 
@@ -370,7 +376,7 @@ OSMTop <- 52.404		# Latitude in degrees (WGS84) for top side of the area for whi
 #http://www.openstreetmap.org/export can be used to select area and find minimum scale in order to obtain maximum graphical resolution.
 
 
-# Compute bounding box from input data or used bounding box defined above? (for OpenStreetMap and Stamen Map only):
+# Compute bounding box from input data or use bounding box defined above? (for OpenStreetMap and Stamen Map only):
 # Use "yes" if bounding box is to be computed from interpolation grid.
 BBoxOSMauto <- "yes"
 
