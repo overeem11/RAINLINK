@@ -2,14 +2,14 @@ Encoding: UTF-8
 Package: RAINLINK
 Type: Package
 Title: Retrieval algorithm for rainfall mapping from microwave links in a cellular communication network.
-Version: 1.13
-Date: 2019-03-30
-Author: Aart Overeem & Hidde Leijnse
+Version: 1.14
+Date: 2019-04-18
+Author: Aart Overeem & Hidde Leijnse & Lotte de Vos
 Maintainer: Aart Overeem <overeem@knmi.nl>
 Description: The RAINLINK software enables to obtain rainfall maps from microwave links in a cellular telecommunication network. 
 Suggests: curl, sp, gstat, crayon, withr, ggplot2, ggmap, maps, mapproj, labeling, rgdal, ncdf4, digest 
 License: This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 RoxygenNote: 6.1.1
-Installation: To install this R package run: install.packages(''RAINLINK_1.13.tar.gz'', repos=NULL, type = ''source''). To install it in a specified directory, add  '', path'', where path is the name of the folder where the package needs to be installed, e.g. ''Rlibraries'' (use quotation marks).
+Installation: To install this R package run: install.packages(''RAINLINK_1.14.tar.gz'', repos=NULL, type = ''source''). To install it in a specified directory, add  '', path'', where path is the name of the folder where the package needs to be installed, e.g. ''Rlibraries'' (use quotation marks).
 Available at: https://github.com/overeem11/RAINLINK
 Additional information: see ''ManualRAINLINK.pdf''
