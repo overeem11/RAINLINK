@@ -202,7 +202,7 @@ this is to manually give the legend breaks (ManualScale not equal to "no").}
 
 \item{SizePixelBorder}{Size of pixel borders.}
 
-\item{SizePlotLocation}{Size of symbol and and accompanied text for specified location on map.}
+\item{SizePlotLocation}{Size of symbol and accompanied text for specified location on map.}
 
 \item{SizePlotTitle}{Size of plot title.}
 

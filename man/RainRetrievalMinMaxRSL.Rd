@@ -4,8 +4,8 @@
 \alias{RainRetrievalMinMaxRSL}
 \title{Function for path-averaged rainfall estimation using microwave links.}
 \usage{
-RainRetrievalMinMaxRSL(Aa = 2.3, alpha = 0.33, Data, kRPowerLawData,
-  PmaxCor, PminCor, Pref)
+RainRetrievalMinMaxRSL(Aa = 2.3, alpha = 0.33, Data, kRPowerLawDataH,
+  kRPowerLawDataV, PmaxCor, PminCor, Pref)
 }
 \arguments{
 \item{Aa}{Wet antenna attenuation correction \eqn{A_{\mbox{a}}} (dB).}
@@ -15,8 +15,13 @@ maximum path-averaged rainfall intensity to mean path-averaged rainfall intensit
 
 \item{Data}{Data frame with microwave link data.}
 
-\item{kRPowerLawData}{Values of coefficients a and b employed to convert specific 
-attenuation to path-averaged rainfall intensity for a range of microwave frequencies.}
+\item{kRPowerLawDataH}{Values of coefficients a and b employed to convert specific 
+attenuation to path-averaged rainfall intensity for a range of microwave frequencies.
+For horizontally polarized radiation.}
+
+\item{kRPowerLawDataV}{Values of coefficients a and b employed to convert specific 
+attenuation to path-averaged rainfall intensity for a range of microwave frequencies.
+For vertically polarized radiation.}
 
 \item{PmaxCor}{Data frame with corrected maximum received powers (dB).}
 
@@ -43,7 +48,8 @@ for instructions.
 }
 \examples{
 RainRetrievalMinMaxRSL(Aa=2.3,alpha=0.33,Data=DataOutlierFiltered,
-kRPowerLawData=kRPowerLawData,PmaxCor=Pcor$PmaxCor,PminCor=Pcor$PminCor,Pref=Pref)
+kRPowerLawDataH=kRPowerLawDataH,kRPowerLawDataV=kRPowerLawDataV,PmaxCor=Pcor$PmaxCor,
+PminCor=Pcor$PminCor,Pref=Pref)
 }
 \references{
 ''ManualRAINLINK.pdf''
@@ -52,5 +58,5 @@ Overeem, A., Leijnse, H., and Uijlenhoet, R., 2016: Retrieval algorithm for rain
 cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 }
 \author{
-Aart Overeem & Hidde Leijnse
+Aart Overeem & Hidde Leijnse & Lotte de Vos
 }
