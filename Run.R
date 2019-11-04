@@ -36,6 +36,10 @@
 
 source("Config.R") 
 
+# If the time zone of the employed microwave link dataset is not the same as the (local) time zone used by R on your computer, set the time zone of the microwave link dataset:
+# (this is important for functions RefLevelMinMaxRSL, WetDryNearbyLinkApMinMaxRSL and Interpolation):
+Sys.setenv(TZ='UTC')
+# Otherwise RAINLINK can derive a wrong time interval length due to going to or from daylight saving time (DST). Timing of DST may be different between time zones, or one time zone may not have a change to/from DST.
 
 
 
