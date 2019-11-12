@@ -43,7 +43,7 @@
 #'   \item PathLength: length of microwave link path L (km).
 #'   \item XStart: Longitude of start of links (\eqn{^{\circ}}; WGS84).
 #'   \item YStart: Latitude of start of links (\eqn{^{\circ}}; WGS84).
-#'   \item Xend: Longitude of end of links (\eqn{^{\circ}}; WGS84).
+#'   \item XEnd: Longitude of end of links (\eqn{^{\circ}}; WGS84).
 #'   \item YEnd: Latitude of end of links (\eqn{^{\circ}}; WGS84).
 #'   \item ID: Link identifier.
 #' }
