@@ -4,8 +4,12 @@
 \alias{PreprocessingMinMaxRSL}
 \title{Function for preprocessing of microwave link data.}
 \usage{
-PreprocessingMinMaxRSL(Data, MaxFrequency = Inf, MinFrequency = 0,
-  verbose = TRUE)
+PreprocessingMinMaxRSL(
+  Data,
+  MaxFrequency = Inf,
+  MinFrequency = 0,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{Data}{Data frame with microwave link data (use data(Linkdata) to load example data).}

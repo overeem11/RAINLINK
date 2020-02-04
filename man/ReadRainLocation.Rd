@@ -4,8 +4,15 @@
 \alias{ReadRainLocation}
 \title{Function for finding (interpolated) rainfall value for a given latitude and longitude.}
 \usage{
-ReadRainLocation(CoorSystemInputData, dataf, FileGrid, Lat, Lon, XMiddle,
-  YMiddle)
+ReadRainLocation(
+  CoorSystemInputData,
+  dataf,
+  FileGrid,
+  Lat,
+  Lon,
+  XMiddle,
+  YMiddle
+)
 }
 \arguments{
 \item{CoorSystemInputData}{Coordinate system of the input data (e.g. "+init=epsg:4326" for WGS84 in degrees).}

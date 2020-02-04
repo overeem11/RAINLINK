@@ -4,15 +4,44 @@
 \alias{PlotLinkLocations}
 \title{Function which visualises microwave link paths on a map.}
 \usage{
-PlotLinkLocations(AlphaLinkLocations, BBoxOSMauto, OSMBottom, ColourLinks,
-  ColourType, dataf, DateTime, ExtraTextLinkLocations,
-  FigFileLinkLocations, FigHeight, FigWidth, FilePolygonsGrid,
-  FolderFigures, FontFamily, GoogleLocDegSpecified, GoogleLocLat,
-  GoogleLocLon, GoogleLocName, GoogleLocNameSpecified, GoogleMapType,
-  GoogleZoomlevel, LabelAxisLat, LabelAxisLonGoogle, LabelAxisLonOSM,
-  LabelAxisLonStamen, MapBackground, OSMLeft, OSMRight, OSMScale, OSMTop,
-  OutputFileType, SizeLinks, SizePlotTitle, StamenMapType, StamenZoomlevel,
-  TitleLinkLocations)
+PlotLinkLocations(
+  AlphaLinkLocations,
+  BBoxOSMauto,
+  OSMBottom,
+  ColourLinks,
+  ColourType,
+  dataf,
+  DateTime,
+  ExtraTextLinkLocations,
+  FigFileLinkLocations,
+  FigHeight,
+  FigWidth,
+  FilePolygonsGrid,
+  FolderFigures,
+  FontFamily,
+  GoogleLocDegSpecified,
+  GoogleLocLat,
+  GoogleLocLon,
+  GoogleLocName,
+  GoogleLocNameSpecified,
+  GoogleMapType,
+  GoogleZoomlevel,
+  LabelAxisLat,
+  LabelAxisLonGoogle,
+  LabelAxisLonOSM,
+  LabelAxisLonStamen,
+  MapBackground,
+  OSMLeft,
+  OSMRight,
+  OSMScale,
+  OSMTop,
+  OutputFileType,
+  SizeLinks,
+  SizePlotTitle,
+  StamenMapType,
+  StamenZoomlevel,
+  TitleLinkLocations
+)
 }
 \arguments{
 \item{AlphaLinkLocations}{Transparency of link paths.}

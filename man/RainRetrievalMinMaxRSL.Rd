@@ -4,8 +4,16 @@
 \alias{RainRetrievalMinMaxRSL}
 \title{Function for path-averaged rainfall estimation using microwave links.}
 \usage{
-RainRetrievalMinMaxRSL(Aa = 2.3, alpha = 0.33, Data, kRPowerLawDataH,
-  kRPowerLawDataV, PmaxCor, PminCor, Pref)
+RainRetrievalMinMaxRSL(
+  Aa = 2.3,
+  alpha = 0.33,
+  Data,
+  kRPowerLawDataH,
+  kRPowerLawDataV,
+  PmaxCor,
+  PminCor,
+  Pref
+)
 }
 \arguments{
 \item{Aa}{Wet antenna attenuation correction \eqn{A_{\mbox{a}}} (dB).}

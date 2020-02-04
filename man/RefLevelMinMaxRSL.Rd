@@ -4,8 +4,12 @@
 \alias{RefLevelMinMaxRSL}
 \title{Function for determination of reference signal level (Pref), which is representative of dry weather.}
 \usage{
-RefLevelMinMaxRSL(Data, Dry = NULL, HoursRefLevel = 2.5,
-  PeriodHoursRefLevel = 24)
+RefLevelMinMaxRSL(
+  Data,
+  Dry = NULL,
+  HoursRefLevel = 2.5,
+  PeriodHoursRefLevel = 24
+)
 }
 \arguments{
 \item{Data}{Data frame with microwave link data.}

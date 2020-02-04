@@ -23,7 +23,7 @@ Several functions in the RAINLINK package read a data frame with microwave
 link data. Such a data frame always contains the variables as indicated
 below, i.e. the variables in the data set supplied to PreprocessingMinMaxRSL.
 
-For each link and time interval the following variables are provided:
+For each link and time interval the following variables are provided: 
 
 \itemize{
   \item Frequency: microwave frequency f (GHz).
@@ -34,7 +34,7 @@ For each link and time interval the following variables are provided:
   \item PathLength: length of microwave link path L (km).
   \item XStart: Longitude of start of links (\eqn{^{\circ}}; WGS84).
   \item YStart: Latitude of start of links (\eqn{^{\circ}}; WGS84).
-  \item Xend: Longitude of end of links (\eqn{^{\circ}}; WGS84).
+  \item XEnd: Longitude of end of links (\eqn{^{\circ}}; WGS84).
   \item YEnd: Latitude of end of links (\eqn{^{\circ}}; WGS84).
   \item ID: Link identifier.
 }

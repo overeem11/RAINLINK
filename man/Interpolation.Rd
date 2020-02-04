@@ -4,9 +4,21 @@
 \alias{Interpolation}
 \title{Interpolation of link-based path-averaged rainfall estimates.}
 \usage{
-Interpolation(Data, CoorSystemInputData = NULL, idp = 2,
-  IntpMethod = "OK", nmax = 50, NUGGET, RANGE, RainGrid, Rmean, SILL,
-  TimeZone = "UTC", Variogram = "ClimVar", OutputDir = NULL)
+Interpolation(
+  Data,
+  CoorSystemInputData = NULL,
+  idp = 2,
+  IntpMethod = "OK",
+  nmax = 50,
+  NUGGET,
+  RANGE,
+  RainGrid,
+  Rmean,
+  SILL,
+  TimeZone = "UTC",
+  Variogram = "ClimVar",
+  OutputDir = NULL
+)
 }
 \arguments{
 \item{Data}{Data frame with microwave link data.}
