@@ -44,6 +44,8 @@ if (GivePathLib=="yes")
 	library(RAINLINK,lib.loc=pathlib)
 
 	# Load other packages:
+        library(backports,lib.loc=pathlib)
+        library(vctrs,lib.loc=pathlib)	
 	library(curl,lib.loc=pathlib)
 	library(sp,lib.loc=pathlib)		
 	library(gstat,lib.loc=pathlib)	
@@ -65,6 +67,8 @@ if (GivePathLib=="no")
 	library(RAINLINK)
 
 	# Load other packages:
+        library(backports)
+        library(vctrs)
 	library(curl)	
 	library(sp)		
 	library(gstat)	
