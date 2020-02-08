@@ -58,6 +58,7 @@ if (GivePathLib=="yes")
 	library(labeling,lib.loc=pathlib)
 	library(rgdal,lib.loc=pathlib)
 	library(digest,lib.loc=pathlib)
+	library(farver,lib.loc=pathlib)
 	#  May require installation of nc-config outside R	
 	library(ncdf4,lib.loc=pathlib)
 }
@@ -81,6 +82,7 @@ if (GivePathLib=="no")
 	library(labeling)
 	library(rgdal)
 	library(digest)
+	library(farver)
 	library(ncdf4)	
 }
 if (GivePathLib!="no"&GivePathLib!="yes")
