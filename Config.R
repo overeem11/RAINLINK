@@ -658,11 +658,11 @@ FigFileLinkLocations <- "LinkLocationsTheNetherlands"
 
 # CoorSystemInputData is already defined above.
 # Directories and names of output files:
-FigNameBarplotAngle="figures/Barplot_Orientation.pdf"
-FigNameBarplotFrequency="figures/Barplot_Frequency.pdf"
-FigNameBarplotPathLength="figures/Barplot_PathLength.pdf"
-FigNameFrequencyVsPathLength="figures/Frequency_vs_PathLength.pdf"
-FigNameScatterdensityplotFrequencyVsPathLength="figures/ScatterdensityPlot_Frequency_vs_PathLength.pdf"
+FigNameBarplotAngle=paste(FolderFigures,"/Barplot_Orientation.pdf",sep="")
+FigNameBarplotFrequency=paste(FolderFigures,"/Barplot_Frequency.pdf",sep="")
+FigNameBarplotPathLength=paste(FolderFigures,"/Barplot_PathLength.pdf",sep="")
+FigNameFrequencyVsPathLength=paste(FolderFigures,"/Frequency_vs_PathLength.pdf",sep="")
+FigNameScatterdensityplotFrequencyVsPathLength=paste(FolderFigures,"/ScatterdensityPlot_Frequency_vs_PathLength.pdf",sep="")
 # Maximum microwave frequency to be plotted in bar plot (GHz). This is the value where the last bin class ends:
 Maxf=40
 # Minimum microwave frequency to be plotted in bar plot (GHz). This is the value where the first bin class ends:
@@ -687,9 +687,9 @@ cex.axis=0.9
 # Size of x and y labels:
 cex.lab=1.15
 # Directories and names of output files
-FigNameBarplotAvailabilityLinks="figures/Barplot_Availability_Links.pdf"
-FigNameBarplotAvailabilityLinkPaths="figures/Barplot_Availability_LinkPaths.pdf"
-FigNameTimeseriesAvailability="figures/TimeseriesAvailability.pdf"
+FigNameBarplotAvailabilityLinks=paste(FolderFigures,"/Barplot_Availability_Links.pdf",sep="")
+FigNameBarplotAvailabilityLinkPaths=paste(FolderFigures,"/Barplot_Availability_LinkPaths.pdf",sep="")
+FigNameTimeseriesAvailability=paste(FolderFigures,"/TimeseriesAvailability.pdf",sep="")
 # The point size of text:
 ps=18
 
