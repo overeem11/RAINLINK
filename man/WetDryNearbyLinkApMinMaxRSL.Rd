@@ -70,6 +70,11 @@ In case of instantaneous signal levels, it does not matter whether transmitted p
 The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
 for instructions. 
 
+Also works for a sampling strategy where average transmitted and received signal levels are obtained.
+In case of average signal levels, it does not matter whether transmitted power levels vary or are constant.
+The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
+for instructions. 
+
 The time interval does not have to be an integer but should be equidistant. The minimum time 
 interval length in the time series is automatically computed and is employed as the time 
 interval length.

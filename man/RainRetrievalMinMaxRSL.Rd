@@ -52,6 +52,11 @@ are provided, and the transmitted power levels are constant.
 Also works for a sampling strategy where instantaneous transmitted and received signal levels are obtained.
 In case of instantaneous signal levels, it does not matter whether transmitted power levels vary or are constant.
 The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
+for instructions. 
+
+Also works for a sampling strategy where average transmitted and received signal levels are obtained.
+In case of average signal levels, it does not matter whether transmitted power levels vary or are constant.
+The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
 for instructions.
 }
 \examples{

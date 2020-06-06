@@ -36,6 +36,11 @@ In case of instantaneous signal levels, it does not matter whether transmitted p
 The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
 for instructions. 
 
+Also works for a sampling strategy where average transmitted and received signal levels are obtained.
+In case of average signal levels, it does not matter whether transmitted power levels vary or are constant.
+The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
+for instructions. 
+
 The input microwave link data do not have to be sorted chronologically.
 
 It is strongly advised to use the same unique link identifier (ID) for a link during

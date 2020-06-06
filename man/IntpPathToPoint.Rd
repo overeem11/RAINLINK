@@ -22,7 +22,7 @@ IntpPathToPoint(ID, Rmean, XEnd, XStart, YEnd, YStart)
 \item{YStart}{Northing of start of links (km).}
 }
 \value{
-Coordinates of links in Azimuthal Equidistant Cartesian coordinate system
+Coordinates of middle of links in Azimuthal Equidistant Cartesian coordinate system
 (latitude, longitude) and rainfall intensity (mm h\eqn{^{-1}})).
 }
 \description{

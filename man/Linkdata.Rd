@@ -10,7 +10,9 @@ operated by T-Mobile NL. The minimum and maximum received powers over 15-min
 intervals were provided, based on 10-Hz sampling. The transmitted power was almost 
 constant. Here the data have a resolution of 1 dB, and the majority of these Nokia 
 links used vertically polarised signals.}
-\format{A data frame with link data from a commercial cellular communication network}
+\format{
+A data frame with link data from a commercial cellular communication network
+}
 \usage{
 data(Linkdata)
 }

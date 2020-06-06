@@ -49,7 +49,7 @@ PlotLinkLocations(
 \item{BBoxOSMauto}{Compute bounding box from input data or used bounding box defined above?
 (for OpenStreetMap and Stamen Map only). Use "yes" if bounding box is to be computed from interpolation grid.}
 
-\item{OSMBottom}{Latitude in degrees (WGS84) for bottom side of the area for which rainfall depths 
+\item{OSMBottom}{Latitude in decimal degrees (WGS84) for bottom side of the area for which rainfall depths 
 are to be plotted (for OpenStreetMap & Stamen Maps only).}
 
 \item{ColourLinks}{Colour of plotted link paths.}
@@ -57,8 +57,7 @@ are to be plotted (for OpenStreetMap & Stamen Maps only).}
 \item{ColourType}{Colour or black-and-white background map? Use "color" for colour and "bw" 
 for black-and-white background map.}
 
-\item{dataf}{data frame which contains (at least) locations of microwave links in Azimuthal 
-Equidistant Cartesian coordinate system.}
+\item{dataf}{data frame which contains (at least) locations of microwave links in degrees.}
 
 \item{DateTime}{Date and time for which link locations are plotted. This is used in the
 title caption of the figure and in the file name.}
@@ -96,13 +95,13 @@ Using "Times" may give warnings when executing the visualisation. In that case t
 installed on the computer. This can be solved by using the default font ("").}
 
 \item{GoogleLocDegSpecified}{If GoogleLocDegSpecified is "yes" then the specified location in 
-degrees is used is used as the centre of the Google Map. If both GoogleLocNameSpecified and 
+decimal degrees is used as the centre of the Google Map. If both GoogleLocNameSpecified and 
 GoogleLocDegSpecified are not equal to "yes", the bounding box of the map is determined from 
 the provided grid and used as centre of the Google Map.}
 
-\item{GoogleLocLat}{Latitude of middle of Google Map (degrees).}
+\item{GoogleLocLat}{Latitude of middle of Google Map (decimal degrees).}
 
-\item{GoogleLocLon}{Longitude of middle of Google Map (degrees).}
+\item{GoogleLocLon}{Longitude of middle of Google Map (decimal degrees).}
 
 \item{GoogleLocName}{Location of middle of Google Map, provided as text, e.g. name of city,
 street name, country.}
@@ -132,10 +131,10 @@ It seems that mapping with OpenStreetMap (“get openstreetmap”) is no langer 
 This implies that mapping can only be done employing Google Maps (if Google API key is obtained) or via
 Stamen Map. This is not related to the RAINLINK version.}
 
-\item{OSMLeft}{Longitude in degrees (WGS84) for left side of the area for which rainfall depths are 
+\item{OSMLeft}{Longitude in decimal degrees (WGS84) for left side of the area for which rainfall depths are 
 to be plotted (for OpenStreetMap & Stamen Maps only).}
 
-\item{OSMRight}{Longitude in degrees (WGS84) for right side of the area for which rainfall depths 
+\item{OSMRight}{Longitude in decimal degrees (WGS84) for right side of the area for which rainfall depths 
 are to be plotted (for OpenStreetMap & Stamen Maps only).}
 
 \item{OSMScale}{Give value of scale (for OpenStreetMap only). A proper choice of the scale parameter 
@@ -146,7 +145,7 @@ should manually supply get_openstreetmap with a scale. It may require some itera
 appropriate value for scale. The file "ggmapTemp.png" is written to disk when an OpenStreetMap is loaded. 
 The highest possible resolution for a square area is about 2000 x 2000 pixels.}
 
-\item{OSMTop}{Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be 
+\item{OSMTop}{Latitude in decimal degrees (WGS84) for top side of the area for which rainfall depths are to be 
 plotted (for OpenStreetMap & Stamen Maps only).}
 
 \item{OutputFileType}{Choose output file type of image: jpeg, png or tiff.}

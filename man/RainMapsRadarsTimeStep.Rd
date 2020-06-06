@@ -100,13 +100,13 @@ for black-and-white background map.}
 \item{ColourHighestClass}{Colour of highest class.}
 
 \item{CoorSystemInputData}{Define coordinate system of input data (e.g. "+init=epsg:4326" 
-for WGS84 in degrees).}
+for WGS84 in decimal degrees).}
 
 \item{ExtraDeg}{To reduce computational time, it is automatically determined which grid cells 
 fall within the plotted region. 
 To also plot grid cell values which partly fall outside the plotted region, a positive number 
-for ExtraDeg should be specified (degrees). 
-This should typically be at least the size of one grid cell in degrees.}
+for ExtraDeg should be specified (decimal degrees). 
+This should typically be at least the size of one grid cell in decimal degrees.}
 
 \item{ExtraText}{Second part of title of plot.}
 
@@ -144,13 +144,13 @@ Using "Times" may give warnings when executing the visualisation. In that case t
 installed on the computer. This can be solved by using the default font ("").}
 
 \item{GoogleLocDegSpecified}{If GoogleLocDegSpecified is "yes" then the specified location in 
-degrees is used as the centre of the Google Map. If both GoogleLocNameSpecified and 
+decimal degrees is used as the centre of the Google Map. If both GoogleLocNameSpecified and 
 GoogleLocDegSpecified are not equal to "yes", the bounding box of the map is determined from 
 the provided grid and used as centre of the Google Map.}
 
-\item{GoogleLocLat}{Latitude of middle of Google Map (degrees).}
+\item{GoogleLocLat}{Latitude of middle of Google Map (decimal degrees).}
 
-\item{GoogleLocLon}{Longitude of middle of Google Map (degrees).}
+\item{GoogleLocLon}{Longitude of middle of Google Map (decimal degrees).}
 
 \item{GoogleLocName}{Location of middle of Google Map, provided as text, e.g. name of city, street name, 
 country.}
@@ -173,17 +173,17 @@ provided grid and used as centre of the Google Map.}
 
 \item{LabelAxisLonStamen}{Label name of horizontal axis (for Stamen Map only).}
 
-\item{LatLocation}{Latitude of location on map (degrees).}
+\item{LatLocation}{Latitude of location on map (decimal degrees).}
 
-\item{LatText}{Latitude of text (rainfall depth) of location on map (degrees).}
+\item{LatText}{Latitude of text (rainfall depth) of location on map (decimal degrees).}
 
 \item{LegendSize}{Size of legend (choose e.g. 75 for 6 classes and 50 for 10 classes).}
 
 \item{LegendTitleRadarsTimeStep}{Title of legend.}
 
-\item{LonLocation}{Longitude of location on map (degrees).}
+\item{LonLocation}{Longitude of location on map (decimal degrees).}
 
-\item{LonText}{Longitude of text (rainfall depth) of location on map (degrees).}
+\item{LonText}{Longitude of text (rainfall depth) of location on map (decimal degrees).}
 
 \item{ManualScale}{Manually supply the legend breaks if ManuelScale is not equal to "no". 
 Interval breaks are determined manually from ScaleLow and ScaleHigh. If ManualScale is "no" 
@@ -196,13 +196,13 @@ It seems that mapping with OpenStreetMap (“get openstreetmap”) is no langer 
 This implies that mapping can only be done employing Google Maps (if Google API key is obtained) or via
 Stamen Map. This is not related to the RAINLINK version.}
 
-\item{OSMBottom}{Latitude in degrees (WGS84) for bottom side of the area for which rainfall depths are 
+\item{OSMBottom}{Latitude in decimal degrees (WGS84) for bottom side of the area for which rainfall depths are 
 to be plotted (for OpenStreetMap & Stamen Maps only).}
 
-\item{OSMLeft}{Longitude in degrees (WGS84) for left side of the area for which rainfall depths are to 
+\item{OSMLeft}{Longitude in decimal degrees (WGS84) for left side of the area for which rainfall depths are to 
 be plotted (for OpenStreetMap & Stamen Maps only).}
 
-\item{OSMRight}{Longitude in degrees (WGS84) for right side of the area for which rainfall depths are 
+\item{OSMRight}{Longitude in decimal degrees (WGS84) for right side of the area for which rainfall depths are 
 to be plotted (for OpenStreetMap & Stamen Maps only).}
 
 \item{OSMScale}{Give value of scale (for OpenStreetMap only). A proper choice of the scale parameter 
@@ -213,7 +213,7 @@ the user should manually supply get_openstreetmap with a scale. It may require s
 the appropriate value for scale. The file "ggmapTemp.png" is written to disk when an OpenStreetMap is 
 loaded. The highest possible resolution for a square area is about 2000 x 2000 pixels.}
 
-\item{OSMTop}{Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be 
+\item{OSMTop}{Latitude in decimal degrees (WGS84) for top side of the area for which rainfall depths are to be 
 plotted (for OpenStreetMap & Stamen Maps only).}
 
 \item{OutputFileType}{Choose output file type of image: jpeg, png or tiff.}
