@@ -518,10 +518,12 @@ StamenZoomlevel=StamenZoomlevel,TitleLinkLocations=TitleLinkLocations)
 # 10. Plot topology#
 ####################
 
-Topology(Data=Linkdata,CoorSystemInputData=NULL,FigNameBarplotAngle=FigNameBarplotAngle,FigNameBarplotFrequency=FigNameBarplotFrequency,
+Topology(Data=DataPreprocessed,CoorSystemInputData=NULL,FigNameBarplotAngle=FigNameBarplotAngle,FigNameBarplotFrequency=FigNameBarplotFrequency,
 FigNameBarplotPathLength=FigNameBarplotPathLength,FigNameFrequencyVsPathLength=FigNameFrequencyVsPathLength,
 FigNameScatterdensityplotFrequencyVsPathLength=FigNameScatterdensityplotFrequencyVsPathLength,Maxf=Maxf,Minf=Minf,
 MaxL=MaxL,MinL=MinL,Rmean=Rmean,Stepf=Stepf,StepL=StepL)
+
+# Note that Data object must be preprocessed if Rmean is provided.
 
 
 
@@ -529,9 +531,11 @@ MaxL=MaxL,MinL=MinL,Rmean=Rmean,Stepf=Stepf,StepL=StepL)
 # 11. Plot data availability#
 #############################
 
-DataAvailability(Data=Linkdata,cex.axis=cex.axis,cex.lab=cex.lab,FigNameBarplotAvailabilityLinks=FigNameBarplotAvailabilityLinks,
+DataAvailability(Data=DataPreprocessed,cex.axis=cex.axis,cex.lab=cex.lab,FigNameBarplotAvailabilityLinks=FigNameBarplotAvailabilityLinks,
 FigNameBarplotAvailabilityLinkPaths=FigNameBarplotAvailabilityLinkPaths,
 FigNameTimeseriesAvailability=FigNameTimeseriesAvailability,ps=ps,Rmean=Rmean,TimeZone=TimeZone)
+
+# Note that Data must be preprocessed, because Rmean is used.
 
 
 
