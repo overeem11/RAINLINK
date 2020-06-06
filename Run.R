@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.14
-## Copyright (C) 2019 Aart Overeem
+## Version 1.20
+## Copyright (C) 2020 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -49,6 +49,14 @@ Sys.setenv(TZ='UTC')
 
 # Load example data:
 data(Linkdata)
+
+# For each unique link identifier a time interval is removed if it contains more than one record. This is done by the function "PreprocessingMinMaxRSL".
+# In case the records from a certain time interval and unique link identifier are the same, this would throw away data from the entire interval for this identifier,
+# whereas the information would be useful. To check how often this occurs:
+# length(Linkdata[,1])
+# length(unique(Linkdata)[,1])
+# To avoid this:
+Linkdata <- unique(Linkdata)
 
 # Add column with polarization if this column is not supplied in the link data:
 if ("Polarization" %in% names(Linkdata)==FALSE)
@@ -426,7 +434,7 @@ dataf <- dataf[!is.na(dataf)]
 nc_close(ncFILE)
 
 # File with interpolation grid in same coordinate system as CoorSystemInputData:
-FileGrid <- "InterpolationGrid.dat"	# WGS84 (longitude, latitude (degrees))
+FileGrid <- "InterpolationGrid.dat"	# WGS84 (longitude, latitude (decimal degrees))
 
 # OR load e.g. 15-min link data:
 # Duration of time interval of sampling strategy (min):
@@ -458,7 +466,7 @@ ReadRainLocation(CoorSystemInputData=CoorSystemInputData,dataf=dataf,FileGrid=Fi
 # R provides tools to extract the street name and municipality for a location:
 revgeocode(c(Lon,Lat))
 
-# If you would like to know the rainfall depth for a street name and municipality, R can provide you with the location in degrees:
+# If you would like to know the rainfall depth for a street name and municipality, R can provide you with the location in decimal degrees:
 # Give latitude and longitude for location known by street name and municipality:
 geocode("Domplein 1, Utrecht")
     
@@ -503,5 +511,36 @@ LabelAxisLonStamen=LabelAxisLonStamen,MapBackground=MapBackground,OSMLeft=OSMLef
 OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,OutputFileType=OutputFileType,
 SizeLinks=SizeLinks,SizePlotTitle=SizePlotTitle,StamenMapType=StamenMapType,
 StamenZoomlevel=StamenZoomlevel,TitleLinkLocations=TitleLinkLocations)
+
+
+
+####################
+# 10. Plot topology#
+####################
+
+Topology(Data=Linkdata,CoorSystemInputData=NULL,FigNameBarplotAngle=FigNameBarplotAngle,FigNameBarplotFrequency=FigNameBarplotFrequency,
+FigNameBarplotPathLength=FigNameBarplotPathLength,FigNameFrequencyVsPathLength=FigNameFrequencyVsPathLength,
+FigNameScatterdensityplotFrequencyVsPathLength=FigNameScatterdensityplotFrequencyVsPathLength,Maxf=Maxf,Minf=Minf,
+MaxL=MaxL,MinL=MinL,Rmean=Rmean,Stepf=Stepf,StepL=StepL)
+
+
+
+#############################
+# 11. Plot data availability#
+#############################
+
+DataAvailability(Data=Linkdata,cex.axis=cex.axis,cex.lab=cex.lab,FigNameBarplotAvailabilityLinks=FigNameBarplotAvailabilityLinks,
+FigNameBarplotAvailabilityLinkPaths=FigNameBarplotAvailabilityLinkPaths,
+FigNameTimeseriesAvailability=FigNameTimeseriesAvailability,ps=ps,Rmean=Rmean,TimeZone=TimeZone)
+
+
+
+##########################
+# 12. Compute path length#
+##########################
+
+PathLength(XStart=Linkdata$XStart,XEnd=Linkdata$XEnd,YStart=Linkdata$YStart,YEnd=Linkdata$YEnd)
+
+
 
 

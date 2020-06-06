@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.14
-## Copyright (C) 2019 Aart Overeem
+## Version 1.2
+## Copyright (C) 2020 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -61,6 +61,8 @@ if (GivePathLib=="yes")
 	library(farver,lib.loc=pathlib)
 	#  May require installation of nc-config outside R	
 	library(ncdf4,lib.loc=pathlib)
+	library(hexbin,lib.loc=pathlib)
+	library(geosphere,lib.loc=pathlib)
 }
 if (GivePathLib=="no")
 {
@@ -84,6 +86,8 @@ if (GivePathLib=="no")
 	library(digest)
 	library(farver)
 	library(ncdf4)	
+	library(hexbin)
+	library(geosphere)
 }
 if (GivePathLib!="no"&GivePathLib!="yes")
 {
@@ -92,12 +96,12 @@ if (GivePathLib!="no"&GivePathLib!="yes")
 }
 
 
-# Needed for WetDryNearbyLinkApMinMaxRSL, Interpolation and visualisation functions:
+# Needed for visualisation and ReadRainLocation functions:
 # Define center of Azimuthal Equidistant Cartesian coordinate system.
 # XMiddle becomes center of Azimuthal Equidistant Cartesian coordinate system. 
 # YMiddle becomes center of Azimuthal Equidistant Cartesian coordinate system. 
-XMiddle <- 5.387242	# longitude in degrees (WGS84)
-YMiddle <- 52.155223	# latitude in degrees (WGS84)
+XMiddle <- 5.387242	# longitude in decimal degrees (WGS84)
+YMiddle <- 52.155223	# latitude in decimal degrees (WGS84)
 # These coordinates should be provided in the coordinate system CoorSystemInputData.
 # We chose 52.155223°N 5.387242°E as the middle of the Netherlands ('The Tower 
 # of Our Lady' is a church tower in Amersfoort and used to be the middle point 
@@ -208,7 +212,7 @@ FileRainRetrHorizontal <- "ab_values_horizontal.txt"
 ###################
 
 # File with interpolation grid in same coordinate system as CoorSystemInputData:
-FileGrid <- "InterpolationGrid.dat"	# WGS84 (longitude, latitude (degrees))
+FileGrid <- "InterpolationGrid.dat"	# WGS84 (longitude, latitude (decimal degrees))
 
 # For "IDW":
 # Specify the inverse distance weighting power:
@@ -235,9 +239,9 @@ RANGE <- 18.7	# km
 
 
 
-###################
-# 8. Visualisation#
-###################
+############################################################################
+# 8 & 9. Visualisation - RainMaps* functions and function PlotLinkLocations#
+############################################################################
 
 ###################
 # GENERAL SETTINGS#
@@ -259,12 +263,12 @@ Sys.setenv <- (TZ="TimeZone")
 
 # To reduce computational time, it is automatically determined which grid cells fall within the plotted region. 
 # To also plot grid cell values which partly fall outside the plotted region, a positive number for ExtraDeg
-# should be specified (degrees). This should typically be at least the size of one grid cell in degrees.
+# should be specified (decimal degrees). This should typically be at least the size of one grid cell in decimal degrees.
 ExtraDeg <- 0.05  
 
 
 # Name of file with polygons of interpolation grid in same coordinate system as CoorSystemInputData:
-FilePolygonsGrid <- "PolygonsGrid.dat"	# WGS84 (longitude, latitude (degrees))
+FilePolygonsGrid <- "PolygonsGrid.dat"	# WGS84 (longitude, latitude (decimal degrees))
 
 
 # Folder name of figures:
@@ -323,7 +327,7 @@ ConversionDepthToIntensity <- MinutesHour/TIMESTEP
 
 
 # File with interpolation grid in same coordinate system as CoorSystemInputData:
-FileGrid <- "InterpolationGrid.dat"	# WGS84 (longitude, latitude (degrees))
+FileGrid <- "InterpolationGrid.dat"	# WGS84 (longitude, latitude (decimal degrees))
 
 
 
@@ -331,9 +335,9 @@ FileGrid <- "InterpolationGrid.dat"	# WGS84 (longitude, latitude (degrees))
 # GOOGLE MAPS: SPECIFIC SETTINGS#
 #################################
 # Use specified location as centre of map? 
-# And provide location name or longitude and latitude (degrees).
+# And provide location name or longitude and latitude (decimal degrees).
 # If GoogleLocNameSpecified <- "yes" then the specified location name is used.
-# If GoogleLocDegSpecified <- "yes" then the specified location in degrees is used.
+# If GoogleLocDegSpecified <- "yes" then the specified location in decimal degrees is used.
 # Function will stop if both are specified "yes".
 # If both are not "yes": Bounding box is determined from interpolation grid, i.e. FilePolygonsGrid. 
 GoogleLocNameSpecified <- "yes"
@@ -362,22 +366,22 @@ GoogleZoomlevel <- 8
 ##################################################
 # Area for which rainfall depths are to be plotted (for OpenStreetMap and Stamen Map only):
 # Amsterdam region (for OpenStreetMap and Stamen Map only):
-OSMLeft <- 4.84			# Longitude in degrees (WGS84) for left side of the area for which rainfall depths are to be plotted (for OpenStreetMap only). 
-OSMBottom <- 52.336		# Latitude in degrees (WGS84) for bottom side of the area for which rainfall depths are to be plotted (for OpenStreetMap only).
-OSMRight <- 4.95		# Longitude in degrees (WGS84) for right side of the area for which rainfall depths are to be plotted (for OpenStreetMap only). 
-OSMTop <- 52.404		# Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be plotted (for OpenStreetMap only).
+OSMLeft <- 4.84		# Longitude in decimal degrees (WGS84) for left side of the area for which rainfall depths are to be plotted (for OpenStreetMap only). 
+OSMBottom <- 52.336		# Latitude in decimal degrees (WGS84) for bottom side of the area for which rainfall depths are to be plotted (for OpenStreetMap only).
+OSMRight <- 4.95		# Longitude in decimal degrees (WGS84) for right side of the area for which rainfall depths are to be plotted (for OpenStreetMap only). 
+OSMTop <- 52.404		# Latitude in decimal degrees (WGS84) for top side of the area for which rainfall depths are to be plotted (for OpenStreetMap only).
 
 # Rotterdam region (for OpenStreetMap and Stamen Map only):
-#left <- 4.41		# Longitude in degrees (WGS84)
-#bottom <- 51.9		# Latitude in degrees (WGS84)
-#right <- 4.52		# Longitude in degrees (WGS84)
-#top <- 51.97		# Latitude in degrees (WGS84)
+#left <- 4.41		# Longitude in decimal degrees (WGS84)
+#bottom <- 51.9	# Latitude in decimal degrees (WGS84)
+#right <- 4.52		# Longitude in decimal degrees (WGS84)
+#top <- 51.97		# Latitude in decimal degrees (WGS84)
 
 # Utrecht region (for OpenStreetMap and Stamen Map only):
-#left <- 5.0900		# Longitude in degrees (WGS84)
-#bottom <- 52.0700	# Latitude in degrees (WGS84)
-#right <- 5.1350		# Longitude in degrees (WGS84)
-#top <- 52.0950		# Latitude in degrees (WGS84)
+#left <- 5.0900		# Longitude in decimal degrees (WGS84)
+#bottom <- 52.0700	# Latitude in decimal degrees (WGS84)
+#right <- 5.1350		# Longitude in decimal degrees (WGS84)
+#top <- 52.0950		# Latitude in decimal degrees (WGS84)
 
 #http://www.openstreetmap.org/export can be used to select area and find minimum scale in order to obtain maximum graphical resolution.
 
@@ -559,13 +563,13 @@ SizeLinks <- 3 # For Netherlands
 PlotLocation <- "no"
 # Note that the name of the location is only plotted if the Google API key has been obtained. Otherwise, an error message will be provided and the name will not be plotted.
 # However, the rainfall depth and the symbol will be plotted.
-# Latitude of location on map (degrees):
+# Latitude of location on map (decimal degrees):
 LatLocation <- 52.3702165
-# Latitude of text (rainfall depth) of location on map (degrees):
+# Latitude of text (rainfall depth) of location on map (decimal degrees):
 LatText <- 52.3702165
-# Longitude of location on map (degrees):
+# Longitude of location on map (decimal degrees):
 LonLocation <- 4.8951685
-# Longitude of text (rainfall depth) of location on map (degrees):
+# Longitude of text (rainfall depth) of location on map (decimal degrees):
 LonText <- 4.8951685
 # Transparency of plotted symbol for specified location on map:
 AlphaPlotLocation <- 0.2
@@ -602,13 +606,13 @@ FigFileLinkLocations <- "LinkLocationsTheNetherlands"
 #SizeLinks <- 7  
 #PixelBorderCol <- "gray55"
 #PlotLocation <- "yes"
-# Latitude of location on map (degrees):
+# Latitude of location on map (decimal degrees):
 #LatLocation <- 52.39
-# Latitude of text (rainfall depth) of location on map (degrees):
+# Latitude of text (rainfall depth) of location on map (decimal degrees):
 #LatText <- 52.39
-# Longitude of location on map (degrees):
+# Longitude of location on map (decimal degrees):
 #LonLocation <- 4.85
-# Longitude of text (rainfall depth) of location on map (degrees):
+# Longitude of text (rainfall depth) of location on map (decimal degrees):
 #LonText <- 4.85
 #FigFileLinksTimeStep <- paste("Links",gsub(" ","",ExtraText),TIMESTEP,"min",sep="")
 #OpenStreetMap can often fail to download, because of problems accessing the server:
@@ -645,6 +649,56 @@ FigFileLinkLocations <- "LinkLocationsTheNetherlands"
 #FigFileLinksTimeStep <- paste("Links",gsub(" ","",ExtraText),TIMESTEP,"min",sep="")
 #StamenMapType <- "terrain"
 #StamenZoomlevel <- 15
+
+
+
+####################
+# 10. Plot Topology#
+####################
+
+# CoorSystemInputData is already defined above.
+# Directories and names of output files:
+FigNameBarplotAngle="figures/Barplot_Orientation.pdf"
+FigNameBarplotFrequency="figures/Barplot_Frequency.pdf"
+FigNameBarplotPathLength="figures/Barplot_PathLength.pdf"
+FigNameFrequencyVsPathLength="figures/Frequency_vs_PathLength.pdf"
+FigNameScatterdensityplotFrequencyVsPathLength="figures/ScatterdensityPlot_Frequency_vs_PathLength.pdf"
+# Maximum microwave frequency to be plotted in bar plot (GHz). This is the value where the last bin class ends:
+Maxf=40
+# Minimum microwave frequency to be plotted in bar plot (GHz). This is the value where the first bin class ends:
+Minf=7
+# Maximum link path length to be plotted in bar plot (km). This is the value where the last bin class ends:
+MaxL=22
+# Minimum link path length to be plotted in bar plot (km). This is the value where the first bin class ends:
+MinL=1
+# Stepf Bin size of microwave frequency classes for bar plot in GHz:
+Stepf=1
+# StepL Bin size of link path length classes for bar plot in km:
+StepL=1
+
+
+
+#############################
+# 11. Plot data availability#
+#############################
+
+# Size of axis annotation:
+cex.axis=0.9
+# Size of x and y labels:
+cex.lab=1.15
+# Directories and names of output files
+FigNameBarplotAvailabilityLinks="figures/Barplot_Availability_Links.pdf"
+FigNameBarplotAvailabilityLinkPaths="figures/Barplot_Availability_LinkPaths.pdf"
+FigNameTimeseriesAvailability="figures/TimeseriesAvailability.pdf"
+# The point size of text:
+ps=18
+
+
+
+
+
+
+
 
 
 
