@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.14
-## Copyright (C) 2019 Aart Overeem
+## Version 1.2
+## Copyright (C) 2020 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -106,8 +106,8 @@ Interpolation <- function(Data,CoorSystemInputData=NULL,idp=2.0,IntpMethod="OK",
 	proj4string(d) <- CRS(CoorSystemInputData)
 	CRS.cart <- CRS(projstring)
 	Coor.cart <- spTransform(d, CRS.cart)
-	#Coor.cart$lon  Easting (in km)
-	#Coor.cart$lat  Northing (in km)
+	#Coor.cart$x  Easting (in km)
+	#Coor.cart$y  Northing (in km)
 	rain.grid <- data.frame(cbind(Coor.cart$x, Coor.cart$y))
 	coordinates(rain.grid) <- as.data.frame(rain.grid[,])
 

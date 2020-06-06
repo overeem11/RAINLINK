@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.14
-## Copyright (C) 2019 Aart Overeem
+## Version 1.2
+## Copyright (C) 2020 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -40,8 +40,14 @@
 #' Hence, ''MinMaxRSL'' is kept in this function name to stress that it
 #' has been tested for a sampling strategy where minimum and maximum received 
 #' powers are provided.
-#' Update: Now also works for a sampling strategy where instantaneous transmitted and received signal levels are obtained.
+#'
+#' Also works for a sampling strategy where instantaneous transmitted and received signal levels are obtained.
 #' In case of instantaneous signal levels, it does not matter whether transmitted power levels vary or are constant.
+#' The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
+#' for instructions. 
+#'
+#' Also works for a sampling strategy where average transmitted and received signal levels are obtained.
+#' In case of average signal levels, it does not matter whether transmitted power levels vary or are constant.
 #' The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
 #' for instructions. 
 #'

@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.14
-## Copyright (C) 2019 Aart Overeem
+## Version 1.2
+## Copyright (C) 2020 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -26,8 +26,7 @@
 #' @param ColourLinks Colour of plotted link paths.
 #' @param ColourType Colour or black-and-white background map? Use "color" for colour and "bw" 
 #' for black-and-white background map.
-#' @param dataf data frame which contains (at least) locations of microwave links in Azimuthal 
-#' Equidistant Cartesian coordinate system.
+#' @param dataf data frame which contains (at least) locations of microwave links in degrees. 
 #' @param DateTime Date and time for which link locations are plotted. This is used in the
 #' title caption of the figure and in the file name.
 #' @param ExtraTextLinkLocations Second part of title of plot.
@@ -56,11 +55,11 @@
 #' Using "Times" may give warnings when executing the visualisation. In that case the font is not 
 #' installed on the computer. This can be solved by using the default font ("").
 #' @param GoogleLocDegSpecified If GoogleLocDegSpecified is "yes" then the specified location in 
-#' degrees is used is used as the centre of the Google Map. If both GoogleLocNameSpecified and 
+#' decimal degrees is used as the centre of the Google Map. If both GoogleLocNameSpecified and 
 #' GoogleLocDegSpecified are not equal to "yes", the bounding box of the map is determined from 
 #' the provided grid and used as centre of the Google Map.
-#' @param GoogleLocLat Latitude of middle of Google Map (degrees).
-#' @param GoogleLocLon Longitude of middle of Google Map (degrees).
+#' @param GoogleLocLat Latitude of middle of Google Map (decimal degrees).
+#' @param GoogleLocLon Longitude of middle of Google Map (decimal degrees).
 #' @param GoogleLocName Location of middle of Google Map, provided as text, e.g. name of city,
 #' street name, country.
 #' @param GoogleLocNameSpecified If GoogleLocNameSpecified is "yes" then the specified location 
@@ -80,11 +79,11 @@
 #' It seems that mapping with OpenStreetMap (“get openstreetmap”) is no langer supported.
 #' This implies that mapping can only be done employing Google Maps (if Google API key is obtained) or via
 #' Stamen Map. This is not related to the RAINLINK version.
-#' @param OSMBottom Latitude in degrees (WGS84) for bottom side of the area for which rainfall depths 
+#' @param OSMBottom Latitude in decimal degrees (WGS84) for bottom side of the area for which rainfall depths 
 #' are to be plotted (for OpenStreetMap & Stamen Maps only).
-#' @param OSMLeft Longitude in degrees (WGS84) for left side of the area for which rainfall depths are 
+#' @param OSMLeft Longitude in decimal degrees (WGS84) for left side of the area for which rainfall depths are 
 #' to be plotted (for OpenStreetMap & Stamen Maps only). 
-#' @param OSMRight Longitude in degrees (WGS84) for right side of the area for which rainfall depths 
+#' @param OSMRight Longitude in decimal degrees (WGS84) for right side of the area for which rainfall depths 
 #' are to be plotted (for OpenStreetMap & Stamen Maps only). 
 #' @param OSMScale Give value of scale (for OpenStreetMap only). A proper choice of the scale parameter 
 #' in get_openstreetmap is difficult. It cannot be computed automatically. Hence, a scale parameter value 
@@ -93,7 +92,7 @@
 #' should manually supply get_openstreetmap with a scale. It may require some iterations to find the 
 #' appropriate value for scale. The file "ggmapTemp.png" is written to disk when an OpenStreetMap is loaded. 
 #' The highest possible resolution for a square area is about 2000 x 2000 pixels. 
-#' @param OSMTop Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be 
+#' @param OSMTop Latitude in decimal degrees (WGS84) for top side of the area for which rainfall depths are to be 
 #' plotted (for OpenStreetMap & Stamen Maps only).
 #' @param OutputFileType Choose output file type of image: jpeg, png or tiff.
 #' @param SizeLinks Size of plotted link paths.

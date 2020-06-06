@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ## 
-## Version 1.14
-## Copyright (C) 2019 Aart Overeem
+## Version 1.2
+## Copyright (C) 2020 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -41,6 +41,11 @@
 #' The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
 #' for instructions. 
 #'
+#' Also works for a sampling strategy where average transmitted and received signal levels are obtained.
+#' In case of average signal levels, it does not matter whether transmitted power levels vary or are constant.
+#' The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
+#' for instructions. 
+#'
 #' The time interval does not have to be an integer but should be equidistant. The minimum time 
 #' interval length in the time series is automatically computed and is employed as the time 
 #' interval length.
@@ -73,8 +78,7 @@
 #' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
 
-WetDryNearbyLinkApMinMaxRSL <- function(Data,CoorSystemInputData=NULL,MinHoursPmin=6,PeriodHoursPmin=24,
-Radius=15,Step8=TRUE,ThresholdMedian=-1.4,ThresholdMedianL=-0.7,ThresholdNumberLinks=3,ThresholdWetDry=2)
+WetDryNearbyLinkApMinMaxRSL <- function(Data,CoorSystemInputData=NULL,MinHoursPmin=6,PeriodHoursPmin=24, Radius=15,Step8=TRUE,ThresholdMedian=-1.4,ThresholdMedianL=-0.7,ThresholdNumberLinks=3,ThresholdWetDry=2)
 {
 	# Determine the middle of the area over which there are data 
 	# (for reprojection onto a Cartesian coordinate system)
@@ -131,7 +135,7 @@ Radius=15,Step8=TRUE,ThresholdMedian=-1.4,ThresholdMedianL=-0.7,ThresholdNumberL
 	# Loop over all links for coordinate transformation and putting data in an array
    	for (p in 1 : N_links)
    	{
-		# Find indices corresppnding to this link
+		# Find indices corresponding to this link
 		Cond <- which(Data$ID == IDLink[p])
 		
 		#Convert coordinates to a system in km, centered on the area covered by the links

@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.14
-## Copyright (C) 2019 Aart Overeem
+## Version 1.2
+## Copyright (C) 2020 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -42,13 +42,13 @@
 #' @param ColourHighestClass Colour of highest class.
 #' @param ConversionDepthToIntensity Conversion factor from rainfall depth (mm) to intensity (mm/h).
 #' @param CoorSystemInputData Define coordinate system of input data 
-#' (e.g. "+init=epsg:4326" for WGS84 in degrees).
+#' (e.g. "+init=epsg:4326" for WGS84 in decimal degrees).
 #' @param DateTimeEndRainMaps Date and time at which rainfall mapping ends.
 #' @param DateTimeStartRainMaps Date and time at which rainfall mapping starts.
 #' @param ExtraDeg To reduce computational time, it is automatically determined which grid cells fall 
 #' within the plotted region. To also plot grid cell values which partly fall outside the plotted region, 
-#' a positive number for ExtraDeg should be specified (degrees). 
-#' This should typically be at least the size of one grid cell in degrees.
+#' a positive number for ExtraDeg should be specified (decimal degrees). 
+#' This should typically be at least the size of one grid cell in decimal degrees.
 #' @param ExtraText Second part of title of plot.
 #' @param FigFileLinksTimeStep Part of figure output file name.
 #' @param FigHeight Figure height. 1280 times 1280 pixels seems maximum graphical resolution for downloaded 
@@ -74,11 +74,11 @@
 #' may give warnings 
 #' when executing the visualisation. In that case the font is not installed on the computer. This can be solved by 
 #' using the default font ("").
-#' @param GoogleLocDegSpecified If GoogleLocDegSpecified is "yes" then the specified location in degrees is used 
+#' @param GoogleLocDegSpecified If GoogleLocDegSpecified is "yes" then the specified location in decimal degrees is used 
 #' is used as the centre of the Google Map. If both GoogleLocNameSpecified and GoogleLocDegSpecified are not equal 
 #' to "yes", the bounding box of the map is determined from the provided grid and used as centre of the Google Map.
-#' @param GoogleLocLat Latitude of middle of Google Map (degrees).
-#' @param GoogleLocLon Longitude of middle of Google Map (degrees).
+#' @param GoogleLocLat Latitude of middle of Google Map (decimal degrees).
+#' @param GoogleLocLon Longitude of middle of Google Map (decimal degrees).
 #' @param GoogleLocName Location of middle of Google Map, provided as text, e.g. name of city, street name, country
 #' @param GoogleLocNameSpecified If GoogleLocNameSpecified is "yes" then the specified location name GoogleLocName 
 #' is used as the centre of the Google Map. If both GoogleLocNameSpecified and GoogleLocDegSpecified are not equal 
@@ -90,12 +90,12 @@
 #' @param LabelAxisLonGoogle Label name of horizontal axis (for Google Maps only).
 #' @param LabelAxisLonOSM Label name of horizontal axis (for OpenStreetMap only).
 #' @param LabelAxisLonStamen Label name of horizontal axis (for Stamen Map only).
-#' @param LatLocation Latitude of location on map (degrees).
-#' @param LatText Latitude of text (rainfall depth) of location on map (degrees).
+#' @param LatLocation Latitude of location on map (decimal degrees).
+#' @param LatText Latitude of text (rainfall depth) of location on map (decimal degrees).
 #' @param LegendSize Size of legend (choose e.g. 75 for 6 classes and 50 for 10 classes).
 #' @param LegendTitleLinksTimeStep Title of legend.
-#' @param LonLocation Longitude of location on map (degrees).
-#' @param LonText Longitude of text (rainfall depth) of location on map (degrees).
+#' @param LonLocation Longitude of location on map (decimal degrees).
+#' @param LonText Longitude of text (rainfall depth) of location on map (decimal degrees).
 #' @param ManualScale Manually supply the legend breaks if ManuelScale is not equal to "no". 
 #' Interval breaks are determined manually from ScaleLow and ScaleHigh. If ManualScale is "no" 
 #' interval breaks are determined automatically. 
@@ -105,11 +105,11 @@
 #' It seems that mapping with OpenStreetMap (“get openstreetmap”) is no langer supported.
 #' This implies that mapping can only be done employing Google Maps (if Google API key is obtained) or via
 #' Stamen Map. This is not related to the RAINLINK version.
-#' @param OSMBottom Latitude in degrees (WGS84) for bottom side of the area for which rainfall depths are to be plotted 
+#' @param OSMBottom Latitude in decimal degrees (WGS84) for bottom side of the area for which rainfall depths are to be plotted 
 #' (for OpenStreetMap & Stamen Maps only).
-#' @param OSMLeft Longitude in degrees (WGS84) for left side of the area for which rainfall depths are to be plotted 
+#' @param OSMLeft Longitude in decimal degrees (WGS84) for left side of the area for which rainfall depths are to be plotted 
 #' (for OpenStreetMap & Stamen Maps only). 
-#' @param OSMRight Longitude in degrees (WGS84) for right side of the area for which rainfall depths are to be plotted 
+#' @param OSMRight Longitude in decimal degrees (WGS84) for right side of the area for which rainfall depths are to be plotted 
 #' (for OpenStreetMap & Stamen Maps only). 
 #' @param OSMScale Give value of scale (for OpenStreetMap only). A proper choice of the scale parameter in get_openstreetmap 
 #' is difficult. It cannot be computed automatically. Hence, a scale parameter value should be provided below. The scale 
@@ -117,7 +117,7 @@
 #' map not being downloaded. Hence, the user should manually supply get_openstreetmap with a scale. It may require some 
 #' iterations to find the appropriate value for scale. The file "ggmapTemp.png" is written to disk when an OpenStreetMap is 
 #' loaded. The highest possible resolution for a square area is about 2000 x 2000 pixels. 
-#' @param OSMTop Latitude in degrees (WGS84) for top side of the area for which rainfall depths are to be plotted 
+#' @param OSMTop Latitude in decimal degrees (WGS84) for top side of the area for which rainfall depths are to be plotted 
 #' (for OpenStreetMap & Stamen Maps only).
 #' @param OutputFileType Choose output file type of image: jpeg, png or tiff.
 #' @param PlotLocation A location is plotted on map if PlotLocation is "yes".
@@ -230,9 +230,6 @@ SymbolPlotLocation,TitleLinks,XMiddle,YMiddle)
 
 	# Read polygons describing the interpolation/radar grid:
 	PolygonsGrid <- read.table(FilePolygonsGrid)
-
-	# Construct projection string for Azimuthal Equidistant Cartesian coordinate system:
-	projstring <- paste("+proj=aeqd +a=6378.137 +b=6356.752 +R_A +lat_0=",YMiddle," +lon_0=",XMiddle," +x_0=0 +y_0=0",sep="")
 
 	# Use Google Map as background.
 	if (MapBackground=="Google")

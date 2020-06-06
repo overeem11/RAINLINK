@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ## 
-## Version 1.14
-## Copyright (C) 2019 Aart Overeem
+## Version 1.2
+## Copyright (C) 2020 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -29,6 +29,11 @@
 #'
 #' Also works for a sampling strategy where instantaneous transmitted and received signal levels are obtained.
 #' In case of instantaneous signal levels, it does not matter whether transmitted power levels vary or are constant.
+#' The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
+#' for instructions. 
+#'
+#' Also works for a sampling strategy where average transmitted and received signal levels are obtained.
+#' In case of average signal levels, it does not matter whether transmitted power levels vary or are constant.
 #' The only requirement is that the input data for RAINLINK needs some preprocessing. See ''ManualRAINLINK.pdf''
 #' for instructions. 
 #'
@@ -89,7 +94,7 @@ PreprocessingMinMaxRSL <- function(Data,MaxFrequency=Inf,MinFrequency=0,verbose=
 					if (length(ind.nodiff) > 0)
 					{
 						# Not SelID should become NA, but the corresponding ID value in Data. This is now correct. 
-						# With na.omit at the of this function, these rows will be excluded.
+						# At the end of this function these rows will be excluded.
 						Data$ID[ SelID[ind.nodiff] ] <- NA
 						Data$ID[ SelID[ind.nodiff + 1] ] <- NA
 					}

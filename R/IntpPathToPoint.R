@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.14
-## Copyright (C) 2019 Aart Overeem
+## Version 1.2
+## Copyright (C) 2020 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@
 #' @param XStart Easting of start of links (km).
 #' @param YEnd Northing of end of links (km).
 #' @param YStart Northing of start of links (km).
-#' @return Coordinates of links in Azimuthal Equidistant Cartesian coordinate system
+#' @return Coordinates of middle of links in Azimuthal Equidistant Cartesian coordinate system
 #' (latitude, longitude) and rainfall intensity (mm h\eqn{^{-1}})).
 #' @export IntpPathToPoint
 #' @examples
