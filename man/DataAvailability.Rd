@@ -57,8 +57,8 @@ In case a time interval is missing, i.e. not present in DateTime, it is not incl
 Hence, the computed availability does only refer to the time intervals for which a DateTime entry is present in the dataset.
 In the computation of availabilities only links or paths are counted as available in case the link-derived rainfall intensities
 are equal to or larger than 0 (mm h\eqn{^{-1}}). I.e., NA values in Rmean are taken into account in the computation of data availability.
-So data availability is always computed over all time intervals in DateTime. If DateTime has missing intervals, these are not taken into
-account in the computation. Note that NA values do not exist in the DateTime object if function ''PreprocessingMinMaxRSL'' has been run.
+So data availability is always computed over all time intervals in DateTime. Note that NA values do not exist in the DateTime object if function
+''PreprocessingMinMaxRSL'' has been run and note that Data must be preprocessed, because Rmean is used.
 }
 \examples{
 data(Linkdata)

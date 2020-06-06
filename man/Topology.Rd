@@ -72,6 +72,7 @@ The input microwave link data do not have to be sorted chronologically. Full-dup
 The computed percentages in the bar plots are only based on the range of classes presented in the bar plots, i.e. data outside these classes are not used in the computations.
 
 When Rmean is provided, all figures are only based on data where the link-derived rainfall intensities are equal to or larger than 0 mm h\eqn{^{-1}}.
+Note that Data object must be preprocessed by function ''PreprocessingMinMaxRSL'' if Rmean is provided.
 }
 \examples{
 data(Linkdata)
