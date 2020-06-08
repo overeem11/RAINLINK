@@ -433,9 +433,6 @@ dataf <- c(ncvar_get(ncFILE,varid="image1_image_data"))
 dataf <- dataf[!is.na(dataf)]
 nc_close(ncFILE)
 
-# File with interpolation grid in same coordinate system as CoorSystemInputData:
-FileGrid <- "InterpolationGrid.dat"	# WGS84 (longitude, latitude (decimal degrees))
-
 # OR load e.g. 15-min link data:
 # Duration of time interval of sampling strategy (min):
 TIMESTEP <- 15	
@@ -457,8 +454,8 @@ dataf <- read.table(Filename,header=TRUE)
 dataf <- ConversionIntensityToDepth * dataf[,1]
 
 # Location for which rainfall depth is to be extracted:
-Lon = 5.1214201
-Lat = 52.0907374
+Lon <- 5.1214201
+Lat <- 52.0907374
 
 # Run function ReadRainLocation:
 ReadRainLocation(CoorSystemInputData=CoorSystemInputData,dataf=dataf,FileGrid=FileGrid,Lat=Lat,Lon=Lon,XMiddle=XMiddle,YMiddle=YMiddle)
