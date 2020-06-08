@@ -533,6 +533,9 @@ FigNameBarplotAvailabilityLinkPaths=FigNameBarplotAvailabilityLinkPaths,
 FigNameTimeseriesAvailability=FigNameTimeseriesAvailability,ps=ps,Rmean=Rmean,TimeZone=TimeZone)
 
 # Note that Data must be preprocessed, because Rmean is used.
+# Another remark concerns the function "DataAvailability". In the figure showing the time series of data availability, the first period reveals 0 availability. 
+# This is due to the spin-up time of RAINLINK. This period is also taken into account in the computations of data availability. To prevent his, the first period
+# should be removed from the Data and Rmean object as provided to function "DataAvailability". 
 
 
 
