@@ -258,7 +258,7 @@ PERIOD <- "0800"	# hours and minutes
 
 # Time zone:
 TimeZone <- "UTC"
-Sys.setenv <- (TZ="TimeZone")
+Sys.setenv <- (TZ=TimeZone)
 
 
 # To reduce computational time, it is automatically determined which grid cells fall within the plotted region. 
