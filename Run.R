@@ -195,7 +195,8 @@ if (ToFile)
 		Frequency = DataPreprocessed$Frequency[ind])
 		
 		Filename <- paste(FolderRainEstimates, "/linkdata_", t[i], ".dat", sep="")
-		write.table(int_data, Filename, row.names = FALSE, col.names = TRUE, append = FALSE, quote = FALSE)
+		# Using na.omit removes all rows with at least 1 NA:
+		write.table(na.omit(int_data), Filename, row.names = FALSE, col.names = TRUE, append = FALSE, quote = FALSE)
 	}
 }
 # Note that the output files contain rainfall depths (mm). If these data are to be used for the interpolation, they must first be read ("Interpolation.R" does not read these files).
