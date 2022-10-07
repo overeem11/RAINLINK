@@ -4,30 +4,27 @@
 \alias{PathLength}
 \title{Function to compute path length of microwave links from coordinates.}
 \usage{
-PathLength(XStart, XEnd, YStart, YEnd)
+PathLength(InputCoorSystem, XStart, XEnd, YStart, YEnd)
 }
 \arguments{
-\item{XStart}{List with longitude of start of microwave links (decimal degrees)}
+\item{InputCoorSystem}{Define EPSG code for input coordinate system (e.g., 4326L for WGS84 in degrees).}
 
-\item{XEnd}{List with longitude of end of microwave links (decimal degrees)}
+\item{XStart}{List with longitude of start of microwave links.}
 
-\item{YStart}{List with latitude of start of microwave links (decimal degrees)}
+\item{XEnd}{List with longitude of end of microwave links.}
 
-\item{YEnd}{List with latitude of end of microwave links (decimal degrees)}
+\item{YStart}{List with latitude of start of microwave links.}
+
+\item{YEnd}{List with latitude of end of microwave links.}
 }
 \value{
 Path length of microwave links (km).
 }
 \description{
 Function for computing path length of microwave links from coordinates.
-
-Coordinates should be provided as longitudes and latitudes of start and end of a link.
-It uses the function ''distVincentyEllipsoid'' from the R package ''geosphere'', which computes the ''Vincenty'' (Ellipsoid) Great Circle Distance.
-The shortest distance between two points (i.e., the ''great-circle-distance'' or ''as the crow flies''), according to the ''Vincenty (ellipsoid)'' method. 
-The WGS84 ellipsoid is used.
 }
 \examples{
-PathLength(XStart=XStart,XEnd=XEnd,YStart=YStart,YEnd=YEnd)
+PathLength(InputCoorSystem=4326L,XStart=XStart,XEnd=XEnd,YStart=YStart,YEnd=YEnd)
 }
 \references{
 ''ManualRAINLINK.pdf''

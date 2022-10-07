@@ -5,33 +5,26 @@
 \title{Function for finding (interpolated) rainfall value for a given latitude and longitude.}
 \usage{
 ReadRainLocation(
-  CoorSystemInputData,
   dataf,
   FileGrid,
+  InputCoorSystem,
   Lat,
-  Lon,
-  XMiddle,
-  YMiddle
+  LocalCartesianCoorSystem,
+  Lon
 )
 }
 \arguments{
-\item{CoorSystemInputData}{Coordinate system of the input data (e.g. "+init=epsg:4326" for WGS84 in degrees).}
-
 \item{dataf}{Data frame of (interpolated) rainfall values.}
 
-\item{FileGrid}{File with interpolation grid in same coordinate system as CoorSystemInputData.}
+\item{FileGrid}{File with interpolation grid in same coordinate system as InputCoorSystem.}
+
+\item{InputCoorSystem}{Define EPSG code for input coordinate system (e.g., 4326L for WGS84 in degrees).}
 
 \item{Lat}{Latitude of location for which (interpolated) rainfall value is to be extracted 
-(in coordinate system CoorSystemInputData).}
-
-\item{XMiddle}{The longitude of the centre of the Azimuthal Equidistant Cartesian coordinate system, 
-given in the coordinate system of the input data.}
-
-\item{YMiddle}{The latitude of the centre of the Azimuthal Equidistant Cartesian coordinate system, 
-given in the coordinate system of the input data.}
+(in coordinate system InputCoorSystem).}
 
 \item{Lot}{Longitude of location for which (interpolated) rainfall value is to be extracted 
-(in coordinate system CoorSystemInputData).}
+(in coordinate system InputCoorSystem).}
 }
 \value{
 Rainfall value for selected location (in unit of provided input rainfall data).
@@ -41,8 +34,8 @@ Function for finding (interpolated) rainfall value for a given latitude and long
 I.e. find the grid cell which belongs to the location for which latitude and longitude are provided.
 }
 \examples{
-ReadRainLocation(CoorSystemInputData=CoorSystemInputData,dataf=dataf,FileGrid=FileGrid,
-Lat=Lat,Lon=Lon,XMiddle=XMiddle,YMiddle=YMiddle)
+ReadRainLocation(dataf=dataf,FileGrid=FileGrid,InputCoorSystem=4326L,
+Lat=Lat,LocalCartesianCoorSystem=28992,Lon=Lon)
 }
 \references{
 ''ManualRAINLINK.pdf''

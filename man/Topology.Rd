@@ -6,12 +6,13 @@
 \usage{
 Topology(
   Data,
-  CoorSystemInputData = NULL,
   FigNameBarplotAngle,
   FigNameBarplotFrequency,
   FigNameBarplotPathLength,
   FigNameFrequencyVsPathLength,
   FigNameScatterdensityplotFrequencyVsPathLength,
+  InputCoorSystem,
+  LocalCartesianCoorSystem,
   Maxf,
   Minf,
   MaxL,
@@ -25,9 +26,6 @@ Topology(
 \arguments{
 \item{Data}{Data frame with microwave link data (use data(Linkdata) to load example data).}
 
-\item{CoorSystemInputData}{Define coordinate system of input data (in case of
-WGS84 provide NULL).}
-
 \item{FigNameBarplotAngle}{Name of file with bar plot with percentage of links for bins of link orientation. The extension must be ''.pdf''.}
 
 \item{FigNameBarplotFrequency}{Name of file with bar plot with percentage of links for bins of link path length. The extension must be ''.pdf''.}
@@ -37,6 +35,10 @@ WGS84 provide NULL).}
 \item{FigNameFrequencyVsPathLength}{Name of file with scatter plot of microwave frequency versus link path length. The extension must be ''.pdf''.}
 
 \item{FigNameScatterdensityplotFrequencyVsPathLength}{Name of file with scatter density plot of microwave frequency versus link path length. The extension must be ''.pdf''.}
+
+\item{InputCoorSystem}{Define EPSG code for input coordinate system (e.g., 4326L for WGS84 in degrees).}
+
+\item{LocalCartesianCoorSystem}{Define EPSG code for (local) Cartesian coordinate system (meters).}
 
 \item{Maxf}{Maximum microwave frequency to be plotted in bar plot (GHz). This is the value where the last bin class ends.}
 
@@ -76,10 +78,11 @@ Note that Data object must be preprocessed by function ''PreprocessingMinMaxRSL'
 }
 \examples{
 data(Linkdata)
-Topology(Data=Linkdata,CoorSystemInputData=NULL,FigNameBarplotAngle="Barplot_Orientation.pdf",
+Topology(Data=Linkdata,FigNameBarplotAngle="Barplot_Orientation.pdf",
 FigNameBarplotFrequency="Barplot_Frequency.pdf",FigNameBarplotPathLength="Barplot_PathLength.pdf",
 FigNameFrequencyVsPathLength="Frequency_vs_PathLength.pdf",
 FigNameScatterdensityplotFrequencyVsPathLength="ScatterdensityPlot_Frequency_vs_PathLength.pdf",
+InputCoorSystem=4326L,LocalCartesianCoorSystem=28992,
 Maxf=40,Minf=13,MaxL=21,MinL=1,Rmean=Rmean,Stepf=1.5,StepL=2)
 }
 \references{

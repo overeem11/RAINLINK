@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.21
-## Copyright (C) 2021 Aart Overeem
+## Version 1.3
+## Copyright (C) 2022 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -25,8 +25,8 @@
 #' @param nmax The number of nearest observations that should be used for a kriging prediction 
 #' or simulation, where nearest is defined in terms of the space of the spatial locations.
 #' @param Nugget Nugget of spherical variogram model (mm).
-#' @param rain.grid Interpolation grid in Azimuthal Equidistant Cartesian coordinate system.
-#' @param Rainlink Coordinates of links in Azimuthal Equidistant Cartesian coordinate system 
+#' @param rain.grid Interpolation grid in a Cartesian coordinate system.
+#' @param Rainlink Coordinates of links in a Cartesian coordinate system 
 #' and rainfall intensity (latitude in km, longitude in km, intensity in mm h\eqn{^{-1}}).
 #' @param Range Range of spherical variogram model (km).
 #' @param Sill Sill of spherical variogram model (mm\eqn{^2}).

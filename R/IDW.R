@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.21
-## Copyright (C) 2021 Aart Overeem
+## Version 1.3
+## Copyright (C) 2022 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -21,8 +21,8 @@
 #' @description Subfunction for inverse distance weighted interpolation on point data. 
 #'
 #' @param idp The inverse distance weighting power.
-#' @param rain.grid Interpolation grid in Azimuthal Equidistant Cartesian coordinate system.
-#' @param Rainlink Coordinates of links in Azimuthal Equidistant Cartesian coordinate system. 
+#' @param rain.grid Interpolation grid in a Cartesian coordinate system.
+#' @param Rainlink Coordinates of links in a Cartesian coordinate system 
 #' and rainfall intensity (latitude in km, longitude in km, intensity in mm h\eqn{^{-1}}).
 #' @return Interpolated field of rainfall intensities.
 #' @export IDW

@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ## 
-## Version 1.21
-## Copyright (C) 2021 Aart Overeem
+## Version 1.3
+## Copyright (C) 2022 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -37,13 +37,13 @@
 #' Note that Data object must be preprocessed by function ''PreprocessingMinMaxRSL'' if Rmean is provided.
 #'
 #' @param Data Data frame with microwave link data (use data(Linkdata) to load example data).
-#' @param CoorSystemInputData Define coordinate system of input data (in case of
-#' WGS84 provide NULL).
 #' @param FigNameBarplotAngle Name of file with bar plot with percentage of links for bins of link orientation. The extension must be ''.pdf''.
 #' @param FigNameBarplotFrequency Name of file with bar plot with percentage of links for bins of link path length. The extension must be ''.pdf''.
 #' @param FigNameBarplotPathLength Name of file with bar plot with percentage of links for bins of microwave frequency. The extension must be ''.pdf''.
 #' @param FigNameFrequencyVsPathLength Name of file with scatter plot of microwave frequency versus link path length. The extension must be ''.pdf''.
 #' @param FigNameScatterdensityplotFrequencyVsPathLength Name of file with scatter density plot of microwave frequency versus link path length. The extension must be ''.pdf''.
+#' @param InputCoorSystem Define EPSG code for input coordinate system (e.g., 4326L for WGS84 in degrees).
+#' @param LocalCartesianCoorSystem Define EPSG code for (local) Cartesian coordinate system (meters).
 #' @param Maxf Maximum microwave frequency to be plotted in bar plot (GHz). This is the value where the last bin class ends.
 #' @param Minf Minimum microwave frequency to be plotted in bar plot (GHz). This is the value where the first bin class ends.
 #' @param MaxL Maximum link path length to be plotted in bar plot (km). This is the value where the last bin class ends.
@@ -55,10 +55,11 @@
 #' @export Topology
 #' @examples
 #' data(Linkdata)
-#' Topology(Data=Linkdata,CoorSystemInputData=NULL,FigNameBarplotAngle="Barplot_Orientation.pdf",
+#' Topology(Data=Linkdata,FigNameBarplotAngle="Barplot_Orientation.pdf",
 #' FigNameBarplotFrequency="Barplot_Frequency.pdf",FigNameBarplotPathLength="Barplot_PathLength.pdf",
 #' FigNameFrequencyVsPathLength="Frequency_vs_PathLength.pdf",
 #' FigNameScatterdensityplotFrequencyVsPathLength="ScatterdensityPlot_Frequency_vs_PathLength.pdf",
+#' InputCoorSystem=4326L,LocalCartesianCoorSystem=28992,
 #' Maxf=40,Minf=13,MaxL=21,MinL=1,Rmean=Rmean,Stepf=1.5,StepL=2)
 #' @author Aart Overeem
 #' @references ''ManualRAINLINK.pdf''
@@ -67,7 +68,7 @@
 #' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
 
-Topology <- function(Data,CoorSystemInputData=NULL,FigNameBarplotAngle,FigNameBarplotFrequency,FigNameBarplotPathLength, FigNameFrequencyVsPathLength,FigNameScatterdensityplotFrequencyVsPathLength,Maxf,Minf,MaxL,MinL,Rmean=NULL,Stepf,StepL,verbose=TRUE)
+Topology <- function(Data,FigNameBarplotAngle,FigNameBarplotFrequency,FigNameBarplotPathLength, FigNameFrequencyVsPathLength,FigNameScatterdensityplotFrequencyVsPathLength,InputCoorSystem,LocalCartesianCoorSystem,Maxf,Minf,MaxL,MinL,Rmean=NULL,Stepf,StepL,verbose=TRUE)
 {
 
 	# If Rmean is provided, only select data for which the link-derived rainfall intensities are equal to or larger than 0.
@@ -152,24 +153,6 @@ Topology <- function(Data,CoorSystemInputData=NULL,FigNameBarplotAngle,FigNameBa
 
 
 	# Bar plot orientation links.
-	# Determine the middle of the area over which there are data (for reprojection onto a Cartesian coordinate system)
-	if (!is.null(CoorSystemInputData))
-	{
-		Coor <- data.frame(x = c(min(Data$XStart, Data$XEnd), max(Data$XStart, Data$XEnd)), y = c(min(Data$YStart, Data$YEnd), max(Data$YStart, Data$YEnd)))
-		coordinates(Coor) <- c("x", "y")
-		proj4string(Coor) <- CRS(CoorSystemInputData) 
-		CRS.latlon <- CRS("+proj=longlat +ellps=WGS84")
-		Coor.latlon <- spTransform(Coor, CRS.latlon)
-		XMiddle <- (Coor.latlon$x[1] + Coor.latlon$x[2]) / 2
-		YMiddle <- (Coor.latlon$y[1] + Coor.latlon$y[2]) / 2
-	} else {
-		XMiddle <- (min(Data$XStart, Data$XEnd) + max(Data$XStart, Data$XEnd)) / 2
-		YMiddle <- (min(Data$YStart, Data$YEnd) + max(Data$YStart, Data$YEnd)) / 2
-		CoorSystemInputData <- "+proj=longlat +ellps=WGS84"
-	}
-	# Construct projection string for Azimuthal Equidistant Cartesian coordinate system:
-	projstring <- paste("+proj=aeqd +a=6378.137 +b=6356.752 +R_A +lat_0=",YMiddle,
-	" +lon_0=",XMiddle," +x_0=0 +y_0=0",sep="")
 	Data$ID <- as.character(Data$ID)
    	IDLink <- unique(Data$ID)
    	N_links <- length(IDLink)
@@ -183,17 +166,15 @@ Topology <- function(Data,CoorSystemInputData=NULL,FigNameBarplotAngle,FigNameBa
 		# Find indices corresponding to this link
 		Cond <- which(Data$ID == IDLink[p])
 		
-		#Convert coordinates to a system in km, centered on the area covered by the links
+		# Convert to (local) Cartesian EPSG coordinate system (in kilometers)
 		Coor <- data.frame(x = c(Data$XStart[Cond[1]], Data$XEnd[Cond[1]]), 
 		y = c(Data$YStart[Cond[1]], Data$YEnd[Cond[1]]))
-		coordinates(Coor) <- c("x", "y")
-		proj4string(Coor) <- CRS(CoorSystemInputData) 
-		CRS.cart <- CRS(projstring)
-		Coor.cart <- spTransform(Coor, CRS.cart)
-		XStart[Cond] <- Coor.cart$x[1]  # Easting (in km)
-		YStart[Cond] <- Coor.cart$y[1]  # Northing (in km)
-		XEnd[Cond] <- Coor.cart$x[2]  # Easting (in km)
-		YEnd[Cond] <- Coor.cart$y[2]  # Northing (in km)
+		names(Coor) <- c("x", "y")
+		Coor.cart <- st_coordinates(st_transform(st_as_sf(Coor, crs = InputCoorSystem, coords = c("x", "y")), crs = LocalCartesianCoorSystem))
+		XStart[Cond] <- as.data.frame(Coor.cart[,"X"])[1,]/1000  # Easting (in km)
+		YStart[Cond] <- as.data.frame(Coor.cart[,"Y"])[1,]/1000  # Northing (in km)
+		XEnd[Cond] <- as.data.frame(Coor.cart[,"X"])[2,]/1000  # Easting (in km)
+		YEnd[Cond] <- as.data.frame(Coor.cart[,"Y"])[2,]/1000  # Northing (in km)		
 	}
 	angle <- atan( (XEnd - XStart) / (YEnd - YStart) ) 
 	angle <- 180 + angle * 180/pi

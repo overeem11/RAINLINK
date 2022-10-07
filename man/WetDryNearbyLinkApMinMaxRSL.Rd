@@ -8,7 +8,8 @@ computing corrected received powers.}
 \usage{
 WetDryNearbyLinkApMinMaxRSL(
   Data,
-  CoorSystemInputData = NULL,
+  InputCoorSystem = InputCoorSystem,
+  LocalCartesianCoorSystem = LocalCartesianCoorSystem,
   MinHoursPmin = 6,
   PeriodHoursPmin = 24,
   Radius = 15,
@@ -22,8 +23,9 @@ WetDryNearbyLinkApMinMaxRSL(
 \arguments{
 \item{Data}{Data frame with microwave link data.}
 
-\item{CoorSystemInputData}{Define coordinate system of input data (in case of
-WGS84 provide NULL).}
+\item{InputCoorSystem}{Define EPSG code for input coordinate system (e.g., 4326L for WGS84 in degrees).}
+
+\item{LocalCartesianCoorSystem}{Define EPSG code for (local) Cartesian coordinate system (meters).}
 
 \item{MinHoursPmin}{Minimum number of hours in the previous PeriodHoursPmin hours needed 
 for computing max(P\eqn{_{\mbox{min}}}) (h).}
@@ -80,9 +82,10 @@ interval length in the time series is automatically computed and is employed as 
 interval length.
 }
 \examples{
-WetDryNearbyLinkApMinMaxRSL(Data=DataPreprocessed,CoorSystemInputData=NULL, 
-MinHoursPmin=6,PeriodHoursPmin=24,Radius=15,Step8=TRUE,ThresholdMedian=-1.4, 
-ThresholdMedianL=-0.7,ThresholdNumberLinks=3,ThresholdWetDry=2)
+WetDryNearbyLinkApMinMaxRSL(Data=DataPreprocessed,InputCoorSystem=4326L,
+LocalCartesianCoorSystem=28992, MinHoursPmin=6,PeriodHoursPmin=24,Radius=15,
+Step8=TRUE,ThresholdMedian=-1.4, ThresholdMedianL=-0.7,ThresholdNumberLinks=3,
+ThresholdWetDry=2)
 }
 \references{
 ''ManualRAINLINK.pdf''

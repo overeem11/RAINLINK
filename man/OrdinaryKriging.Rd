@@ -13,9 +13,9 @@ or simulation, where nearest is defined in terms of the space of the spatial loc
 
 \item{Nugget}{Nugget of spherical variogram model (mm).}
 
-\item{rain.grid}{Interpolation grid in Azimuthal Equidistant Cartesian coordinate system.}
+\item{rain.grid}{Interpolation grid in a Cartesian coordinate system.}
 
-\item{Rainlink}{Coordinates of links in Azimuthal Equidistant Cartesian coordinate system 
+\item{Rainlink}{Coordinates of links in a Cartesian coordinate system 
 and rainfall intensity (latitude in km, longitude in km, intensity in mm h\eqn{^{-1}}).}
 
 \item{Range}{Range of spherical variogram model (km).}

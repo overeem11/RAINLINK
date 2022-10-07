@@ -6,10 +6,20 @@
 A path-averaged rainfall intensity is assigned to a point at the middle of 
 the link path.}
 \usage{
-IntpPathToPoint(ID, Rmean, XEnd, XStart, YEnd, YStart)
+IntpPathToPoint(
+  ID,
+  LocalCartesianCoorSystem,
+  Rmean,
+  XEnd,
+  XStart,
+  YEnd,
+  YStart
+)
 }
 \arguments{
 \item{ID}{Link identifier.}
+
+\item{LocalCartesianCoorSystem}{Define EPSG code for (local) Cartesian coordinate system (meters).}
 
 \item{Rmean}{Data frame with mean path-averaged rainfall intensities (mm h\eqn{^{-1}}).}
 
@@ -22,7 +32,7 @@ IntpPathToPoint(ID, Rmean, XEnd, XStart, YEnd, YStart)
 \item{YStart}{Northing of start of links (km).}
 }
 \value{
-Coordinates of middle of links in Azimuthal Equidistant Cartesian coordinate system
+Coordinates of middle of links in (local) Cartesian coordinate system
 (latitude, longitude) and rainfall intensity (mm h\eqn{^{-1}})).
 }
 \description{
@@ -33,7 +43,8 @@ assigned to a point at the middle of the link path. Path-averaged rainfall
 intensities are obtained, so data from full-duplex links are averaged.
 }
 \examples{
-IntpPathToPoint(ID=ID,Rmean=Rmean,Xend=Xend,XStart=XStart,YEnd=YEnd,YStart=YStart)
+IntpPathToPoint(ID=ID,LocalCartesianCoorSystem=28992,Rmean=Rmean,Xend=Xend,XStart=XStart,
+YEnd=YEnd,YStart=YStart)
 }
 \references{
 ''ManualRAINLINK.pdf''

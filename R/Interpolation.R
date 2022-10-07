@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.21
-## Copyright (C) 2021 Aart Overeem
+## Version 1.3
+## Copyright (C) 2022 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -39,11 +39,11 @@
 #' interval length.
 #'
 #' @param Data Data frame with microwave link data.
-#' @param CoorSystemInputData Define coordinate system of input data (in case of
-#' WGS84 provide NULL).
 #' @param idp The inverse distance weighting power.
+#' @param InputCoorSystem Define EPSG code for input coordinate system (e.g., 4326L for WGS84 in degrees).
 #' @param IntpMethod Interpolation method: Ordinary kriging ("OK") or inverse distance weighted 
 #' interpolation ("IDW").
+#' @param LocalCartesianCoorSystem Define EPSG code for (local) Cartesian coordinate system (meters).
 #' @param nmax The number of nearest observations that should be used for a kriging prediction 
 #' or simulation, where nearest is defined in terms of the space of the spatial locations.
 #' @param NUGGET Nugget of spherical variogram model (mm).
@@ -52,7 +52,7 @@
 #' If not supplied, the interpolated fields will be returned.
 #' @param RANGE Range of spherical variogram model (km).
 #' @param RainGrid Data frame containing information on the points in space where rainfall 
-#' needs to be estimated, is assumed to be in the same coordinate system as the original link data.
+#' needs to be estimated, is assumed to be in the same coordinate system as the link locations (InputCoorSystem).
 #' @param Rmean Vector of link-derived rainfall intensities (mm h\eqn{^{-1}}) with length equal to Data.
 #' @param SILL Sill of spherical variogram model (mm\eqn{^2}).
 #' @param TimeZone Time zone of data (e.g. "UTC").
@@ -63,8 +63,8 @@
 #' @return Interpolated field of rainfall intensities (mm h\eqn{^{-1}}).
 #' @export Interpolation
 #' @examples
-#' Interpolation(Data=DataPreprocessed,CoorSystemInputData=NULL,idp=2.0,
-#' IntpMethod="OK",nmax=50,NUGGET=0.37,RANGE=18.7,RainGrid=RainGrid,
+#' Interpolation(Data=DataPreprocessed,idp=2.0,InputCoorSystem=4326L,
+#' IntpMethod="OK",LocalCartesianCoorSystem=28992,nmax=50,NUGGET=0.37,RANGE=18.7,RainGrid=RainGrid,
 #' Rmean=Rmean,SILL=3.7,TimeZone="UTC",Variogram="ClimVar",OutputDir="RainMapsLinks15min")
 #' @author Aart Overeem & Hidde Leijnse
 #' @references ''ManualRAINLINK.pdf''
@@ -73,45 +73,16 @@
 #' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
 
-Interpolation <- function(Data,CoorSystemInputData=NULL,idp=2.0,IntpMethod="OK",nmax=50,NUGGET,RANGE,RainGrid,Rmean,SILL,TimeZone="UTC",Variogram="ClimVar",OutputDir=NULL)
+Interpolation <- function(Data,idp=2.0,InputCoorSystem,IntpMethod="OK",LocalCartesianCoorSystem,nmax=50,NUGGET,RANGE,RainGrid,Rmean,SILL,TimeZone="UTC",Variogram="ClimVar",OutputDir=NULL)
 {
 
-	# Determine the middle of the area over which there are data (for reprojection onto a Cartesian coordinate system)
-	if (!is.null(CoorSystemInputData))
-	{
-		Coor <- data.frame(x = c(min(Data$XStart, Data$XEnd), max(Data$XStart, Data$XEnd)), y = c(min(Data$YStart, Data$YEnd), max(Data$YStart, Data$YEnd)))
-		coordinates(Coor) <- c("x", "y")
-		proj4string(Coor) <- CRS(CoorSystemInputData) 
-		CRS.latlon <- CRS("+proj=longlat +ellps=WGS84")
-		Coor.latlon <- spTransform(Coor, CRS.latlon)
-		XMiddle <- (Coor.latlon$x[1] + Coor.latlon$x[2]) / 2
-		YMiddle <- (Coor.latlon$y[1] + Coor.latlon$y[2]) / 2
-	} else {
-		XMiddle <- (min(Data$XStart, Data$XEnd) + max(Data$XStart, Data$XEnd)) / 2
-		YMiddle <- (min(Data$YStart, Data$YEnd) + max(Data$YStart, Data$YEnd)) / 2
-		CoorSystemInputData <- "+proj=longlat +ellps=WGS84"
-	}
- 
-
-	# Construct projection string for Azimuthal Equidistant Cartesian coordinate system:
-	projstring <- paste("+proj=aeqd +a=6378.137 +b=6356.752 +R_A +lat_0=",YMiddle,
-	" +lon_0=",XMiddle," +x_0=0 +y_0=0",sep="")
-
-
-	# Convert to a Cartesian coordinate system 
-	# (easting and northing of grid; m) of start of link, easting and northing of end of link, 
-	# respectively; km). 
-	d <- data.frame(x = RainGrid$X, y = RainGrid$Y)
-	coordinates(d) <- c("x", "y")
-	proj4string(d) <- CRS(CoorSystemInputData)
-	CRS.cart <- CRS(projstring)
-	Coor.cart <- spTransform(d, CRS.cart)
-	#Coor.cart$x  Easting (in km)
-	#Coor.cart$y  Northing (in km)
-	rain.grid <- data.frame(cbind(Coor.cart$x, Coor.cart$y))
-	coordinates(rain.grid) <- as.data.frame(rain.grid[,])
-
-
+	# Convert grid to (local) Cartesian EPSG coordinate system (in kilometers)
+        CoorInput <- data.frame(x = RainGrid$X, y = RainGrid$Y) %>% 
+        st_as_sf(coords = 1:2, crs = InputCoorSystem)
+        rain.grid <- st_transform(CoorInput, LocalCartesianCoorSystem)
+   	temp_rain.grid <- as.data.frame(st_coordinates(rain.grid)/1000)  # Easting (in km)
+        rain.grid <- st_as_sf(temp_rain.grid, crs = LocalCartesianCoorSystem, coords = 1:2)
+	
 	Data$ID <- as.character(Data$ID)
    	IDLink <- unique(Data$ID)
    	N_links <- length(IDLink)
@@ -125,19 +96,16 @@ Interpolation <- function(Data,CoorSystemInputData=NULL,idp=2.0,IntpMethod="OK",
 		# Find indices corresponding to this link
 		Cond <- which(Data$ID == IDLink[p])
 		
-		#Convert coordinates to a system in km, centered on the area covered by the links
+		# Convert coordinates to a system in km, centered on the area covered by the links
 		Coor <- data.frame(x = c(Data$XStart[Cond[1]], Data$XEnd[Cond[1]]), 
 		y = c(Data$YStart[Cond[1]], Data$YEnd[Cond[1]]))
-		coordinates(Coor) <- c("x", "y")
-		proj4string(Coor) <- CRS(CoorSystemInputData) 
-		CRS.cart <- CRS(projstring)
-		Coor.cart <- spTransform(Coor, CRS.cart)
-		XStart[Cond] <- Coor.cart$x[1]  # Easting (in km)
-		YStart[Cond] <- Coor.cart$y[1]  # Northing (in km)
-		XEnd[Cond] <- Coor.cart$x[2]  # Easting (in km)
-		YEnd[Cond] <- Coor.cart$y[2]  # Northing (in km)
+		names(Coor) <- c("x", "y")
+		Coor.cart <- st_coordinates(st_transform(st_as_sf(Coor, crs = InputCoorSystem, coords = c("x", "y")), crs = LocalCartesianCoorSystem))
+		XStart[Cond] <- as.data.frame(Coor.cart[,"X"])[1,]/1000  # Easting (in km)
+		YStart[Cond] <- as.data.frame(Coor.cart[,"Y"])[1,]/1000  # Northing (in km)
+		XEnd[Cond] <- as.data.frame(Coor.cart[,"X"])[2,]/1000  # Easting (in km)
+		YEnd[Cond] <- as.data.frame(Coor.cart[,"Y"])[2,]/1000  # Northing (in km)
 	}
-	
 
 	t <- sort(unique(Data$DateTime))
 	N_t <- length(t)
@@ -170,8 +138,7 @@ Interpolation <- function(Data,CoorSystemInputData=NULL,idp=2.0,IntpMethod="OK",
 		}
 		# Compute path-averaged rainfall intensity for unique link paths.
 		# Assign path-averaged intensity to point at middle of link path.
-		Rainlink <- IntpPathToPoint(Data$ID[Cond], Rmean[Cond], XEnd[Cond], XStart[Cond], YEnd[Cond], YStart[Cond])
-
+		Rainlink <- IntpPathToPoint(Data$ID[Cond], LocalCartesianCoorSystem, Rmean[Cond], XEnd[Cond], XStart[Cond], YEnd[Cond], YStart[Cond])
 
 		if (IntpMethod!="OK"&IntpMethod!="IDW")
 		{

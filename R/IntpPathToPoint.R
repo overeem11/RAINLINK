@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.21
-## Copyright (C) 2021 Aart Overeem
+## Version 1.3
+## Copyright (C) 2022 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -27,16 +27,18 @@
 #' intensities are obtained, so data from full-duplex links are averaged.
 #'
 #' @param ID Link identifier.
+#' @param LocalCartesianCoorSystem Define EPSG code for (local) Cartesian coordinate system (meters).
 #' @param Rmean Data frame with mean path-averaged rainfall intensities (mm h\eqn{^{-1}}).
 #' @param XEnd Easting of end of links (km).
 #' @param XStart Easting of start of links (km).
 #' @param YEnd Northing of end of links (km).
 #' @param YStart Northing of start of links (km).
-#' @return Coordinates of middle of links in Azimuthal Equidistant Cartesian coordinate system
+#' @return Coordinates of middle of links in (local) Cartesian coordinate system
 #' (latitude, longitude) and rainfall intensity (mm h\eqn{^{-1}})).
 #' @export IntpPathToPoint
 #' @examples
-#' IntpPathToPoint(ID=ID,Rmean=Rmean,Xend=Xend,XStart=XStart,YEnd=YEnd,YStart=YStart)
+#' IntpPathToPoint(ID=ID,LocalCartesianCoorSystem=28992,Rmean=Rmean,Xend=Xend,XStart=XStart,
+#' YEnd=YEnd,YStart=YStart)
 #' @author Aart Overeem & Hidde Leijnse
 #' @references ''ManualRAINLINK.pdf''
 #'
@@ -44,7 +46,7 @@
 #' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
 
-IntpPathToPoint <- function(ID,Rmean,XEnd,XStart,YEnd,YStart)
+IntpPathToPoint <- function(ID,LocalCartesianCoorSystem,Rmean,XEnd,XStart,YEnd,YStart)
 {
 
 	# Determine coordinates of middle of link:
@@ -73,9 +75,14 @@ IntpPathToPoint <- function(ID,Rmean,XEnd,XStart,YEnd,YStart)
 	
 	Rainlink <- as.data.frame(Rainlink)
 	colnames(Rainlink) <- c("X", "Y", "RAIN")
-	centres <- cbind(Rainlink$X, Rainlink$Y)
-	coordinates(Rainlink) <- centres
+	pnts <- 
+        data.frame(
+        RAIN = Rainlink$RAIN,
+        X = Rainlink$X,
+        Y = Rainlink$Y)
+        Rainlink <- st_as_sf(pnts, crs = LocalCartesianCoorSystem, coords = c("X", "Y"))
 	
 	return(na.omit(Rainlink))
 
 }
+

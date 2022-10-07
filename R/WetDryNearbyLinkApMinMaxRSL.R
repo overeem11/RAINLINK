@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ## 
-## Version 1.21
-## Copyright (C) 2021 Aart Overeem
+## Version 1.3
+## Copyright (C) 2022 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -51,8 +51,8 @@
 #' interval length.
 #'
 #' @param Data Data frame with microwave link data.
-#' @param CoorSystemInputData Define coordinate system of input data (in case of
-#' WGS84 provide NULL).
+#' @param InputCoorSystem Define EPSG code for input coordinate system (e.g., 4326L for WGS84 in degrees).
+#' @param LocalCartesianCoorSystem Define EPSG code for (local) Cartesian coordinate system (meters).
 #' @param MinHoursPmin Minimum number of hours in the previous PeriodHoursPmin hours needed 
 #' for computing max(P\eqn{_{\mbox{min}}}) (h).
 #' @param PeriodHoursPmin Number of hours that is considered for computation of 
@@ -68,9 +68,10 @@
 #' @return Values F for filter to remove outliers (dB km\eqn{^{-1}} h)
 #' @export WetDryNearbyLinkApMinMaxRSL
 #' @examples
-#' WetDryNearbyLinkApMinMaxRSL(Data=DataPreprocessed,CoorSystemInputData=NULL, 
-#' MinHoursPmin=6,PeriodHoursPmin=24,Radius=15,Step8=TRUE,ThresholdMedian=-1.4, 
-#' ThresholdMedianL=-0.7,ThresholdNumberLinks=3,ThresholdWetDry=2)
+#' WetDryNearbyLinkApMinMaxRSL(Data=DataPreprocessed,InputCoorSystem=4326L,
+#' LocalCartesianCoorSystem=28992, MinHoursPmin=6,PeriodHoursPmin=24,Radius=15,
+#' Step8=TRUE,ThresholdMedian=-1.4, ThresholdMedianL=-0.7,ThresholdNumberLinks=3,
+#'ThresholdWetDry=2)
 #' @author Aart Overeem & Hidde Leijnse
 #' @references ''ManualRAINLINK.pdf''
 #'
@@ -78,30 +79,10 @@
 #' cellular communication network, Atmospheric Measurement Techniques, 9, 2425-2444, https://doi.org/10.5194/amt-9-2425-2016.
 
 
-WetDryNearbyLinkApMinMaxRSL <- function(Data,CoorSystemInputData=NULL,MinHoursPmin=6,PeriodHoursPmin=24, Radius=15,Step8=TRUE,ThresholdMedian=-1.4,ThresholdMedianL=-0.7,ThresholdNumberLinks=3,ThresholdWetDry=2)
+WetDryNearbyLinkApMinMaxRSL <- function(Data,InputCoorSystem=InputCoorSystem,LocalCartesianCoorSystem=LocalCartesianCoorSystem,MinHoursPmin=6,PeriodHoursPmin=24, Radius=15,Step8=TRUE,ThresholdMedian=-1.4,ThresholdMedianL=-0.7,ThresholdNumberLinks=3,ThresholdWetDry=2)
 {
-	# Determine the middle of the area over which there are data 
-	# (for reprojection onto a Cartesian coordinate system)
-	if (!is.null(CoorSystemInputData))
-	{
-		Coor <- data.frame(x = c(min(Data$XStart, Data$XEnd), max(Data$XStart, Data$XEnd)), 
-		y = c(min(Data$YStart, Data$YEnd), max(Data$YStart, Data$YEnd)))
-		coordinates(Coor) <- c("x", "y")
-		proj4string(Coor) <- CRS(CoorSystemInputData) 
-		CRS.latlon <- CRS("+proj=longlat +ellps=WGS84")
-		Coor.latlon <- spTransform(Coor, CRS.latlon)
-		XMiddle <- (Coor.latlon$x[1] + Coor.latlon$x[2]) / 2
-		YMiddle <- (Coor.latlon$y[1] + Coor.latlon$y[2]) / 2
-	} else {
-		XMiddle <- (min(Data$XStart, Data$XEnd) + max(Data$XStart, Data$XEnd)) / 2
-		YMiddle <- (min(Data$YStart, Data$YEnd) + max(Data$YStart, Data$YEnd)) / 2
-		CoorSystemInputData <- "+proj=longlat +ellps=WGS84"
-	}
-	
-	# Set projection string
-	projstring <- paste("+proj=aeqd +a=6378.137 +b=6356.752 +R_A +lat_0=",YMiddle,
-	" +lon_0=",XMiddle," +x_0=0 +y_0=0",sep="")
-	
+
+
   	# Set link IDs and time intervals
 	Data$ID <- as.character(Data$ID)
    	IDLink <- unique(Data$ID)
@@ -132,23 +113,16 @@ WetDryNearbyLinkApMinMaxRSL <- function(Data,CoorSystemInputData=NULL,MinHoursPm
 	YEndLink <- rep(NA, N_links)
 	LengthLink <- rep(NA, N_links)
 	
-	# Loop over all links for coordinate transformation and putting data in an array
+	# Loop over all links and putting data in an array
    	for (p in 1 : N_links)
    	{
 		# Find indices corresponding to this link
 		Cond <- which(Data$ID == IDLink[p])
 		
-		#Convert coordinates to a system in km, centered on the area covered by the links
-		Coor <- data.frame(x = c(Data$XStart[Cond[1]], Data$XEnd[Cond[1]]), 
-		y = c(Data$YStart[Cond[1]], Data$YEnd[Cond[1]]))
-		coordinates(Coor) <- c("x", "y")
-		proj4string(Coor) <- CRS(CoorSystemInputData) 
-		CRS.cart <- CRS(projstring)
-		Coor.cart <- spTransform(Coor, CRS.cart)
-		XStartLink[p] <- Coor.cart$x[1]  # Easting (in km)
-		YStartLink[p] <- Coor.cart$y[1]  # Northing (in km)
-		XEndLink[p] <- Coor.cart$x[2]  # Easting (in km)
-		YEndLink[p] <- Coor.cart$y[2]  # Northing (in km)
+		XStartLink[p] <- Data$XStart[Cond[1]]  # Easting
+		YStartLink[p] <- Data$YStart[Cond[1]]  # Northing
+		XEndLink[p] <- Data$XEnd[Cond[1]]  # Easting
+		YEndLink[p] <- Data$YEnd[Cond[1]]  # Northing
 		
 		LengthLink[p] <- Data$PathLength[Cond[1]] 
 		
@@ -187,16 +161,27 @@ WetDryNearbyLinkApMinMaxRSL <- function(Data,CoorSystemInputData=NULL,MinHoursPm
 		}
 	}
 	
+	pntsStart <- data.frame(lon = XStartLink, lat = YStartLink)
+	pntsEnd <- data.frame(lon = XEndLink, lat = YEndLink)
+    	# Convert to (local) Cartesian EPSG coordinate system (in kilometers)
+    	pnts_sfStart <- st_transform(st_as_sf(pntsStart, crs = InputCoorSystem, coords = c("lon", "lat")), crs = LocalCartesianCoorSystem)
+    	pnts_sfEnd <- st_transform(st_as_sf(pntsEnd, crs = InputCoorSystem, coords = c("lon", "lat")), crs = LocalCartesianCoorSystem) 
+        XStartLinkLocal <- sf_to_df(pnts_sfStart)[,3]/1000
+        YStartLinkLocal <- sf_to_df(pnts_sfStart)[,4]/1000
+        XEndLinkLocal <- sf_to_df(pnts_sfEnd)[,3]/1000
+        YEndLinkLocal <- sf_to_df(pnts_sfEnd)[,4]/1000
+
+
 	# Initialize dry and F vectors
 	dry_vec <- rep(NA, length(Data$DateTime))
 	F_vec <- rep(NA, length(Data$DateTime))
 	for (i in 1 : N_links)
 	{
-		# Compute distances
-		Distance1 <- sqrt( (XStartLink[i]-XStartLink)^2 + (YStartLink[i]-YStartLink)^2 )
-		Distance2 <- sqrt( (XEndLink[i]-XStartLink)^2 + (YEndLink[i]-YStartLink)^2 ) 	
-		Distance3 <- sqrt( (XStartLink[i]-XEndLink)^2 + (YStartLink[i]-YEndLink)^2 )
-		Distance4 <- sqrt( (XEndLink[i]-XEndLink)^2 + (YEndLink[i]-YEndLink)^2 ) 
+
+		Distance1 <- sqrt( (XStartLinkLocal[i]-XStartLinkLocal)^2 + (YStartLinkLocal[i]-YStartLinkLocal)^2 )
+		Distance2 <- sqrt( (XEndLinkLocal[i]-XStartLinkLocal)^2 + (YEndLinkLocal[i]-YStartLinkLocal)^2 ) 	
+		Distance3 <- sqrt( (XStartLinkLocal[i]-XEndLinkLocal)^2 + (YStartLinkLocal[i]-YEndLinkLocal)^2 )
+		Distance4 <- sqrt( (XEndLinkLocal[i]-XEndLinkLocal)^2 + (YEndLinkLocal[i]-YEndLinkLocal)^2 )  
 		SelectDist <- which(Distance1 < Radius & Distance2 < Radius & Distance3 < Radius & 
 		Distance4 < Radius )
 		

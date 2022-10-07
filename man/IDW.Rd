@@ -9,9 +9,9 @@ IDW(idp, rain.grid, Rainlink)
 \arguments{
 \item{idp}{The inverse distance weighting power.}
 
-\item{rain.grid}{Interpolation grid in Azimuthal Equidistant Cartesian coordinate system.}
+\item{rain.grid}{Interpolation grid in a Cartesian coordinate system.}
 
-\item{Rainlink}{Coordinates of links in Azimuthal Equidistant Cartesian coordinate system. 
+\item{Rainlink}{Coordinates of links in a Cartesian coordinate system 
 and rainfall intensity (latitude in km, longitude in km, intensity in mm h\eqn{^{-1}}).}
 }
 \value{

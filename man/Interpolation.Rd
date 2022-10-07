@@ -6,9 +6,10 @@
 \usage{
 Interpolation(
   Data,
-  CoorSystemInputData = NULL,
   idp = 2,
+  InputCoorSystem,
   IntpMethod = "OK",
+  LocalCartesianCoorSystem,
   nmax = 50,
   NUGGET,
   RANGE,
@@ -23,13 +24,14 @@ Interpolation(
 \arguments{
 \item{Data}{Data frame with microwave link data.}
 
-\item{CoorSystemInputData}{Define coordinate system of input data (in case of
-WGS84 provide NULL).}
-
 \item{idp}{The inverse distance weighting power.}
+
+\item{InputCoorSystem}{Define EPSG code for input coordinate system (e.g., 4326L for WGS84 in degrees).}
 
 \item{IntpMethod}{Interpolation method: Ordinary kriging ("OK") or inverse distance weighted 
 interpolation ("IDW").}
+
+\item{LocalCartesianCoorSystem}{Define EPSG code for (local) Cartesian coordinate system (meters).}
 
 \item{nmax}{The number of nearest observations that should be used for a kriging prediction 
 or simulation, where nearest is defined in terms of the space of the spatial locations.}
@@ -39,7 +41,7 @@ or simulation, where nearest is defined in terms of the space of the spatial loc
 \item{RANGE}{Range of spherical variogram model (km).}
 
 \item{RainGrid}{Data frame containing information on the points in space where rainfall 
-needs to be estimated, is assumed to be in the same coordinate system as the original link data.}
+needs to be estimated, is assumed to be in the same coordinate system as the link locations (InputCoorSystem).}
 
 \item{Rmean}{Vector of link-derived rainfall intensities (mm h\eqn{^{-1}}) with length equal to Data.}
 
@@ -81,8 +83,8 @@ interval length is automatically computed and is employed as the time
 interval length.
 }
 \examples{
-Interpolation(Data=DataPreprocessed,CoorSystemInputData=NULL,idp=2.0,
-IntpMethod="OK",nmax=50,NUGGET=0.37,RANGE=18.7,RainGrid=RainGrid,
+Interpolation(Data=DataPreprocessed,idp=2.0,InputCoorSystem=4326L,
+IntpMethod="OK",LocalCartesianCoorSystem=28992,nmax=50,NUGGET=0.37,RANGE=18.7,RainGrid=RainGrid,
 Rmean=Rmean,SILL=3.7,TimeZone="UTC",Variogram="ClimVar",OutputDir="RainMapsLinks15min")
 }
 \references{

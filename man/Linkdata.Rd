@@ -34,10 +34,10 @@ For each link and time interval the following variables are provided:
   \item Pmin: minimum received power P\eqn{_{\mbox{min}}} (dBm).
   \item Pmax: maximum received power P\eqn{_{\mbox{max}}} (dBm).
   \item PathLength: length of microwave link path L (km).
-  \item XStart: Longitude of start of links (\eqn{^{\circ}}; WGS84).
-  \item YStart: Latitude of start of links (\eqn{^{\circ}}; WGS84).
-  \item XEnd: Longitude of end of links (\eqn{^{\circ}}; WGS84).
-  \item YEnd: Latitude of end of links (\eqn{^{\circ}}; WGS84).
+  \item XStart: Longitude of start of links (\eqn{^{\circ}}; decimal degrees; WGS84).
+  \item YStart: Latitude of start of links (\eqn{^{\circ}}; decimal degrees; WGS84).
+  \item XEnd: Longitude of end of links (\eqn{^{\circ}}; decimal degrees; WGS84).
+  \item YEnd: Latitude of end of links (\eqn{^{\circ}}; decimal degrees; WGS84).
   \item ID: Link identifier.
 }
 }

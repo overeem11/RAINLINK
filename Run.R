@@ -1,7 +1,7 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.21
+## Version 1.3
 ## Copyright (C) 2021 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
@@ -40,6 +40,7 @@ source("Config.R")
 # (this is important for functions RefLevelMinMaxRSL, WetDryNearbyLinkApMinMaxRSL and Interpolation):
 Sys.setenv(TZ='UTC')
 # Otherwise RAINLINK can derive a wrong time interval length due to going to or from daylight saving time (DST). Timing of DST may be different between time zones, or one time zone may not have a change to/from DST.
+
 
 
 
@@ -84,11 +85,10 @@ cat(sprintf("Finished. (%.1f seconds)\n",round((proc.time()-StartTime)[3],digits
 
 # Run R function:	
 StartTime <- proc.time()
-
-WetDry <- WetDryNearbyLinkApMinMaxRSL(Data=DataPreprocessed,CoorSystemInputData=NULL, 
-MinHoursPmin=MinHoursPmin,PeriodHoursPmin=PeriodHoursPmin,Radius=Radius,Step8=Step8, 
-ThresholdMedian=ThresholdMedian,ThresholdMedianL=ThresholdMedianL,ThresholdNumberLinks=ThresholdNumberLinks, 
-ThresholdWetDry=ThresholdWetDry)
+ 
+WetDry <- WetDryNearbyLinkApMinMaxRSL(Data=DataPreprocessed,InputCoorSystem=InputCoorSystem,LocalCartesianCoorSystem=LocalCartesianCoorSystem,MinHoursPmin=MinHoursPmin,PeriodHoursPmin=PeriodHoursPmin,
+Radius=Radius,Step8=Step8,ThresholdMedian=ThresholdMedian,ThresholdMedianL=ThresholdMedianL,
+ThresholdNumberLinks=ThresholdNumberLinks,ThresholdWetDry=ThresholdWetDry)
 
 cat(sprintf("Finished. (%.1f seconds)\n",round((proc.time()-StartTime)[3],digits=1)))
 
@@ -221,294 +221,86 @@ FolderRainMaps <- paste("RainMapsLinks",TIMESTEP,"min",sep="")
 # Run R function:
 StartTime <- proc.time()
 
-Interpolation(Data=DataPreprocessed,CoorSystemInputData=NULL,idp=idp,IntpMethod=IntpMethod,nmax=nmax,
-NUGGET=NUGGET,RANGE=RANGE,RainGrid=RainGrid,Rmean=Rmean,SILL=SILL,Variogram=Variogram,OutputDir=FolderRainMaps)
+Interpolation(Data=DataPreprocessed,idp=idp,InputCoorSystem,IntpMethod=IntpMethod,LocalCartesianCoorSystem=LocalCartesianCoorSystem,
+nmax=nmax,NUGGET=NUGGET,RANGE=RANGE,RainGrid=RainGrid,Rmean=Rmean,SILL=SILL,TimeZone=TimeZone,Variogram=Variogram,OutputDir=FolderRainMaps)
 
 cat(sprintf("Finished. (%.1f seconds)\n",round((proc.time()-StartTime)[3],digits=1)))
 
 
 
 
-###################
-# 8. Visualisation#
-###################
+#######################################################################################################################
+# 8. Code to accumulate CML rainfall maps and to read the accumulated rainfall for a given location - ReadRainLocation#
+#######################################################################################################################
 
-# It seems that mapping with OpenStreetMap (``get_openstreetmap'') is no langer supported. Google Maps is also not supported anymore, unless you obtain a Google API key. 
-# The employed ggmap function also allows to use Stamen Maps. This functionality has been added to RAINLINK's visualisation functions.
-
-# Executing the "RainMaps...R" functions can often give the error below for Google Maps, which is
-# caused by the Google server. Apparently, maps have been downloaded too often. Just try again (and again). 
-# Error in data.frame(ll.lat = ll[1], ll.lon = ll[2], ur.lat = ur[1], ur.lon = ur[2]) : 
-#  arguments imply differing number of rows: 0, 1
-# In addition: Warning message:
-# geocode failed with status OVER_QUERY_LIMIT, location = "De Eemhof, Zeewolde" 
-
-# Executing revgeocode(c(Lon,Lat)) can also give an error, which is probably also related to obtaining the map from the Google Maps server. Just try again (and again):
-# Warning message:
-# In revgeocode(c(LonLocation, LatLocation)) :
-# reverse geocode failed - bad location? location = "4.85"reverse geocode failed - bad location? location = "52.39"
+# All visualisation functions have been removed as of RAINLINK version 1.3. Python software MapRAINLINK is now publicly available to 
+# visualize rain gauge, radar, and commercial microwave link (CML) locations and their rainfall estimates on a map 
+# (https://github.com/overeem11/MapRAINLINK). Hence, large parts of 8. and 9. entirely have been removed.
+# Note that the plotting of data availability and topology have been kept.
 
 
-############################
-# 8.1 RainMapsLinksTimeStep#
-############################
-
-# Date and time at which rainfall mapping starts:
-DateTimeStartRainMaps <- "201109102045"
-# Date and time at which rainfall mapping ends:
-DateTimeEndRainMaps <- "201109102045"
-# Both should be "201109102045" to reproduce Figure 5 from AMT manuscript.
-# Both should be "201109102015" to reproduce Figure 7 from AMT manuscript.
-
-# Run function RainMapsLinksTimeStep:
-RainMapsLinksTimeStep(AlphaLinksTimeStep=AlphaLinksTimeStep,
-AlphaPlotLocation=AlphaPlotLocation,AlphaPolygon=AlphaPolygon,
-AutDefineLegendTop=AutDefineLegendTop,BBoxOSMauto=BBoxOSMauto,ColourLinks=ColourLinks,
-ColoursNumber=ColoursNumber,ColourPlotLocation=ColourPlotLocation,
-ColourPlotLocationText=ColourPlotLocationText,ColourScheme=ColourScheme,
-ColourType=ColourType,ConversionDepthToIntensity=ConversionDepthToIntensity,
-CoorSystemInputData=CoorSystemInputData,DateTimeEndRainMaps=DateTimeEndRainMaps,
-DateTimeStartRainMaps=DateTimeStartRainMaps,ExtraDeg=ExtraDeg,ExtraText=ExtraText,
-FigFileLinksTimeStep=FigFileLinksTimeStep,FigHeight=FigHeight,FigWidth=FigWidth,
-FileGrid=FileGrid,FilePolygonsGrid=FilePolygonsGrid,FolderFigures=FolderFigures,
-FolderRainMaps=FolderRainMaps,FolderRainEstimates=FolderRainEstimates,
-FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,
-GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
-GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
-GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
-LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
-LabelAxisLonStamen=LabelAxisLonStamen,LatLocation=LatLocation,LatText=LatText,
-LegendSize=LegendSize,LegendTitleLinksTimeStep=LegendTitleLinksTimeStep,LonLocation=LonLocation,
-LonText=LonText,ManualScale=ManualScale,MapBackground=MapBackground,OSMBottom=OSMBottom,
-OSMLeft=OSMLeft,OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,OutputFileType=OutputFileType,
-PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
-PlotBelowScaleBottom=PlotBelowScaleBottom,PlotLocLinks=PlotLocLinks,
-ScaleBottomTimeStep=ScaleBottomTimeStep,ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,
-ScaleTopTimeStep=ScaleTopTimeStep,SizeLinks=SizeLinks,SizePixelBorder=SizePixelBorder,
-SizePlotLocation=SizePlotLocation,SizePlotTitle=SizePlotTitle,
-StamenMapType=StamenMapType,StamenZoomlevel=StamenZoomlevel,
-SymbolPlotLocation=SymbolPlotLocation,TitleLinks=TitleLinks,XMiddle=XMiddle,
-YMiddle=YMiddle)
-
-
-
-
-#########################
-# 8.2 RainMapsLinksDaily#
-#########################
-
+# Code to obtain rainfall accumulation for a period. E.g., just obtain 15-min rainfall or accumulated 24-h rainfall:#
+#####################################################################################################################
+# Select date and time for which interpolated rainfall needs to be extracted / accumulated:
 # Date and time at which rainfall mapping starts:
 DateTimeStartRainMaps <- "201109100800"
 # Date and time at which rainfall mapping ends:
 DateTimeEndRainMaps <- "201109110800"
+# Do not use "0000" for 0000 UTC, but "2400".
 
-# Run function RainMapsLinksDaily:
-RainMapsLinksDaily(AlphaLinksDaily=AlphaLinksDaily,AlphaPlotLocation=AlphaPlotLocation,
-AlphaPolygon=AlphaPolygon,AutDefineLegendTop=AutDefineLegendTop,BBoxOSMauto=BBoxOSMauto,
-ColourLinks=ColourLinks,ColoursNumber=ColoursNumber,
-ColourPlotLocation=ColourPlotLocation,ColourPlotLocationText=ColourPlotLocationText,
-ColourScheme=ColourScheme,ColourType=ColourType,
-ConversionDepthToIntensity=ConversionDepthToIntensity,
-CoorSystemInputData=CoorSystemInputData,DateTimeEndRainMaps=DateTimeEndRainMaps,
-DateTimeStartRainMaps=DateTimeStartRainMaps,ExtraDeg=ExtraDeg,ExtraText=ExtraText,
-FigFileLinksDaily=FigFileLinksDaily,FigHeight=FigHeight,FigWidth=FigWidth,
-FileGrid=FileGrid,FilePolygonsGrid=FilePolygonsGrid,FolderFigures=FolderFigures,
-FolderRainMaps=FolderRainMaps,FolderRainEstimates=FolderRainEstimates,
-FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,
-GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
-GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
-GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
-LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
-LabelAxisLonStamen=LabelAxisLonStamen,LatLocation=LatLocation,LatText=LatText,
-LegendSize=LegendSize,LegendTitleLinksDaily=LegendTitleLinksDaily,LonLocation=LonLocation,LonText=LonText,
-ManualScale=ManualScale,MapBackground=MapBackground,OSMBottom=OSMBottom,OSMLeft=OSMLeft,
-OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,OutputFileType=OutputFileType,PERIOD=PERIOD,
-PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
-PlotBelowScaleBottom=PlotBelowScaleBottom,PlotLocLinks=PlotLocLinks,
-ScaleBottomDaily=ScaleBottomDaily,ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,
-ScaleTopDaily=ScaleTopDaily,SizeLinks=SizeLinks,SizePixelBorder=SizePixelBorder,
-SizePlotLocation=SizePlotLocation,SizePlotTitle=SizePlotTitle,
-StamenMapType=StamenMapType,StamenZoomlevel=StamenZoomlevel,
-SymbolPlotLocation=SymbolPlotLocation,TIMESTEP=TIMESTEP,TitleLinks=TitleLinks,
-XMiddle=XMiddle,YMiddle=YMiddle)
+# Location of output link data:
+FolderRainMaps <- paste("RainMapsLinks",TIMESTEP,"min",sep="")
 
-
-
-
-#############################
-# 8.3 RainMapsRadarsTimeStep#
-#############################
-
-# Name and path of daily radar input file:
-# NetCDF4 file for daily rainfall depths:
-# Download from Climate4Impact using R (works at least for Linux):
-# Paste contents of file "Radar5min/Climate4ImpactDownloadNETCDF5min.txt" in command shell.
-# Path in NetCDF4 file with radar data:
-PathRadarRainfallDepth <- "image1_image_data"
-# Name of folder which contains 5-min radar rainfall files
-FolderRadarRainMapsTimeStep <- "Radar5min"
-
-# Run function RainMapsRadarsTimeStep:
-RainMapsRadarsTimeStep(AlphaPlotLocation=AlphaPlotLocation,AlphaPolygon=AlphaPolygon,
-AutDefineLegendTop=AutDefineLegendTop,BBoxOSMauto=BBoxOSMauto,
-ColoursNumber=ColoursNumber,ColourPlotLocation=ColourPlotLocation,
-ColourPlotLocationText=ColourPlotLocationText,ColourScheme=ColourScheme,
-ColourType=ColourType,CoorSystemInputData=CoorSystemInputData,ExtraDeg=ExtraDeg,
-ExtraText=ExtraText,FigFileRadarsTimeStep=FigFileRadarsTimeStep,FigHeight=FigHeight,
-FigWidth=FigWidth,FileGrid=FileGrid,FilePolygonsGrid=FilePolygonsGrid,
-FolderFigures=FolderFigures,FolderRadarRainMapsTimeStep=FolderRadarRainMapsTimeStep,
-FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,
-GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
-GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
-GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
-LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
-LabelAxisLonStamen=LabelAxisLonStamen,LatLocation=LatLocation,LatText=LatText,
-LegendSize=LegendSize,LegendTitleRadarsTimeStep=LegendTitleRadarsTimeStep,LonLocation=LonLocation,
-LonText=LonText,ManualScale=ManualScale,MapBackground=MapBackground,
-OSMBottom=OSMBottom,OSMLeft=OSMLeft,OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,
-OutputFileType=OutputFileType,PathRadarRainfallDepth=PathRadarRainfallDepth,PERIOD=PERIOD,
-PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,PlotBelowScaleBottom=PlotBelowScaleBottom,
-ScaleBottomTimeStep=ScaleBottomTimeStep,ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,
-ScaleTopTimeStep=ScaleTopTimeStep,SizePixelBorder=SizePixelBorder,
-SizePlotLocation=SizePlotLocation,SizePlotTitle=SizePlotTitle,
-StamenMapType=StamenMapType,StamenZoomlevel=StamenZoomlevel,
-SymbolPlotLocation=SymbolPlotLocation,TIMESTEP=TIMESTEP,TimeZone=TimeZone,
-TitleRadars=TitleRadars,XMiddle=XMiddle,YMiddle=YMiddle)
-
-
-	
-
-##########################
-# 8.4 RainMapsRadarsDaily#
-##########################
-
-DateMap <- "20110911"
-# Name and path of daily radar input file:
-# NetCDF4 file for daily rainfall depths:
-# Download from Climate4Impact (works at least for Linux):
-# path <- "http://opendap.knmi.nl/knmi/thredds/fileServer/radarprecipclim/RAD_NL25_RAC_MFBS_24H_NC/2011/09/RAD_NL25_RAC_MFBS_24H_201109110800.nc"
-# download.file(path,"RAD_NL25_RAC_MFBS_24H_201109110800.nc",method="wget",quiet=F,mode="wb",cacheOK=T)
-FileNameRadarDaily <- "RAD_NL25_RAC_MFBS_24H_201109110800.nc"
-# Path in NetCDF4 file with radar data:
-PathRadarRainfallDepth <- "image1_image_data"
-# Name of folder which contains daily radar rainfall files
-FolderRadarRainMapsDaily <- "Radar24H"
-
-# Run function RainMapsRadarsDaily:
-RainMapsRadarsDaily(AlphaPlotLocation=AlphaPlotLocation,AlphaPolygon=AlphaPolygon,
-AutDefineLegendTop=AutDefineLegendTop,BBoxOSMauto=BBoxOSMauto,
-ColoursNumber=ColoursNumber,ColourPlotLocation=ColourPlotLocation,
-ColourPlotLocationText=ColourPlotLocationText,ColourScheme=ColourScheme,
-ColourType=ColourType,CoorSystemInputData=CoorSystemInputData,DateMap=DateMap,
-ExtraDeg=ExtraDeg,ExtraText=ExtraText,FigFileRadarsDaily=FigFileRadarsDaily,
-FigHeight=FigHeight,FigWidth=FigWidth,FileGrid=FileGrid,
-FileNameRadarDaily=FileNameRadarDaily,FilePolygonsGrid=FilePolygonsGrid,
-FolderFigures=FolderFigures,FolderRadarRainMapsDaily=FolderRadarRainMapsDaily,
-FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,
-GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
-GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
-GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
-LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
-LabelAxisLonStamen=LabelAxisLonStamen,LatLocation=LatLocation,LatText=LatText,
-LegendSize=LegendSize,LegendTitleRadarsDaily=LegendTitleRadarsDaily,LonLocation=LonLocation,
-LonText=LonText,ManualScale=ManualScale,MapBackground=MapBackground,
-OSMBottom=OSMBottom,OSMLeft=OSMLeft,OSMRight=OSMRight,OSMScale=OSMScale,
-OSMTop=OSMTop,OutputFileType=OutputFileType,PathRadarRainfallDepth=PathRadarRainfallDepth,
-PERIOD=PERIOD,PlotLocation=PlotLocation,PixelBorderCol=PixelBorderCol,
-PlotBelowScaleBottom=PlotBelowScaleBottom,ScaleBottomDaily=ScaleBottomDaily,
-ScaleHigh=ScaleHigh,ScaleLow=ScaleLow,ScaleTopDaily=ScaleTopDaily,
-SizePixelBorder=SizePixelBorder,SizePlotLocation=SizePlotLocation,
-SizePlotTitle=SizePlotTitle,StamenMapType=StamenMapType,
-StamenZoomlevel=StamenZoomlevel,SymbolPlotLocation=SymbolPlotLocation,
-TimeZone=TimeZone,TitleRadars=TitleRadars,XMiddle=XMiddle,YMiddle=YMiddle)
-
-
-
-#######################
-# 8.5 ReadRainLocation#
-#######################
-
-# Load (daily) radar rainfall data:
-ncFILE <- nc_open(paste(FolderRadarRainMapsDaily,"/",FileNameRadarDaily,sep=""),verbose=F)
-dataf <- c(ncvar_get(ncFILE,varid="image1_image_data"))
-dataf <- dataf[!is.na(dataf)]
-nc_close(ncFILE)
-
-# OR load e.g. 15-min link data:
 # Duration of time interval of sampling strategy (min):
-TIMESTEP <- 15	
+TIMESTEP <- 15
 # Conversion factor from rainfall intensity (mm/h) to depth (mm):
 MinutesHour <- 60
 ConversionIntensityToDepth <- TIMESTEP/MinutesHour
-# Location of link data:
-FolderRainMaps <- paste("RainMapsLinks",TIMESTEP,"min",sep="")
 # Make list of input files: 
 Files <- list.files(path = FolderRainMaps, all.files=FALSE,
 full.names=TRUE, recursive=FALSE, pattern="linkmap")
-# Select date and time for which links are to be plotted:
-DateTime <- "201109110200"
-condTime <- grep(DateTime,Files)
-# Select file:
-Filename <- Files[condTime]
-# Read data from input file:
-dataf <- read.table(Filename,header=TRUE)
-dataf <- ConversionIntensityToDepth * dataf[,1]
+FilesNames <- list.files(path = FolderRainMaps, all.files=FALSE,
+full.names=FALSE, recursive=FALSE, pattern="linkmap")
+DateFiles <- substr(FilesNames,9,20)
+# Only select files for supplied period:
+Files <- Files[which(DateFiles>DateTimeStartRainMaps &DateFiles<=DateTimeEndRainMaps )]
+Files <- Files[which(file.info(Files)$size>0)]
+if (length(Files)==0)
+{
+	print("No files with data! Function stops.")
+	stop()
+}
 
-# Location for which rainfall depth is to be extracted:
-Lon <- 5.1214201
-Lat <- 52.0907374
+# Compute data availability (percentage of available files):
+MinutesDay <- 1440
+NrStepsDay <- MinutesDay/TIMESTEP
+DataAvail <- 100 * length(Files)/NrStepsDay
 
-# Run function ReadRainLocation:
-ReadRainLocation(CoorSystemInputData=CoorSystemInputData,dataf=dataf,FileGrid=FileGrid,Lat=Lat,Lon=Lon,XMiddle=XMiddle,YMiddle=YMiddle)
+# Compute rainfall depths over period from mean rainfall intensities:
+Rperiod <- c(NA)
+Grid <- read.table(FileGrid,header=TRUE,sep=",")	
+NrGridPoints <- length(Grid[,1])
+Rperiod[1:NrGridPoints] <- 0
+test <- array(NA,c(NrGridPoints,length(Files)))
+for (FileNr in 1:length(Files))
+{
+	# Read interpolated link rainfall intensities:
+	Data <- read.table(Files[FileNr],header=TRUE)
+	Rperiod[1:NrGridPoints] <- Rperiod[1:NrGridPoints] + Data$RainIntensity[1:NrGridPoints]
+}
+# Convert rainfall intensities to rainfall depths:
+Rperiod <- Rperiod * ConversionIntensityToDepth
 
-# R provides tools to extract the street name and municipality for a location:
-revgeocode(c(Lon,Lat))
 
-# If you would like to know the rainfall depth for a street name and municipality, R can provide you with the location in decimal degrees:
-# Give latitude and longitude for location known by street name and municipality:
-geocode("Domplein 1, Utrecht")
-    
-# Please note that revgeocode & geocode only work when Google API key has been obtained.
+# Obtain rainfall at location with coordinates Lon, Lat:
+########################################################
+# Location for which rainfall depth is to be extracted (here provided in WGS84, degrees, EPSG code 4326L:
+Lon <- 6.1214201
+Lat <- 52
 
+# Run function ReadRainLocation to read (accumulated) rainfall:
+ReadRainLocation(dataf=Rperiod,FileGrid=FileGrid,InputCoorSystem=InputCoorSystem,Lat=Lat,LocalCartesianCoorSystem=LocalCartesianCoorSystem,Lon=Lon)
 
-
-#######################
-# 9. PlotLinkLocations#
-#######################
-
-# Duration of time interval of sampling strategy (min):
-TIMESTEP <- 15	
-# Location of link data:
-FolderRainEstimates <- paste("LinkPathRainDepths",TIMESTEP,"min",sep="")
-# Make list of input files: 
-Files <- list.files(path = FolderRainEstimates, all.files=FALSE,
-full.names=TRUE, recursive=FALSE, pattern="linkdata")
-# Select date and time for which links are to be plotted:
-DateTime <- "201109110200"
-condTime <- grep(DateTime,Files)
-# Select file:
-Filename <- Files[condTime]
-# Read data from input file:
-dataf <- read.table(Filename,header=TRUE)
-
-# Make figure smaller (if whole Netherlands is plotted):
-FigWidth <- 1600
-
-# Plot link locations on a map:
-PlotLinkLocations(AlphaLinkLocations=AlphaLinkLocations,BBoxOSMauto=BBoxOSMauto,
-OSMBottom=OSMBottom,ColourLinks=ColourLinks,ColourType=ColourType,dataf=dataf,
-DateTime=DateTime,ExtraTextLinkLocations=ExtraTextLinkLocations,
-FigFileLinkLocations=FigFileLinkLocations,FigHeight=FigHeight,
-FigWidth=FigWidth,FilePolygonsGrid=FilePolygonsGrid,FolderFigures=FolderFigures,
-FontFamily=FontFamily,GoogleLocDegSpecified=GoogleLocDegSpecified,
-GoogleLocLat=GoogleLocLat,GoogleLocLon=GoogleLocLon,GoogleLocName=GoogleLocName,
-GoogleLocNameSpecified=GoogleLocNameSpecified,GoogleMapType=GoogleMapType,
-GoogleZoomlevel=GoogleZoomlevel,LabelAxisLat=LabelAxisLat,
-LabelAxisLonGoogle=LabelAxisLonGoogle,LabelAxisLonOSM=LabelAxisLonOSM,
-LabelAxisLonStamen=LabelAxisLonStamen,MapBackground=MapBackground,OSMLeft=OSMLeft,
-OSMRight=OSMRight,OSMScale=OSMScale,OSMTop=OSMTop,OutputFileType=OutputFileType,
-SizeLinks=SizeLinks,SizePlotTitle=SizePlotTitle,StamenMapType=StamenMapType,
-StamenZoomlevel=StamenZoomlevel,TitleLinkLocations=TitleLinkLocations)
 
 
 
@@ -516,12 +308,13 @@ StamenZoomlevel=StamenZoomlevel,TitleLinkLocations=TitleLinkLocations)
 # 10. Plot topology#
 ####################
 
-Topology(Data=DataPreprocessed,CoorSystemInputData=NULL,FigNameBarplotAngle=FigNameBarplotAngle,FigNameBarplotFrequency=FigNameBarplotFrequency,
+Topology(Data=DataPreprocessed,FigNameBarplotAngle=FigNameBarplotAngle,FigNameBarplotFrequency=FigNameBarplotFrequency,
 FigNameBarplotPathLength=FigNameBarplotPathLength,FigNameFrequencyVsPathLength=FigNameFrequencyVsPathLength,
-FigNameScatterdensityplotFrequencyVsPathLength=FigNameScatterdensityplotFrequencyVsPathLength,Maxf=Maxf,Minf=Minf,
-MaxL=MaxL,MinL=MinL,Rmean=Rmean,Stepf=Stepf,StepL=StepL)
+FigNameScatterdensityplotFrequencyVsPathLength=FigNameScatterdensityplotFrequencyVsPathLength,InputCoorSystem=InputCoorSystem,
+LocalCartesianCoorSystem=LocalCartesianCoorSystem,Maxf=Maxf,Minf=Minf,MaxL=MaxL,MinL=MinL,Rmean=Rmean,Stepf=Stepf,StepL=StepL)
 
 # Note that Data object must be preprocessed if Rmean is provided.
+
 
 
 
@@ -535,16 +328,17 @@ FigNameTimeseriesAvailability=FigNameTimeseriesAvailability,ps=ps,Rmean=Rmean,Ti
 
 # Note that Data must be preprocessed, because Rmean is used.
 # Another remark concerns the function "DataAvailability". In the figure showing the time series of data availability, the first period reveals 0 availability. 
-# This is due to the spin-up time of RAINLINK. This period is also taken into account in the computations of data availability. To prevent his, the first period
+# This is due to the spin-up time of RAINLINK. This period is also taken into account in the computations of data availability. To prevent this, the first period
 # should be removed from the Data and Rmean object as provided to function "DataAvailability". 
 
 
 
-##########################
-# 12. Compute path length#
-##########################
 
-PathLength(XStart=Linkdata$XStart,XEnd=Linkdata$XEnd,YStart=Linkdata$YStart,YEnd=Linkdata$YEnd)
+########################################
+# 12. Compute path length in kilometers#
+########################################
+
+PathLength(InputCoorSystem=InputCoorSystem,XStart=Linkdata$XStart,XEnd=Linkdata$XEnd,YStart=Linkdata$YStart,YEnd=Linkdata$YEnd)
 
 
 
