@@ -2,7 +2,7 @@
 ## in a cellular communication network.
 ##
 ## Version 1.3
-## Copyright (C) 2021 Aart Overeem
+## Copyright (C) 2022 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
