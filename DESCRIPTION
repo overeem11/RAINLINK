@@ -7,7 +7,7 @@ Date: 2021-10-06
 Author: Aart Overeem & Hidde Leijnse & Lotte de Vos & Micha Silver
 Maintainer: Aart Overeem <overeem@knmi.nl>
 Description: The RAINLINK software enables to obtain rainfall maps from microwave links in a cellular telecommunication network. 
-Suggests: sf, s2, gstat, hexbin, sfheaders, abind, stars
+Imports: sf, s2, gstat, hexbin, sfheaders, abind, stars
 License: This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 RoxygenNote: 7.2.1
 Installation: To install this R package run: install.packages(''RAINLINK_1.3.tar.gz'', repos=NULL, type = ''source''). To install it in a specified directory, add  '', path'', where path is the name of the folder where the package needs to be installed, e.g. ''Rlibraries'' (use quotation marks).
