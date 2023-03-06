@@ -281,7 +281,6 @@ Rperiod <- c(NA)
 Grid <- read.table(FileGrid,header=TRUE,sep=",")	
 NrGridPoints <- length(Grid[,1])
 Rperiod[1:NrGridPoints] <- 0
-test <- array(NA,c(NrGridPoints,length(Files)))
 for (FileNr in 1:length(Files))
 {
 	# Read interpolated link rainfall intensities:
