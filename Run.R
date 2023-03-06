@@ -248,11 +248,11 @@ DateTimeStartRainMaps <- "201109100800"
 DateTimeEndRainMaps <- "201109110800"
 # Do not use "0000" for 0000 UTC, but "2400".
 
+# Duration of time interval of sampling strategy (min):
+TIMESTEP <- 15
 # Location of output link data:
 FolderRainMaps <- paste("RainMapsLinks",TIMESTEP,"min",sep="")
 
-# Duration of time interval of sampling strategy (min):
-TIMESTEP <- 15
 # Conversion factor from rainfall intensity (mm/h) to depth (mm):
 MinutesHour <- 60
 ConversionIntensityToDepth <- TIMESTEP/MinutesHour
