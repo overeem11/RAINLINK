@@ -221,7 +221,7 @@ FolderRainMaps <- paste("RainMapsLinks",TIMESTEP,"min",sep="")
 # Run R function:
 StartTime <- proc.time()
 
-Interpolation(Data=DataPreprocessed,idp=idp,InputCoorSystem,IntpMethod=IntpMethod,LocalCartesianCoorSystem=LocalCartesianCoorSystem,
+Interpolation(Data=DataPreprocessed,idp=idp,InputCoorSystem=InputCoorSystem,IntpMethod=IntpMethod,LocalCartesianCoorSystem=LocalCartesianCoorSystem,
 nmax=nmax,NUGGET=NUGGET,RANGE=RANGE,RainGrid=RainGrid,Rmean=Rmean,SILL=SILL,TimeZone=TimeZone,Variogram=Variogram,OutputDir=FolderRainMaps)
 
 cat(sprintf("Finished. (%.1f seconds)\n",round((proc.time()-StartTime)[3],digits=1)))
