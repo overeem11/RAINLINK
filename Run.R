@@ -311,7 +311,7 @@ Topology(Data=DataPreprocessed,FigNameBarplotAngle=FigNameBarplotAngle,FigNameBa
 FigNameBarplotPathLength=FigNameBarplotPathLength,FigNameFrequencyVsPathLength=FigNameFrequencyVsPathLength,
 FigNameScatterdensityplotFrequencyVsPathLength=FigNameScatterdensityplotFrequencyVsPathLength,InputCoorSystem=InputCoorSystem,
 LocalCartesianCoorSystem=LocalCartesianCoorSystem,Maxf=Maxf,Minf=Minf,MaxL=MaxL,MinL=MinL,Rmean=Rmean,Stepf=Stepf,StepL=StepL,
-MaxPercFrequency=MaxPercFrequency,MaxPercOrientation=MaxPercOrientation,MaxPercPathLength=MaxPercPathLength,PlotTitle=PlotTitle)
+MaxPercFrequency=MaxPercFrequency,MaxPercOrientation=MaxPercOrientation,MaxPercPathLength=MaxPercPathLength,PlotTitleTopology=PlotTitleTopology)
 
 # Note that Data object must be preprocessed if Rmean is provided.
 
@@ -325,7 +325,7 @@ MaxPercFrequency=MaxPercFrequency,MaxPercOrientation=MaxPercOrientation,MaxPercP
 DataAvailability(Data=DataPreprocessed,cex.axis=cex.axis,cex.lab=cex.lab,FigNameBarplotAvailabilityLinks=FigNameBarplotAvailabilityLinks,
 FigNameBarplotAvailabilityLinkPaths=FigNameBarplotAvailabilityLinkPaths,
 FigNameTimeseriesAvailability=FigNameTimeseriesAvailability,ps=ps,Rmean=Rmean,TimeZone=TimeZone,
-MaxPercLinkPaths=MaxPercLinkPaths,MaxPercSubLinks=MaxPercSubLinks,PlotTitle=PlotTitle,LocationLegendTimeseriesAvailability=LocationLegendTimeseriesAvailability)
+MaxPercLinkPaths=MaxPercLinkPaths,MaxPercSubLinks=MaxPercSubLinks,PlotTitleDataAvailability=PlotTitleDataAvailability,LocationLegendTimeseriesAvailability=LocationLegendTimeseriesAvailability)
 
 # Note that Data must be preprocessed, because Rmean is used. As of version 1.31 this is not needed anymore. So when Rmean is not available or should not be used,
 # just use Rmean=NULL.
