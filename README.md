@@ -11,4 +11,4 @@ When referring to RAINLINK, please use:
 
 Overeem, A., Leijnse, H., and Uijlenhoet, R.: Retrieval algorithm for rainfall mapping from microwave links in a cellular communication network, Atmos. Meas. Tech., 9, 2425–2444, https://doi.org/10.5194/amt-9-2425-2016, 2016.
 
-Aart Overeem, Hidde Leijnse, Lotte de Vos, & Micha Silver. (2024). RAINLINK (v.1.31). Zenodo. [https://doi.org/10.5281/zenodo.7473635]
+Aart Overeem, Hidde Leijnse, Lotte de Vos, & Micha Silver. (2024). RAINLINK (v.1.31). Zenodo. https://doi.org/10.5281/zenodo.12211069
