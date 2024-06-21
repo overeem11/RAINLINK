@@ -262,7 +262,7 @@ MaxL=22
 # Minimum link path length to be plotted in bar plot (km). This is the value where the first bin class ends:
 MinL=1
 # Title of plots (e.g., which CML vendor or period):
-PlotTitle <- "Topology"
+PlotTitleTopology <- "Topology"
 # Stepf Bin size of microwave frequency classes for bar plot in GHz:
 Stepf=1
 # StepL Bin size of link path length classes for bar plot in km:
@@ -294,7 +294,7 @@ MaxPercLinkPaths <- 100
 # Maximum percentage on scale for bar plot of sub-link availability:
 MaxPercSubLinks <- 100
 # Title of plots (e.g., which CML vendor or period):
-PlotTitle <- "Timeseries of data availability"
+PlotTitleDataAvailability <- "Timeseries of data availability"
 # The point size of text:
 ps=18
 
