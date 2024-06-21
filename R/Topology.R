@@ -51,7 +51,7 @@
 #' @param MaxPercFrequency Maximum percentage on scale for bar plot of microwave frequency.
 #' @param MaxPercOrientation Maximum percentage on scale for bar plot of orientation.
 #' @param MaxPercPathLength Maximum percentage on scale for bar plot of path length.
-#' @param PlotTitle Title of plots (e.g., which CML vendor or period).
+#' @param PlotTitleTopology Title of plots (e.g., which CML vendor or period).
 #' @param Rmean Vector of link-derived rainfall intensities (mm h\eqn{^{-1}}) with length equal to Data.
 #' @param Stepf Bin size of microwave frequency classes for bar plot in GHz.
 #' @param StepL Bin size of link path length classes for bar plot in km.
@@ -65,7 +65,7 @@
 #' FigNameScatterdensityplotFrequencyVsPathLength="ScatterdensityPlot_Frequency_vs_PathLength.pdf",
 #' InputCoorSystem=4326L,LocalCartesianCoorSystem=28992,
 #' Maxf=40,Minf=13,MaxL=21,MinL=1,Rmean=Rmean,Stepf=1.5,StepL=2,MaxPercFrequency=40,MaxPercOrientation=7,
-#' MaxPercPathLength=30,PlotTitle="Topology")
+#' MaxPercPathLength=30,PlotTitleTopology="Topology")
 #' @author Aart Overeem
 #' @references ''ManualRAINLINK.pdf''
 #'
@@ -74,7 +74,7 @@
 
 
 Topology <- function(Data,FigNameBarplotAngle,FigNameBarplotFrequency,FigNameBarplotPathLength, FigNameFrequencyVsPathLength,FigNameScatterdensityplotFrequencyVsPathLength,InputCoorSystem,LocalCartesianCoorSystem,Maxf,Minf,MaxL,MinL,MaxPercFrequency,
-MaxPercOrientation,MaxPercPathLength,PlotTitle,Rmean=NULL,Stepf,StepL,verbose=TRUE)
+MaxPercOrientation,MaxPercPathLength,PlotTitleTopology,Rmean=NULL,Stepf,StepL,verbose=TRUE)
 {
 
 	# If Rmean is provided, only select data for which the link-derived rainfall intensities are equal to or larger than 0.
@@ -111,7 +111,7 @@ MaxPercOrientation,MaxPercPathLength,PlotTitle,Rmean=NULL,Stepf,StepL,verbose=TR
 		ylimbarplot <- c(0,MaxPercPathLength)
 	}
 	barplot(perc,xlab = "Link length (km)", ylab = "Percentage",
-	xaxt="n",tcl=.5,ylim=ylimbarplot,cex.lab=1.3,main=PlotTitle)
+	xaxt="n",tcl=.5,ylim=ylimbarplot,cex.lab=1.3,main=PlotTitleTopology)
 	at <- 0.1
 	axis(side = 1, at = at, labels = (MinL-StepL), cex.axis = 0.6)
 	for (lengthclass in seq(MinL,MaxL,StepL))
@@ -151,7 +151,7 @@ MaxPercOrientation,MaxPercPathLength,PlotTitle,Rmean=NULL,Stepf,StepL,verbose=TR
 		ylimbarplot <- c(0,MaxPercFrequency)
 	}	
 	barplot(perc,xlab = "Frequency (GHz)", ylab = "Percentage",
-	xaxt="n",tcl=.5,ylim=ylimbarplot,cex.lab=1.3,main=PlotTitle)
+	xaxt="n",tcl=.5,ylim=ylimbarplot,cex.lab=1.3,main=PlotTitleTopology)
 	at <- 0.1
 	axis(side = 1, at = at, labels = (Minf-Stepf), cex.axis = 0.4)
 	for (frequencyclass in seq(Minf,Maxf,Stepf))
@@ -171,7 +171,7 @@ MaxPercOrientation,MaxPercPathLength,PlotTitle,Rmean=NULL,Stepf,StepL,verbose=TR
 	par(pty="s")
 	par(mar=c(5,5,1.6,1)+0.1)
 	par(ps=24)
-	plot(q[,1],q[,2],xlab=expression(italic(L) *" (km)"),ylab=expression(italic(f) *" (GHz)"),pch=16,cex=1.4,main=PlotTitle)
+	plot(q[,1],q[,2],xlab=expression(italic(L) *" (km)"),ylab=expression(italic(f) *" (GHz)"),pch=16,cex=1.4,main=PlotTitleTopology)
 	dev.off()
 
 
@@ -179,7 +179,7 @@ MaxPercOrientation,MaxPercPathLength,PlotTitle,Rmean=NULL,Stepf,StepL,verbose=TR
 	# Scatter density plot frequency versus link length.
 	pdf(FigNameScatterdensityplotFrequencyVsPathLength,family="Times",width=8,height=6.5) 
 	spam <- range(c(min(Data$PathLength),max(Data$PathLength),min(Data$Frequency),max(Data$Frequency)))
-	figure <- hexbinplot(Data$Frequency ~ Data$PathLength, main=PlotTitle, aspect = 1, cex.lab=1.3, cex.title=2, ylab=expression(italic(f) *" (GHz)"),xlab=expression(italic(L) *" (km)"), 					   xbnds=c(floor(spam[1]),ceiling(spam[2])),xbins=ceiling(spam[2])/1, style="colorscale",scales = list(x = list(cex=2),y = list(cex=2)),par.settings = 	list(par.xlab.text=list(cex=2),par.ylab.text=list(cex=2)),
+	figure <- hexbinplot(Data$Frequency ~ Data$PathLength, main=PlotTitleTopology, aspect = 1, cex.lab=1.3, cex.title=2, ylab=expression(italic(f) *" (GHz)"),xlab=expression(italic(L) *" (km)"), 					   xbnds=c(floor(spam[1]),ceiling(spam[2])),xbins=ceiling(spam[2])/1, style="colorscale",scales = list(x = list(cex=2),y = list(cex=2)),par.settings = 	list(par.xlab.text=list(cex=2),par.ylab.text=list(cex=2)),
 	colorcut = seq(0, 1, length = 7), colramp = function(n) plinrain(n, beg=160, end=20), panel=function(x, y, ...){
                panel.hexbinplot(x,y,...)
            })
@@ -237,7 +237,7 @@ MaxPercOrientation,MaxPercPathLength,PlotTitle,Rmean=NULL,Stepf,StepL,verbose=TR
 		ylimbarplot <- c(0,MaxPercOrientation)
 	}
 	barplot(perc,xlab = "Link direction (degrees)", ylab = "Percentage",
-	xaxt="n",tcl=.5,ylim=ylimbarplot,cex.lab=1.3,main=PlotTitle)
+	xaxt="n",tcl=.5,ylim=ylimbarplot,cex.lab=1.3,main=PlotTitleTopology)
 	at <- 0.1
 	axis(side = 1, at = at, labels = "90", cex.axis = 0.5)
 	for (angleclass in seq(100,270,Stepangle))

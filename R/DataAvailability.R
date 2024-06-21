@@ -50,7 +50,7 @@
 #' "bottomright", "bottom", "bottomleft", "left", "topleft", "top", "topright", "right" and "center".
 #' @param MaxPercLinkPaths Maximum percentage on scale for bar plot of link path availability.
 #' @param MaxPercSubLinks Maximum percentage on scale for bar plot of sub-link availability. 
-#' @param PlotTitle Title of plots (e.g., which CML vendor or period).
+#' @param PlotTitleDataAvailability Title of plots (e.g., which CML vendor or period).
 #' @param ps integer; the point size of text (but not symbols) in file FigNameTimeseriesAvailability. 
 #' @param Rmean Vector of link-derived rainfall intensities (mm h\eqn{^{-1}}) with length equal to Data.
 #' @param TimeZone Time zone of data (e.g. "UTC").
@@ -62,7 +62,7 @@
 #' FigNameBarplotAvailabilityLinks="Barplot_Availability_Links.pdf",
 #' FigNameBarplotAvailabilityLinkPaths="Barplot_Availability_LinkPaths.pdf",
 #' FigNameTimeseriesAvailability="TimeseriesAvailability.pdf",ps=18,Rmean=Rmean,TimeZone="UTC",LocationLegendTimeseriesAvailability="topright",
-#' MaxPercLinkPaths=100,MaxPercSubLinks=100,PlotTitle="Timeseries of data availability",LocationLegendTimeseriesAvailability="topright")
+#' MaxPercLinkPaths=100,MaxPercSubLinks=100,PlotTitleDataAvailability="Timeseries of data availability",LocationLegendTimeseriesAvailability="topright")
 #' @author Aart Overeem
 #' @references ''ManualRAINLINK.pdf''
 #'
@@ -71,7 +71,7 @@
 
 
 DataAvailability <- function(Data,cex.axis,cex.lab,FigNameBarplotAvailabilityLinks,FigNameBarplotAvailabilityLinkPaths,FigNameTimeseriesAvailability,LocationLegendTimeseriesAvailability,
-MaxPercLinkPaths,MaxPercSubLinks,PlotTitle,ps,Rmean,TimeZone="UTC",verbose=TRUE)
+MaxPercLinkPaths,MaxPercSubLinks,PlotTitleDataAvailability,ps,Rmean,TimeZone="UTC",verbose=TRUE)
 {
 
 	# If Rmean is provided, only select data for which the link-derived rainfall intensities are equal to or larger than 0.
@@ -130,7 +130,7 @@ MaxPercLinkPaths,MaxPercSubLinks,PlotTitle,ps,Rmean,TimeZone="UTC",verbose=TRUE)
 		ylimbarplot <- c(0,MaxPercSubLinks)
 	}	
 	barplot(perc,xlab = "Data availability sub-links (%)", ylab = "Percentage",
-	xaxt="n",tcl=.5,ylim=ylimbarplot,cex.lab=1.3,main=PlotTitle)
+	xaxt="n",tcl=.5,ylim=ylimbarplot,cex.lab=1.3,main=PlotTitleDataAvailability)
 	at <- 0.1
 	axis(side = 1, at = at, labels = 0, cex.axis = 0.6)
 	for (availclass in seq(StepPercAvail,100,StepPercAvail))
@@ -200,7 +200,7 @@ MaxPercLinkPaths,MaxPercSubLinks,PlotTitle,ps,Rmean,TimeZone="UTC",verbose=TRUE)
 		ylimbarplot <- c(0,MaxPercLinkPaths)
 	}
 	barplot(perc,xlab = "Data availability link paths (%)", ylab = "Percentage",
-	xaxt="n",tcl=.5,ylim=ylimbarplot,cex.lab=1.3,main=PlotTitle)
+	xaxt="n",tcl=.5,ylim=ylimbarplot,cex.lab=1.3,main=PlotTitleDataAvailability)
 	at <- 0.1
 	axis(side = 1, at = at, labels = 0, cex.axis = 0.6)
 	for (availclass in seq(StepPercAvail,100,StepPercAvail))
@@ -246,7 +246,7 @@ MaxPercLinkPaths,MaxPercSubLinks,PlotTitle,ps,Rmean,TimeZone="UTC",verbose=TRUE)
 
 	plot(Timestamp_data,NumberPaths,xlab="",ylab="",type="p",ylim=c(0,max(NumberSubLinks)),mgp=c(1.8,0.5,0),xaxt="n",yaxt="n",lwd=1,lty=1,col="gray",pch=16,cex=0.4)
 	par(new=TRUE)
-	plot(Timestamp_data,NumberSubLinks,xlab="Date",ylab="Mean number per interval",type="p",ylim=c(0,max(NumberSubLinks)),cex.lab=cex.lab,cex.axis=cex.axis,col="black",mgp=c(1.8,0.5,0),lwd=1,lty=1,pch=16,cex=0.4,main=PlotTitle)
+	plot(Timestamp_data,NumberSubLinks,xlab="Date",ylab="Mean number per interval",type="p",ylim=c(0,max(NumberSubLinks)),cex.lab=cex.lab,cex.axis=cex.axis,col="black",mgp=c(1.8,0.5,0),lwd=1,lty=1,pch=16,cex=0.4,main=PlotTitleDataAvailability)
 	legend(LocationLegendTimeseriesAvailability,legend=c("Sub-links","Link paths"),col=c("black","gray"),pch=c(16,16),bty="n",cex=1.15)
 	dev.off()
 	print(paste("Average number of sub-links:",mean(NumberSubLinks)))
