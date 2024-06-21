@@ -17,7 +17,7 @@ DataAvailability(
   LocationLegendTimeseriesAvailability,
   MaxPercLinkPaths,
   MaxPercSubLinks,
-  PlotTitle,
+  PlotTitleDataAvailability,
   verbose = TRUE
 )
 }
@@ -40,7 +40,7 @@ DataAvailability(
 
 \item{MaxPercSubLinks}{Maximum percentage on scale for bar plot of sub-link availability.} 
 
-\item{PlotTitle}{Title of plots (e.g., which CML vendor or period).}
+\item{PlotTitleDataAvailability}{Title of plots (e.g., which CML vendor or period).}
 
 \item{ps}{integer; the point size of text (but not symbols) in file FigNameTimeseriesAvailability.}
 
@@ -81,7 +81,7 @@ DataAvailability(Data=Linkdata,cex.axis=0.9,cex.lab=1.15,
 FigNameBarplotAvailabilityLinks="Barplot_Availability_Links.pdf",
 FigNameBarplotAvailabilityLinkPaths="Barplot_Availability_LinkPaths.pdf",
 FigNameTimeseriesAvailability="TimeseriesAvailability.pdf",ps=18,Rmean=Rmean,TimeZone="UTC",
-MaxPercLinkPaths=100,MaxPercSubLinks=100,PlotTitle="Timeseries of data availability",
+MaxPercLinkPaths=100,MaxPercSubLinks=100,PlotTitleDataAvailability="Timeseries of data availability",
 LocationLegendTimeseriesAvailability="topright")
 }
 \references{

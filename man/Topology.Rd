@@ -23,7 +23,7 @@ Topology(
   MaxPercFrequency,
   MaxPercOrientation,
   MaxPercPathLength,
-  PlotTitle,
+  PlotTitleTopology,
   verbose = TRUE
 )
 }
@@ -58,7 +58,7 @@ Topology(
 
 \item{MaxPercPathLength}{Maximum percentage on scale for bar plot of path length.}
 
-\item{PlotTitle}{Title of plots (e.g., which CML vendor or period).}
+\item{PlotTitleTopology}{Title of plots (e.g., which CML vendor or period).}
 
 \item{Rmean}{Vector of link-derived rainfall intensities (mm h\eqn{^{-1}}) with length equal to Data.}
 
@@ -96,7 +96,7 @@ FigNameFrequencyVsPathLength="Frequency_vs_PathLength.pdf",
 FigNameScatterdensityplotFrequencyVsPathLength="ScatterdensityPlot_Frequency_vs_PathLength.pdf",
 InputCoorSystem=4326L,LocalCartesianCoorSystem=28992,
 Maxf=40,Minf=13,MaxL=21,MinL=1,Rmean=Rmean,Stepf=1.5,StepL=2,MaxPercFrequency=40,
-MaxPercOrientation=7,MaxPercPathLength=30,PlotTitle="Topology")
+MaxPercOrientation=7,MaxPercPathLength=30,PlotTitleTopology="Topology")
 }
 \references{
 ''ManualRAINLINK.pdf''
