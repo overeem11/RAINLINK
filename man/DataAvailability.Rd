@@ -14,6 +14,10 @@ DataAvailability(
   ps,
   Rmean,
   TimeZone = "UTC",
+  LocationLegendTimeseriesAvailability,
+  MaxPercLinkPaths,
+  MaxPercSubLinks,
+  PlotTitle,
   verbose = TRUE
 )
 }
@@ -29,6 +33,14 @@ DataAvailability(
 \item{FigNameBarplotAvailabilityLinkPaths}{Name of file with bar plot with percentage of links for bins of link path length. The extension must be ''.pdf''.}
 
 \item{FigNameTimeseriesAvailability}{Name of file with bar plot with percentage of links for bins of microwave frequency. The extension must be ''.pdf''.}
+
+\item{LocationLegendTimeseriesAvailability}{Location of legend of figure with time series of number of sub-links and link paths. Choose from "bottomright", "bottomright", "bottom", "bottomleft", "left", "topleft", "top", "topright", "right" and "center"}
+
+\item{MaxPercLinkPaths}{Maximum percentage on scale for bar plot of link path availability.}
+
+\item{MaxPercSubLinks}{Maximum percentage on scale for bar plot of sub-link availability.} 
+
+\item{PlotTitle}{Title of plots (e.g., which CML vendor or period).}
 
 \item{ps}{integer; the point size of text (but not symbols) in file FigNameTimeseriesAvailability.}
 
@@ -59,13 +71,18 @@ In the computation of availabilities only links or paths are counted as availabl
 are equal to or larger than 0 (mm h\eqn{^{-1}}). I.e., NA values in Rmean are taken into account in the computation of data availability.
 So data availability is always computed over all time intervals in DateTime. Note that NA values do not exist in the DateTime object if function
 ''PreprocessingMinMaxRSL'' has been run and note that Data must be preprocessed, because Rmean is used.
+
+New as of RAINLINK version 1.31: When Rmean is not available, just use Rmean=NULL as argument. Then, the availability is also computed, but no selections with Rmean are performed.
+So no preprocessing is needed in that case.
 }
 \examples{
 data(Linkdata)
 DataAvailability(Data=Linkdata,cex.axis=0.9,cex.lab=1.15,
 FigNameBarplotAvailabilityLinks="Barplot_Availability_Links.pdf",
 FigNameBarplotAvailabilityLinkPaths="Barplot_Availability_LinkPaths.pdf",
-FigNameTimeseriesAvailability="TimeseriesAvailability.pdf",ps=18,Rmean=Rmean,TimeZone="UTC")
+FigNameTimeseriesAvailability="TimeseriesAvailability.pdf",ps=18,Rmean=Rmean,TimeZone="UTC",
+MaxPercLinkPaths=100,MaxPercSubLinks=100,PlotTitle="Timeseries of data availability",
+LocationLegendTimeseriesAvailability="topright")
 }
 \references{
 ''ManualRAINLINK.pdf''
