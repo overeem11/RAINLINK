@@ -1,8 +1,8 @@
 ## The RAINLINK package. Retrieval algorithm for rainfall mapping from microwave links 
 ## in a cellular communication network.
 ##
-## Version 1.3
-## Copyright (C) 2022 Aart Overeem
+## Version 1.31
+## Copyright (C) 2024 Aart Overeem
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
