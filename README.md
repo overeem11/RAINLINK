@@ -14,4 +14,5 @@ Overeem, A., Leijnse, H., and Uijlenhoet, R.: Retrieval algorithm for rainfall m
 Aart Overeem, Hidde Leijnse, Lotte de Vos, & Micha Silver. (2024). RAINLINK (v.1.31). Zenodo. https://doi.org/10.5281/zenodo.12211069
 
 IMPORTANT NOTICE
+
 Almost all functionality and methods from RAINLINK are now available in the open-source Python package [pycomlink][https://github.com/pycomlink/pycomlink], a python toolbox for deriving rainfall information from commercial microwave link data. The R package RAINLINK will remain active at this GitHub page, but maintenance and development have come to an end. Hence, we recommend to start using pycomlink, which contains several methods for different processing steps, including the ones from RAINLINK. In addition, some functionality concerning graphs with metadata and availability have become available in the open-source Python package [poligrain][https://github.com/OpenSenseAction/poligrain]. Hence, we recommend to start using poligrain, which simplifies common tasks for working with point, line and gridded sensor data, focusing on rainfall observations.
